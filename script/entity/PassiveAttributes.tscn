@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhvbds5d2uebf"]
+
+[ext_resource type="Script" uid="uid://cjwy5phje8cxl" path="res://script/entity/PassiveAttributes.cs" id="1_1u1at"]
+
+[node name="PassiveAttributes" type="Node"]
+script = ExtResource("1_1u1at")

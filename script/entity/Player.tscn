@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds5b8ypji4f0p"]
+
+[ext_resource type="Texture2D" uid="uid://ge34hfm148s2" path="res://art/franzl_hat1.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="5_sweqy"]
+[ext_resource type="PackedScene" uid="uid://dgsrqwxhhqcd2" path="res://script/handlers/InputHandler.tscn" id="6_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
+[ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="8_dw050"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
+radius = 16.0
+height = 32.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler")]
+script = ExtResource("1_onrkg")
+GravityHandler = NodePath("GravityHandler")
+InputHandler = NodePath("InputHandler")
+MovementHandler = NodePath("MovementHandler")
+JumpHandler = NodePath("JumpHandler")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.376145, 0.376145)
+sprite_frames = SubResource("SpriteFrames_onrkg")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="GravityHandler" parent="." instance=ExtResource("5_sweqy")]
+
+[node name="InputHandler" parent="." instance=ExtResource("6_1jxqw")]
+
+[node name="MovementHandler" parent="." instance=ExtResource("7_dw050")]
+
+[node name="JumpHandler" parent="." instance=ExtResource("8_dw050")]

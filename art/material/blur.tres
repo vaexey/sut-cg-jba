@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cir8jyqs4gq3p"]
+
+[ext_resource type="Shader" uid="uid://bdvuldymtq3uw" path="res://shader/blur.gdshader" id="1_ua5wy"]
+
+[resource]
+shader = ExtResource("1_ua5wy")
+shader_parameter/radius = 4
+shader_parameter/minAlpha = 0.0
+shader_parameter/tint = Color(0.481789, 0.481789, 0.481789, 1)

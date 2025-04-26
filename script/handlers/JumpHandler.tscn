@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://8q6hrijcabhl"]
+
+[ext_resource type="Script" uid="uid://i6heb3s53qja" path="res://script/handlers/JumpHandler.cs" id="1_i8jou"]
+
+[node name="JumpHandler" type="Node" node_paths=PackedStringArray("JumpBufferTimer", "CoyoteTimer")]
+script = ExtResource("1_i8jou")
+JumpBufferTimer = NodePath("JumpBufferTimer")
+CoyoteTimer = NodePath("CoyoteTimer")
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.08
+one_shot = true

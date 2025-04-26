@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch235a5w1xcp"]
+
+[ext_resource type="Script" uid="uid://jogo6vvmhw6p" path="res://script/handlers/GravityHandler.cs" id="1_fhcwm"]
+
+[node name="GravityHandler" type="Node"]
+script = ExtResource("1_fhcwm")
