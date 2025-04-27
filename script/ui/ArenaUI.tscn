@@ -1,14 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgyqe8wqw53kb"]
+[gd_scene load_steps=11 format=3 uid="uid://bgyqe8wqw53kb"]
 
 [ext_resource type="Script" uid="uid://bictc8vjntxp8" path="res://script/ui/ArenaUI.cs" id="1_fa5n7"]
+[ext_resource type="Texture2D" uid="uid://cobxiq1f5mocn" path="res://art/ui/bar/empty_bar.png" id="2_m5to1"]
+[ext_resource type="Texture2D" uid="uid://dgoe4y0p2gt5a" path="res://art/ui/bar/health_bar.png" id="3_7883h"]
+[ext_resource type="Texture2D" uid="uid://cdwx4nqe3u5kj" path="res://art/ui/bar/beer.png" id="4_7883h"]
+[ext_resource type="Texture2D" uid="uid://cfkv1jjhamtd7" path="res://art/ui/bar/energy_bar.png" id="5_3pumr"]
+[ext_resource type="Texture2D" uid="uid://dwrhss72wy5w8" path="res://art/ui/bar/shield_bar.png" id="6_rnj3i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjlb0"]
+atlas = ExtResource("2_m5to1")
+region = Rect2(0, 0, 98, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pumr"]
+atlas = ExtResource("3_7883h")
+region = Rect2(0, 0, 0, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnj3i"]
+atlas = ExtResource("5_3pumr")
+region = Rect2(0, 0, 0, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qs5n"]
+atlas = ExtResource("6_rnj3i")
+region = Rect2(0, 0, 0, 16)
 
 [node name="ArenaUI" type="CanvasLayer" node_paths=PackedStringArray("StatsLabel")]
 script = ExtResource("1_fa5n7")
 StatsLabel = NodePath("StatsLabel")
 
 [node name="StatsLabel" type="Label" parent="."]
-offset_left = 32.0
-offset_top = 18.0
-offset_right = 72.0
-offset_bottom = 41.0
+offset_left = 29.0
+offset_top = 12.0
+offset_right = 69.0
+offset_bottom = 35.0
 text = "Stats"
+
+[node name="BeverageBar" type="TextureProgressBar" parent="."]
+offset_left = 36.7609
+offset_top = 393.0
+offset_right = 134.761
+offset_bottom = 409.0
+scale = Vector2(1.6, 1.6)
+value = 50.0
+texture_under = SubResource("AtlasTexture_hjlb0")
+texture_progress = SubResource("AtlasTexture_3pumr")
+
+[node name="Beer" type="Sprite2D" parent="."]
+position = Vector2(23.7609, 405)
+scale = Vector2(0.610058, 0.610058)
+texture = ExtResource("4_7883h")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="."]
+offset_left = 36.7609
+offset_top = 419.0
+offset_right = 134.761
+offset_bottom = 435.0
+scale = Vector2(1.6, 1.6)
+value = 50.0
+texture_under = SubResource("AtlasTexture_hjlb0")
+texture_progress = SubResource("AtlasTexture_rnj3i")
+
+[node name="InspirationBar" type="TextureProgressBar" parent="."]
+offset_left = 36.7609
+offset_top = 445.0
+offset_right = 134.761
+offset_bottom = 461.0
+scale = Vector2(1.6, 1.6)
+value = 50.0
+texture_under = SubResource("AtlasTexture_hjlb0")
+texture_progress = SubResource("AtlasTexture_2qs5n")

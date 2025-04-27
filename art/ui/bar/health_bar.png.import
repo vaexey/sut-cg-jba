@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ge34hfm148s2"
-path="res://.godot/imported/franzl_hat1.png-4f59fd51ae5eece017c38e12c4cdd9d6.ctex"
+uid="uid://dgoe4y0p2gt5a"
+path="res://.godot/imported/health_bar.png-3fce832d128de09989142edd9c8bf50c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/franzl_hat1.png"
-dest_files=["res://.godot/imported/franzl_hat1.png-4f59fd51ae5eece017c38e12c4cdd9d6.ctex"]
+source_file="res://art/ui/bar/health_bar.png"
+dest_files=["res://.godot/imported/health_bar.png-3fce832d128de09989142edd9c8bf50c.ctex"]
 
 [params]
 

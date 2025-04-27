@@ -16,6 +16,9 @@ public partial class Player : CharacterBody2D
 
 	[Export]
 	public JumpHandler JumpHandler { get; set; }
+	
+	[Export]
+	public AnimationHandler AnimationHandler { get; set; }
 
     // public override string[] _GetConfigurationWarnings()
     // {
@@ -32,6 +35,7 @@ public partial class Player : CharacterBody2D
 		GravityHandler.HandleGravity(this, delta);
 		MovementHandler.HandleHorizontal(this, delta, InputHandler.HorizontalInput);
 		JumpHandler.HandleJump(this, InputHandler.GetJumpPressed(), InputHandler.GetJumpReleased());
+		AnimationHandler.HandleHorizontalFlip(InputHandler.HorizontalInput);
 
 		MoveAndSlide();
 	}
