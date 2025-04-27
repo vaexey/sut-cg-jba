@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=11 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://drfwb020e2mt5" path="res://art/player/franzl_stolen.png" id="2_iu8c2"]
+[ext_resource type="Texture2D" uid="uid://8hb80an3shp6" path="res://art/player/franzl_idle0.png" id="2_7dit8"]
+[ext_resource type="Texture2D" uid="uid://dv7reoibxuww0" path="res://art/player/franzl_idle1.png" id="3_osyel"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://dgsrqwxhhqcd2" path="res://script/handlers/InputHandler.tscn" id="6_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
@@ -12,11 +13,14 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_iu8c2")
+"texture": ExtResource("2_7dit8")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_osyel")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
@@ -35,6 +39,8 @@ AnimationHandler = NodePath("AnimationHandler")
 scale = Vector2(0.862287, 0.862287)
 sprite_frames = SubResource("SpriteFrames_onrkg")
 animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0614458
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
