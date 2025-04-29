@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddu6d210f3nq4"]
+
+[ext_resource type="Script" uid="uid://be57xcovsj5oo" path="res://script/entity/cc/CrowdControlEffect.cs" id="1_jlowk"]
+
+[node name="CrowdControlEffect" type="Node"]
+script = ExtResource("1_jlowk")

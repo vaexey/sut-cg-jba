@@ -5,13 +5,14 @@ public partial class JumpHandler : Node
 {
 	[ExportSubgroup("Nodes")]
 	[Export]
+	public Entity Entity { get; set; }
+	[Export]
 	public Timer JumpBufferTimer { get; set; }
 	[Export]
 	public Timer CoyoteTimer { get; set; }
 
-	[ExportSubgroup("Settings")]
-	[Export]
-	public float JumpVelocity { get; set; } = -350;
+	[Signal]
+	public delegate void JumpStartedEventHandler();
 
 	bool IsGoingUp = false;
 	bool IsJumping = false;
@@ -26,7 +27,7 @@ public partial class JumpHandler : Node
 		if(HasJustLanded(body))
 			IsJumping = false;
 
-		if(IsAllowedToJump(body) && wantToJump)
+		if(IsAllowedToJump(body) && wantToJump && Entity.CanJump())
 			jump(body);
 		
 		handleCoyoteTime(body);
@@ -53,7 +54,7 @@ public partial class JumpHandler : Node
 		if(wantToJump && !body.IsOnFloor())
 			JumpBufferTimer.Start();
 		
-		if(!JumpBufferTimer.IsStopped() && body.IsOnFloor())
+		if(!JumpBufferTimer.IsStopped() && body.IsOnFloor() && Entity.CanJump())
 			jump(body);
 	}
 
@@ -65,7 +66,9 @@ public partial class JumpHandler : Node
 
 	private void jump(CharacterBody2D body)
 	{
-		body.Velocity = new(body.Velocity.X, JumpVelocity);
+		Entity.DidJump();
+		EmitSignal(SignalName.JumpStarted);
+		body.Velocity = new(body.Velocity.X, -Entity.PassiveAttributes.JumpVelocity);
 		IsJumping = true;
 		JumpBufferTimer.Stop();
 		CoyoteTimer.Stop();

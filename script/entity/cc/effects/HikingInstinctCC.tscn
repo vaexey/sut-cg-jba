@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://31p3nsm3xfcw"]
+
+[ext_resource type="Script" uid="uid://cumm8pg5nw38f" path="res://script/entity/cc/effects/HikingInstinctCC.cs" id="1_p1eec"]
+
+[node name="HikingInstinctCC" type="Node"]
+script = ExtResource("1_p1eec")
+DisplayName = "Hiking Instinct"

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IEntityContainer
 {
 	[ExportSubgroup("Handlers")]
 	[Export]
@@ -19,6 +19,10 @@ public partial class Player : CharacterBody2D
 	
 	[Export]
 	public AnimationHandler AnimationHandler { get; set; }
+
+	[ExportSubgroup("Nodes")]
+	[Export]
+	public Entity Entity { get; set; }
 
     // public override string[] _GetConfigurationWarnings()
     // {
@@ -39,6 +43,27 @@ public partial class Player : CharacterBody2D
 
 		MoveAndSlide();
 	}
+
+    public override void _Process(double delta)
+    {
+		// if(Input.IsActionJustPressed("ability_basic"))
+		// {
+		// 	var proj = ProjectileLibrary.AutoJodlerProjectile.Make();
+
+		// 	// proj.Position = Position;
+		// 	// proj.LookAt(GetGlobalMousePosition());
+		// 	// proj.Velocity = new Vector2(20,0).Rotated(proj.Rotation);
+		// 	proj.Shoot(Position, GetGlobalMousePosition());
+		// 	proj.OwnerEntity = Entity;
+
+		// 	Entity.World.AddProjectile(proj);
+		// }
+
+		if(Input.IsActionJustPressed("ability_godlike"))
+		{
+			Entity.Abilities.Godlike.Use(this);
+		}
+    }
 
 	// public int MaxSpeed { get; set; } = 500;
 

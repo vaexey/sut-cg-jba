@@ -7,9 +7,9 @@ public partial class Arena : Node
     {
         base._Ready();
 
-        var player = GetNode<Player>("Player");
-        var spawn = GetNode<Marker2D>("PlayerSpawn");
+        // var player = GetNode<Player>("Player");
+        // var spawn = GetNode<Marker2D>("PlayerSpawn");
 
-        player.Position = spawn.Position;
+        // player.Position = spawn.Position;
     }
 }

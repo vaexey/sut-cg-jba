@@ -3,21 +3,12 @@ using System;
 
 public partial class MovementHandler : Node
 {
-	[ExportSubgroup("Settings")]
+	[ExportSubgroup("Nodes")]
 	[Export]
-	public float Speed { get; set; } = 200;
+	public Entity Entity { get; set; }
 
-	[Export]
-	public float GroundAcceleration { get; set; } = 3000;
-	
-	[Export]
-	public float GroundDeceleration { get; set; } = 4000;
-
-	[Export]
-	public float AirAcceleration { get; set; } = 5000;
-
-	[Export]
-	public float AirDeceleration { get; set; } = 1500;
+	[Signal]
+	public delegate void SetGrassSoundEventHandler(bool grass);
 
 	public void HandleHorizontal(CharacterBody2D body, double delta, float direction)
 	{
@@ -25,15 +16,20 @@ public partial class MovementHandler : Node
 
 		if(body.IsOnFloor())
 		{
-			accel = direction != 0 ? GroundAcceleration : GroundDeceleration;
+			accel = direction != 0 ? Entity.PassiveAttributes.GroundAcceleration : Entity.PassiveAttributes.GroundDeceleration;
 		}
 		else
 		{
-			accel = direction != 0 ? AirAcceleration : AirDeceleration;
+			accel = direction != 0 ? Entity.PassiveAttributes.AirAcceleration : Entity.PassiveAttributes.AirDeceleration;
 		}
+
+		EmitSignal(
+			SignalName.SetGrassSound,
+			body.IsOnFloor() && body.Velocity.X != 0
+			);
 		
 		body.Velocity = new(
-			Mathf.MoveToward(body.Velocity.X, direction * Speed, accel * (float)delta),
+			Mathf.MoveToward(body.Velocity.X, direction * Entity.PassiveAttributes.Speed, accel * (float)delta),
 			body.Velocity.Y
 		);
 	}

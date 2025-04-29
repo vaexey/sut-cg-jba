@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://btojp7njqkq8e"]
+
+[ext_resource type="Texture2D" uid="uid://8hb80an3shp6" path="res://art/player/franzl_idle0.png" id="1_nl434"]
+[ext_resource type="Script" uid="uid://duxfu7y6nkh4w" path="res://script/entity/SimpleEnemy.cs" id="1_tgbra"]
+[ext_resource type="Texture2D" uid="uid://dv7reoibxuww0" path="res://art/player/franzl_idle1.png" id="2_d80sm"]
+[ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="3_tgbra"]
+[ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="5_xb81b"]
+[ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="6_8tb1w"]
+[ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="7_pq6kc"]
+[ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="8_i2b6t"]
+[ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="9_208p5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vi1ym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nl434")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_d80sm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hmdms"]
+radius = 16.0
+height = 50.0
+
+[node name="SimpleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "Entity")]
+collision_mask = 13
+script = ExtResource("1_tgbra")
+GravityHandler = NodePath("Handlers/GravityHandler")
+MovementHandler = NodePath("Handlers/MovementHandler")
+JumpHandler = NodePath("Handlers/JumpHandler")
+AnimationHandler = NodePath("Handlers/AnimationHandler")
+Entity = NodePath("Entity")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.862287, 0.862287)
+sprite_frames = SubResource("SpriteFrames_vi1ym")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_hmdms")
+
+[node name="Handlers" type="Node" parent="."]
+
+[node name="GravityHandler" parent="Handlers" instance=ExtResource("3_tgbra")]
+
+[node name="MovementHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("5_xb81b")]
+Entity = NodePath("../../Entity")
+
+[node name="JumpHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("6_8tb1w")]
+Entity = NodePath("../../Entity")
+
+[node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("7_pq6kc")]
+Sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes") instance=ExtResource("8_i2b6t")]
+PassiveAttributes = NodePath("PassiveAttributes")
+
+[node name="PassiveAttributes" parent="Entity" instance=ExtResource("9_208p5")]
