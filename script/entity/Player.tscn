@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=15 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://8hb80an3shp6" path="res://art/player/franzl_idle0.png" id="2_7dit8"]
-[ext_resource type="Texture2D" uid="uid://dv7reoibxuww0" path="res://art/player/franzl_idle1.png" id="3_osyel"]
+[ext_resource type="Texture2D" uid="uid://8df364rgnohg" path="res://art/player/franzl_idle0000.png" id="2_rcb7a"]
+[ext_resource type="Texture2D" uid="uid://drxu754dnaia6" path="res://art/player/franzl_idle0001.png" id="3_il6l0"]
+[ext_resource type="Texture2D" uid="uid://cy5jxx5xoahup" path="res://art/player/franzl_idle0002.png" id="4_l8xdv"]
+[ext_resource type="Texture2D" uid="uid://c86apa6ucsrme" path="res://art/player/franzl_idle0003.png" id="5_q3jhd"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://dgsrqwxhhqcd2" path="res://script/handlers/InputHandler.tscn" id="6_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bgayuwlqjuki" path="res://art/player/franzl_idle0004.png" id="6_u77ui"]
+[ext_resource type="Texture2D" uid="uid://dj3t2bei1c2kh" path="res://art/player/franzl_idle0005.png" id="7_6h1lh"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
 [ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="7_ugmt5"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="8_dw050"]
@@ -13,14 +17,26 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_7dit8")
+"texture": ExtResource("2_rcb7a")
 }, {
-"duration": 0.5,
-"texture": ExtResource("3_osyel")
+"duration": 1.0,
+"texture": ExtResource("3_il6l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8xdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q3jhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u77ui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6h1lh")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 1.0
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
@@ -36,7 +52,6 @@ JumpHandler = NodePath("JumpHandler")
 AnimationHandler = NodePath("AnimationHandler")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.862287, 0.862287)
 sprite_frames = SubResource("SpriteFrames_onrkg")
 animation = &"idle"
 autoplay = "idle"
