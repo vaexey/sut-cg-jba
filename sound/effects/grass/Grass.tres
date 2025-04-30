@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=9 format=3 uid="uid://bca7cgirqdqyc"]
+
+[ext_resource type="AudioStream" uid="uid://bgvtgjfi0ln3k" path="res://sound/effects/grass/GRASS - Walk short 1.wav" id="1_esm86"]
+[ext_resource type="AudioStream" uid="uid://byvj008s23c20" path="res://sound/effects/grass/GRASS - Walk short 2.wav" id="2_irib3"]
+[ext_resource type="AudioStream" uid="uid://dbm2e5qs12ik4" path="res://sound/effects/grass/GRASS - Walk short 3.wav" id="3_qvq3k"]
+[ext_resource type="AudioStream" uid="uid://b7wkw3mdselr1" path="res://sound/effects/grass/GRASS - Walk short 4.wav" id="4_b1bcu"]
+[ext_resource type="AudioStream" uid="uid://ct6pnwt75r8gn" path="res://sound/effects/grass/GRASS - Walk short 5.wav" id="5_0ptb4"]
+[ext_resource type="AudioStream" uid="uid://byre3rsiien7p" path="res://sound/effects/grass/GRASS - Walk short 6.wav" id="6_iva5x"]
+[ext_resource type="AudioStream" uid="uid://blu36b34jvwij" path="res://sound/effects/grass/GRASS - Walk short 7.wav" id="7_8a5q3"]
+[ext_resource type="AudioStream" uid="uid://bfgdx2bog70mf" path="res://sound/effects/grass/GRASS - Walk short 8.wav" id="8_1r4fw"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 8
+stream_0/stream = ExtResource("1_esm86")
+stream_1/stream = ExtResource("2_irib3")
+stream_2/stream = ExtResource("3_qvq3k")
+stream_3/stream = ExtResource("4_b1bcu")
+stream_4/stream = ExtResource("5_0ptb4")
+stream_5/stream = ExtResource("6_iva5x")
+stream_6/stream = ExtResource("7_8a5q3")
+stream_7/stream = ExtResource("8_1r4fw")

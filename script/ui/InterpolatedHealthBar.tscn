@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://byvj16ruksqdr"]
+
+[ext_resource type="Script" uid="uid://dfrs1k0isu2sv" path="res://script/ui/InterpolatedHealthBar.cs" id="1_lauot"]
+[ext_resource type="Texture2D" uid="uid://dmi1ey12tlcld" path="res://art/ui/bar/Under.tres" id="1_tvf2m"]
+[ext_resource type="Texture2D" uid="uid://d31negl2lgvp2" path="res://art/ui/bar/Progress.tres" id="2_lauot"]
+
+[node name="InterpolatedHealthBar" type="TextureProgressBar" node_paths=PackedStringArray("Transparent", "Opaque")]
+offset_right = 98.0
+offset_bottom = 16.0
+step = 0.01
+value = 50.0
+texture_under = ExtResource("1_tvf2m")
+tint_progress = Color(1, 0, 0, 1)
+script = ExtResource("1_lauot")
+Speed = 0.1
+Transparent = NodePath("Transparent")
+Opaque = NodePath("Opaque")
+
+[node name="Transparent" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 16.0
+step = 0.01
+value = 50.0
+texture_progress = ExtResource("2_lauot")
+tint_progress = Color(1, 0.501961, 0.501961, 1)
+
+[node name="Opaque" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 16.0
+step = 0.01
+value = 50.0
+texture_progress = ExtResource("2_lauot")
+tint_progress = Color(1, 0, 0, 1)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doc2yh3v8ldk3"]
+
+[ext_resource type="Script" uid="uid://cmodqjhh6ad51" path="res://script/entity/ability/Ability.cs" id="1_ayf1e"]
+
+[node name="Ability" type="Node"]
+script = ExtResource("1_ayf1e")

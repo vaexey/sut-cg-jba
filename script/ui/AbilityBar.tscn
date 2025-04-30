@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsfpk5smk1mvw"]
+
+[ext_resource type="Script" uid="uid://dcpfwit63wxry" path="res://script/ui/AbilityBar.cs" id="1_ev76g"]
+[ext_resource type="PackedScene" uid="uid://su8ses5e76ge" path="res://script/ui/AbilityIcon.tscn" id="1_k8n46"]
+
+[node name="AbilityBar" type="Control" node_paths=PackedStringArray("Basic1", "Godlike")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ev76g")
+Basic1 = NodePath("Basic1")
+Godlike = NodePath("Godlike")
+
+[node name="Basic1" parent="." instance=ExtResource("1_k8n46")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Godlike" parent="." instance=ExtResource("1_k8n46")]
+offset_left = 34.0
+offset_top = 34.0
+offset_right = 66.0
+offset_bottom = 66.0
+grow_horizontal = 1
+grow_vertical = 1

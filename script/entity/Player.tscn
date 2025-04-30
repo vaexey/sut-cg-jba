@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=21 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://8df364rgnohg" path="res://art/player/franzl_idle0000.png" id="2_rcb7a"]
@@ -12,6 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
 [ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="7_ugmt5"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="8_dw050"]
+[ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="9_s8apa"]
+[ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="10_7ilxq"]
+[ext_resource type="PackedScene" uid="uid://8ueu6e3t55rr" path="res://script/entity/cc/CrowdControl.tscn" id="11_q3jhd"]
+[ext_resource type="AudioStream" uid="uid://bvb0sie53xfv8" path="res://sound/effects/auto_jodler_1.wav" id="11_rcb7a"]
+[ext_resource type="PackedScene" uid="uid://gwen8nmp2tx3" path="res://script/entity/ability/Abilities.tscn" id="11_u77ui"]
+[ext_resource type="PackedScene" uid="uid://bwuud6qdp0gwh" path="res://script/entity/ability/types/AutoJodlerAbility.tscn" id="12_6h1lh"]
+[ext_resource type="AudioStream" uid="uid://b8u403tahp6mi" path="res://sound/effects/auto_jodler_2.wav" id="12_il6l0"]
+[ext_resource type="AudioStream" uid="uid://bca7cgirqdqyc" path="res://sound/effects/grass/Grass.tres" id="13_il6l0"]
+[ext_resource type="Script" uid="uid://bn7c3w881fx25" path="res://script/handlers/LoopingSoundHandler.cs" id="14_l8xdv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
 animations = [{
@@ -43,13 +52,22 @@ animations = [{
 radius = 16.0
 height = 50.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l8xdv"]
+random_pitch = 1.05
+streams_count = 2
+stream_0/stream = ExtResource("11_rcb7a")
+stream_1/stream = ExtResource("12_il6l0")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "Entity")]
+collision_layer = 8
+collision_mask = 13
 script = ExtResource("1_onrkg")
-GravityHandler = NodePath("GravityHandler")
-InputHandler = NodePath("InputHandler")
-MovementHandler = NodePath("MovementHandler")
-JumpHandler = NodePath("JumpHandler")
-AnimationHandler = NodePath("AnimationHandler")
+GravityHandler = NodePath("Handlers/GravityHandler")
+InputHandler = NodePath("Handlers/InputHandler")
+MovementHandler = NodePath("Handlers/MovementHandler")
+JumpHandler = NodePath("Handlers/JumpHandler")
+AnimationHandler = NodePath("Handlers/AnimationHandler")
+Entity = NodePath("Entity")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_onrkg")
@@ -61,13 +79,59 @@ frame_progress = 0.0614458
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_4flbx")
 
-[node name="GravityHandler" parent="." instance=ExtResource("5_sweqy")]
+[node name="Handlers" type="Node" parent="."]
 
-[node name="InputHandler" parent="." instance=ExtResource("6_1jxqw")]
+[node name="GravityHandler" parent="Handlers" instance=ExtResource("5_sweqy")]
 
-[node name="MovementHandler" parent="." instance=ExtResource("7_dw050")]
+[node name="InputHandler" parent="Handlers" instance=ExtResource("6_1jxqw")]
 
-[node name="JumpHandler" parent="." instance=ExtResource("8_dw050")]
+[node name="MovementHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("7_dw050")]
+Entity = NodePath("../../Entity")
 
-[node name="AnimationHandler" parent="." node_paths=PackedStringArray("Sprite") instance=ExtResource("7_ugmt5")]
-Sprite = NodePath("../AnimatedSprite2D")
+[node name="JumpHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("8_dw050")]
+Entity = NodePath("../../Entity")
+
+[node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("7_ugmt5")]
+Sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC", "Abilities") instance=ExtResource("9_s8apa")]
+PassiveAttributes = NodePath("PassiveAttributes")
+CC = NodePath("CrowdControl")
+Abilities = NodePath("Abilities")
+
+[node name="PassiveAttributes" parent="Entity" instance=ExtResource("10_7ilxq")]
+
+[node name="Abilities" parent="Entity" instance=ExtResource("11_u77ui")]
+
+[node name="Basic" type="Node" parent="Entity/Abilities"]
+
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("12_6h1lh")]
+
+[node name="Complex" type="Node" parent="Entity/Abilities"]
+
+[node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="Slot 3" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="Godlike" type="Node" parent="Entity/Abilities"]
+
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("12_6h1lh")]
+
+[node name="CrowdControl" parent="Entity" node_paths=PackedStringArray("ParentEntity") instance=ExtResource("11_q3jhd")]
+ParentEntity = NodePath("..")
+
+[node name="JumpSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_l8xdv")
+
+[node name="GrassSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_il6l0")
+volume_db = -15.0
+max_polyphony = 3
+script = ExtResource("14_l8xdv")
+IntervalMin = 0.25
+IntervalMax = 0.3
+
+[connection signal="SetGrassSound" from="Handlers/MovementHandler" to="GrassSoundEffect" method="SetKeepPlaying"]
+[connection signal="JumpStarted" from="Handlers/JumpHandler" to="JumpSoundEffect" method="play"]
