@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://ca264ghultx34"]
+
+[ext_resource type="Texture2D" uid="uid://8df364rgnohg" path="res://art/player/franzl_idle0000.png" id="1_1xa2f"]
+[ext_resource type="Texture2D" uid="uid://drxu754dnaia6" path="res://art/player/franzl_idle0001.png" id="2_043aj"]
+[ext_resource type="Texture2D" uid="uid://cy5jxx5xoahup" path="res://art/player/franzl_idle0002.png" id="3_r4rex"]
+[ext_resource type="Texture2D" uid="uid://c86apa6ucsrme" path="res://art/player/franzl_idle0003.png" id="4_giro4"]
+[ext_resource type="Texture2D" uid="uid://bgayuwlqjuki" path="res://art/player/franzl_idle0004.png" id="5_8vekn"]
+[ext_resource type="Texture2D" uid="uid://dj3t2bei1c2kh" path="res://art/player/franzl_idle0005.png" id="6_hvw74"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1xa2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_043aj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r4rex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_giro4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8vekn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hvw74")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]

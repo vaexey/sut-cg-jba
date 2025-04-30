@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://btojp7njqkq8e"]
+[gd_scene load_steps=10 format=3 uid="uid://btojp7njqkq8e"]
 
-[ext_resource type="Texture2D" uid="uid://8hb80an3shp6" path="res://art/player/franzl_idle0.png" id="1_nl434"]
 [ext_resource type="Script" uid="uid://duxfu7y6nkh4w" path="res://script/entity/SimpleEnemy.cs" id="1_tgbra"]
-[ext_resource type="Texture2D" uid="uid://dv7reoibxuww0" path="res://art/player/franzl_idle1.png" id="2_d80sm"]
+[ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_s7nyt"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="3_tgbra"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="5_xb81b"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="6_8tb1w"]
@@ -10,23 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="8_i2b6t"]
 [ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="9_208p5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vi1ym"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_nl434")
-}, {
-"duration": 0.5,
-"texture": ExtResource("2_d80sm")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hmdms"]
-radius = 16.0
-height = 50.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7nyt"]
+radius = 18.0
+height = 58.0
 
 [node name="SimpleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "Entity")]
 collision_mask = 13
@@ -38,14 +23,13 @@ AnimationHandler = NodePath("Handlers/AnimationHandler")
 Entity = NodePath("Entity")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.862287, 0.862287)
-sprite_frames = SubResource("SpriteFrames_vi1ym")
+position = Vector2(-1, -3)
+sprite_frames = ExtResource("2_s7nyt")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_hmdms")
+shape = SubResource("CapsuleShape2D_s7nyt")
 
 [node name="Handlers" type="Node" parent="."]
 

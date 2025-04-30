@@ -50,6 +50,7 @@ position = Vector2(16, 16)
 texture = SubResource("AtlasTexture_xluf0")
 
 [node name="OverlayLabel" type="Label" parent="."]
+layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 text = "10.0"
