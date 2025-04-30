@@ -16,6 +16,9 @@ public partial class ArenaUI : CanvasLayer
     public TextureProgressBar InspirationBar;
 
     [Export]
+    public AbilityBar AbilityBar;
+
+    [Export]
     public Player Player;
 
     // public override string[] _GetConfigurationWarnings()
@@ -39,5 +42,7 @@ public partial class ArenaUI : CanvasLayer
         BeverageBar.Value = Player.Entity.Beverage.Percentage * 100;
         StaminaBar.Value = Player.Entity.Stamina.Percentage * 100;
         InspirationBar.Value = Player.Entity.Inspiration.Percentage * 100;
+
+        AbilityBar.EntityContainer = Player;
     }
 }

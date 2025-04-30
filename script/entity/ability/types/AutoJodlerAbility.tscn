@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwuud6qdp0gwh"]
+[gd_scene load_steps=3 format=3 uid="uid://bwuud6qdp0gwh"]
 
 [ext_resource type="Script" uid="uid://bfrqc2eblo7bb" path="res://script/entity/ability/types/AutoJodlerAbility.cs" id="1_qxqwv"]
+[ext_resource type="Texture2D" uid="uid://cp4blq0nsfwyj" path="res://art/ui/icon/ability/auto_jodler.png" id="2_ry8u2"]
 
 [node name="AutoJodlerAbility" type="Node"]
 script = ExtResource("1_qxqwv")
 DisplayName = "Auto-jodler"
+IconTexture = ExtResource("2_ry8u2")
+Cooldown = 5.0

@@ -90,6 +90,8 @@ Abilities = NodePath("Abilities")
 
 [node name="Basic" type="Node" parent="Entity/Abilities"]
 
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("12_6h1lh")]
+
 [node name="Complex" type="Node" parent="Entity/Abilities"]
 
 [node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]

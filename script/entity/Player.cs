@@ -61,7 +61,8 @@ public partial class Player : CharacterBody2D, IEntityContainer
 
 		if(Input.IsActionJustPressed("ability_godlike"))
 		{
-			Entity.Abilities.Godlike.Use(this);
+			if(Entity.Abilities.Godlike.CanUse(this) == AbilityUsageTrialResult.OK)
+				Entity.Abilities.Godlike.Use(this);
 		}
     }
 

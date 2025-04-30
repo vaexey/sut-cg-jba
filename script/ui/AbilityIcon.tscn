@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://su8ses5e76ge"]
+
+[ext_resource type="Texture2D" uid="uid://cbhf5sib6e2u7" path="res://art/ui/icon/iron_T.png" id="1_q7fsc"]
+[ext_resource type="Texture2D" uid="uid://bdk240farbge" path="res://art/ui/icon/iron_AN.png" id="1_wfpww"]
+[ext_resource type="Script" uid="uid://tl3pu1pnf7p1" path="res://script/ui/AbilityIcon.cs" id="1_xluf0"]
+[ext_resource type="Shader" uid="uid://bf3pii48hni6y" path="res://shader/tint.gdshader" id="2_a3ywx"]
+[ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="5_qr7n7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jpi4"]
+resource_local_to_scene = true
+shader = ExtResource("2_a3ywx")
+shader_parameter/tint_default = Color(1, 1, 1, 1)
+shader_parameter/tint_enabled = Color(0.44, 0.44, 0.44, 1)
+shader_parameter/tint_enable = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfpww"]
+atlas = ExtResource("1_wfpww")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xluf0"]
+atlas = ExtResource("1_q7fsc")
+region = Rect2(96, 512, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y5qb"]
+font = ExtResource("5_qr7n7")
+
+[node name="AbilityIcon" type="Control" node_paths=PackedStringArray("TintCanvas", "IconSprite", "OverlayLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -0.207001
+offset_top = -0.0799999
+offset_right = 31.793
+offset_bottom = 31.92
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xluf0")
+TintCanvas = NodePath("IconTint")
+IconSprite = NodePath("IconTint/Icon")
+OverlayLabel = NodePath("OverlayLabel")
+
+[node name="IconTint" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_0jpi4")
+
+[node name="Background" type="Sprite2D" parent="IconTint"]
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_wfpww")
+
+[node name="Icon" type="Sprite2D" parent="IconTint"]
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_xluf0")
+
+[node name="OverlayLabel" type="Label" parent="."]
+offset_right = 32.0
+offset_bottom = 32.0
+text = "10.0"
+label_settings = SubResource("LabelSettings_1y5qb")
+horizontal_alignment = 1
+vertical_alignment = 1
