@@ -16,13 +16,27 @@ public partial class SimpleProjectile : CharacterBody2D
     public float ProjectileVelocity { get; set; } = 200;
 
     [Export]
+    public float ProjectileGravity { get; set; } = 500;
+
+    [Export]
     public bool DestroyOnCollision { get; set; } = true;
 
     // [Export]
     // public bool IgnoreOwnerCollision { get; set; } = true;
 
+    // public override void _Ready()
+    // {
+    //     if(IgnoreOwnerCollision)
+    //     {
+    //         AddCollisionExceptionWith();
+    //     }
+    // }
+
     public override void _PhysicsProcess(double delta)
     {
+        if(ProjectileGravity > 0 && !IsOnFloor())
+            Velocity = Velocity + new Vector2(0, ProjectileGravity * (float)delta);
+
         MoveAndSlide();
 
         var collisions = GetSlideCollisionCount();
@@ -35,6 +49,7 @@ public partial class SimpleProjectile : CharacterBody2D
                 objs[i] = GetSlideCollision(i).GetCollider();
             }
 
+            GD.Print($"Slided with {objs.Length}");
             OnCollisionRaw(objs);
         }
     }
@@ -45,7 +60,7 @@ public partial class SimpleProjectile : CharacterBody2D
         var entities = new List<Entity>();
         var players = new List<Player>();
 
-        foreach(var node in rawObjects)
+        foreach(var node in rawObjects.Distinct())
         {
             var type = node.GetType();
 
@@ -70,13 +85,15 @@ public partial class SimpleProjectile : CharacterBody2D
 
     public virtual void OnCollision(Node[] nodes, Entity[] entities, Player[] players)
     {
+        GD.Print($"Collision with {nodes.Length}N, {entities.Length}E, {players.Length}P");
+
         var targets = entities.Where(ent => ent != OwnerEntity);
 
         if(targets.Any() || nodes.Length != entities.Length)
         {
             foreach (var item in targets)
             {
-                GD.Print($"Applying damage to {item.Name}");
+                GD.Print($"Projectile collided with {item.Name}");
             }
 
             if(DestroyOnCollision)

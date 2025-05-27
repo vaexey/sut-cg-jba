@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dcpfwit63wxry" path="res://script/ui/AbilityBar.cs" id="1_ev76g"]
 [ext_resource type="PackedScene" uid="uid://su8ses5e76ge" path="res://script/ui/AbilityIcon.tscn" id="1_k8n46"]
 
-[node name="AbilityBar" type="Control" node_paths=PackedStringArray("Basic1", "Godlike")]
+[node name="AbilityBar" type="Control" node_paths=PackedStringArray("BasicList", "Complex1", "Complex2", "Complex3", "Godlike")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,21 +11,129 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ev76g")
-Basic1 = NodePath("Basic1")
+BasicList = NodePath("Basic")
+Complex1 = NodePath("Complex/Complex1")
+Complex2 = NodePath("Complex/Complex2")
+Complex3 = NodePath("Complex/Complex3")
 Godlike = NodePath("Godlike")
 
-[node name="Basic1" parent="." instance=ExtResource("1_k8n46")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 32.0
-offset_bottom = 32.0
+[node name="Godlike" parent="." instance=ExtResource("1_k8n46")]
+offset_left = 802.0
+offset_top = 15.0
+offset_right = 834.0
+offset_bottom = 47.0
+grow_horizontal = 1
+grow_vertical = 1
+Round = true
+Highlight = true
+
+[node name="Basic" type="Node" parent="."]
+
+[node name="Basic1" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 44.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Godlike" parent="." instance=ExtResource("1_k8n46")]
-offset_left = 34.0
-offset_top = 34.0
-offset_right = 66.0
-offset_bottom = 66.0
+[node name="Basic2" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 47.0
+offset_top = 12.0
+offset_right = 79.0
+offset_bottom = 44.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Basic3" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 81.0
+offset_top = 12.0
+offset_right = 113.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic4" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 115.0
+offset_top = 12.0
+offset_right = 147.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic5" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 149.0
+offset_top = 12.0
+offset_right = 181.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic6" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 183.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic7" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 217.0
+offset_top = 12.0
+offset_right = 249.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic8" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 251.0
+offset_top = 12.0
+offset_right = 283.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic9" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 285.0
+offset_top = 12.0
+offset_right = 317.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Basic10" parent="Basic" instance=ExtResource("1_k8n46")]
+offset_left = 319.0
+offset_top = 12.0
+offset_right = 351.0
+offset_bottom = 44.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Complex" type="Node" parent="."]
+
+[node name="Complex1" parent="Complex" instance=ExtResource("1_k8n46")]
+offset_left = 736.0
+offset_top = 15.0
+offset_right = 768.0
+offset_bottom = 47.0
+grow_horizontal = 1
+grow_vertical = 1
+Highlight = true
+
+[node name="Complex2" parent="Complex" instance=ExtResource("1_k8n46")]
+offset_left = 770.0
+offset_top = 15.0
+offset_right = 802.0
+offset_bottom = 47.0
+grow_horizontal = 1
+grow_vertical = 1
+Highlight = true
+
+[node name="Complex3" parent="Complex" instance=ExtResource("1_k8n46")]
+offset_left = 802.0
+offset_top = 47.0
+offset_right = 834.0
+offset_bottom = 79.0
+grow_horizontal = 1
+grow_vertical = 1
+Highlight = true

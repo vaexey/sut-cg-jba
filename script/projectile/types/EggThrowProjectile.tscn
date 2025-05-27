@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm4gvftaf3uku"]
+
+[ext_resource type="Script" uid="uid://cuttgoyitan6t" path="res://script/projectile/types/EggThrowProjectile.cs" id="1_k63tn"]
+[ext_resource type="Texture2D" uid="uid://c8gf8b3sfjwut" path="res://art/projectile/egg.png" id="2_fkmrn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8thd"]
+radius = 7.0
+height = 14.0
+
+[node name="EggThrowProjectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_k63tn")
+ProjectileVelocity = 500.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fkmrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e8thd")

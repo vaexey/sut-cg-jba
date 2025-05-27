@@ -5,8 +5,8 @@ using System;
 public partial class InterpolatedHealthBar : TextureProgressBar
 {
     [ExportSubgroup("Settings")]
-    [Export]
-    public double Speed { get; set; } = 0.5;
+
+    [Export] public double TimeToChange { get; set; } = 0.3;
 
     // [Export]
     // public double Real { get; set; } = 0.25;
@@ -35,7 +35,9 @@ public partial class InterpolatedHealthBar : TextureProgressBar
         Transparent.TintProgress = TransparentTint;
         Opaque.TintProgress = OpaqueTint;
 
-        Interpolated = Mathf.MoveToward(Interpolated, Real, Speed * delta);
+        // Interpolated = Mathf.MoveToward(Interpolated, Real, Speed * delta);
+        var speed = Math.Abs(Real - Interpolated) / TimeToChange;
+        Interpolated = Mathf.MoveToward(Interpolated, Real, speed * delta);
 
         if(Interpolated > Real)
         {

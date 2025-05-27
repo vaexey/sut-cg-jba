@@ -109,10 +109,11 @@ position = Vector2(0, 302)
 scale = Vector2(2.34, 2.34)
 texture = ExtResource("6_wqdsx")
 
-[node name="World" type="Node" parent="." node_paths=PackedStringArray("EntitiesContainer", "Player")]
+[node name="World" type="Node" parent="." node_paths=PackedStringArray("EntitiesContainer", "Player", "MainEnemy")]
 script = ExtResource("7_sj0d1")
 EntitiesContainer = NodePath("Entities")
 Player = NodePath("Entities/Player")
+MainEnemy = NodePath("Entities/SimpleEnemy")
 
 [node name="Camera2D" type="Camera2D" parent="World" node_paths=PackedStringArray("MainNode", "DirectionNode")]
 position = Vector2(46, 557)
@@ -162,5 +163,5 @@ collision_enabled = false
 
 [node name="UI" type="Node" parent="."]
 
-[node name="ArenaUI" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("10_iw0c0")]
-Player = NodePath("../../World/Entities/Player")
+[node name="ArenaUI" parent="UI" node_paths=PackedStringArray("World") instance=ExtResource("10_iw0c0")]
+World = NodePath("../../World")

@@ -7,19 +7,12 @@ public partial class ArenaUI : CanvasLayer
     [ExportSubgroup("Nodes")]
     [Export]
     public Label StatsLabel;
-    
-    [Export]
-    public TextureProgressBar BeverageBar;
-    [Export]
-    public TextureProgressBar StaminaBar;
-    [Export]
-    public TextureProgressBar InspirationBar;
 
-    [Export]
-    public AbilityBar AbilityBar;
+    [Export] public AbilityBar AbilityBar;
+    [Export] public EntityStats PlayerStats;
+    [Export] public EntityStats EnemyStats;
 
-    [Export]
-    public Player Player;
+    [Export] public World World;
 
     // public override string[] _GetConfigurationWarnings()
     // {
@@ -37,12 +30,10 @@ public partial class ArenaUI : CanvasLayer
         //     }\nInspiration: {
         //         Player.Entity.Inspiration.Percentage
         //     }";
-        StatsLabel.Text = "CC: " + Player.Entity.CC.GetEffects().Select(cc => cc.DisplayName).ToArray().Join(", ");
+        StatsLabel.Text = "CC: " + World.Player.Entity.CC.GetEffects().Select(cc => cc.DisplayName).ToArray().Join(", ");
 
-        BeverageBar.Value = Player.Entity.Beverage.Percentage * 100;
-        StaminaBar.Value = Player.Entity.Stamina.Percentage * 100;
-        InspirationBar.Value = Player.Entity.Inspiration.Percentage * 100;
-
-        AbilityBar.EntityContainer = Player;
+        AbilityBar.EntityContainer = World.Player;
+        PlayerStats.Entity = World.Player.Entity;
+        EnemyStats.Entity = World.GetEnemy().Entity;
     }
 }

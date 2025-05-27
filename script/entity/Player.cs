@@ -5,20 +5,12 @@ using System.Linq;
 public partial class Player : CharacterBody2D, IEntityContainer
 {
 	[ExportSubgroup("Handlers")]
-	[Export]
-	public GravityHandler GravityHandler { get; set; }
-
-	[Export]
-	public InputHandler InputHandler { get; set; }
-
-	[Export]
-	public MovementHandler MovementHandler { get; set; }
-
-	[Export]
-	public JumpHandler JumpHandler { get; set; }
-	
-	[Export]
-	public AnimationHandler AnimationHandler { get; set; }
+	[Export] public GravityHandler GravityHandler { get; set; }
+	[Export] public InputHandler InputHandler { get; set; }
+	[Export] public MovementHandler MovementHandler { get; set; }
+	[Export] public JumpHandler JumpHandler { get; set; }
+	[Export] public AnimationHandler AnimationHandler { get; set; }
+	[Export] public AbilityHandler AbilityHandler { get; set; }
 
 	[ExportSubgroup("Nodes")]
 	[Export]
@@ -46,6 +38,9 @@ public partial class Player : CharacterBody2D, IEntityContainer
 
     public override void _Process(double delta)
     {
+		// TODO: propagate delta
+		AbilityHandler.HandleAbilities(this, InputHandler, delta);
+
 		// if(Input.IsActionJustPressed("ability_basic"))
 		// {
 		// 	var proj = ProjectileLibrary.AutoJodlerProjectile.Make();
@@ -59,11 +54,18 @@ public partial class Player : CharacterBody2D, IEntityContainer
 		// 	Entity.World.AddProjectile(proj);
 		// }
 
-		if(Input.IsActionJustPressed("ability_godlike"))
-		{
-			if(Entity.Abilities.Godlike.CanUse(this) == AbilityUsageTrialResult.OK)
-				Entity.Abilities.Godlike.Use(this);
-		}
+		// if(Input.IsActionJustPressed("ability_godlike"))
+		// {
+		// 	if(Entity.Abilities.Godlike.CanUse(this) == AbilityUsageTrialResult.OK)
+		// 		Entity.Abilities.Godlike.Use(this);
+		// }
+
+		// if(Input.IsActionJustPressed("ability_basic"))
+		// {
+		// 	if(Entity.Abilities.Basic[0].CanUse(this) ==
+		// 		AbilityUsageTrialResult.OK)
+		// 		Entity.Abilities.Basic[0].Use(this);
+		// }
     }
 
 	// public int MaxSpeed { get; set; } = 500;

@@ -1,0 +1,8 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "*.cs": "$(capture).tscn, $(capture).cs.uid",
+        "*": "$(capture).import"
+    }
+}

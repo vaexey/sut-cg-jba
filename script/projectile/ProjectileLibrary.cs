@@ -31,4 +31,5 @@ public sealed class ProjectileLibrary
     
     public static PackedProjectile<SimpleProjectile> SimpleProjectile => Get<SimpleProjectile>();
     public static PackedProjectile<AutoJodlerProjectile> AutoJodlerProjectile => Get<AutoJodlerProjectile>();
+    public static PackedProjectile<EggThrowProjectile> EggThrowProjectile => Get<EggThrowProjectile>();
 }

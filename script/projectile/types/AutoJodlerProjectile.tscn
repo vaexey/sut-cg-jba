@@ -105,6 +105,7 @@ collision_mask = 0
 script = ExtResource("1_bjpax")
 Sprite = NodePath("AnimatedSprite2D")
 ProjectileVelocity = 600.0
+ProjectileGravity = 0.0
 DestroyOnCollision = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

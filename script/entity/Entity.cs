@@ -1,23 +1,31 @@
 using Godot;
 using System;
+using System.Linq;
 using WorldType = World;
 
 public partial class Entity : Node
 {
-	[Export]
-	public PassiveAttributes PassiveAttributes { get; set; }
+	#region Essential nodes
+	[Export] public PassiveAttributes PassiveAttributes { get; set; }
 
-	[Export]
-	public CrowdControl CC { get; set; }
+	[Export] public CrowdControl CC { get; set; }
 
-	[Export]
-	public Abilities Abilities { get; set; }
+	[Export] public Abilities Abilities { get; set; }
+	#endregion
 
+	#region Realtime attributes
 	public AttributeValue Beverage { get; protected set; }
 	public AttributeValue Stamina { get; protected set; }
 	public AttributeValue Inspiration { get; protected set; }
 
 	public bool IsAlive { get; set; } = true;
+	public AttributeSemaphore IsCrippledHorizontally { get; set; } = 0;
+	public AttributeSemaphore IsCrippledVertically { get; set; } = 0;
+	public AttributeSemaphore IsSilenced { get; set; } = 0;
+
+	public bool IsCasting => Abilities.All.Where(a => a.IsCasting).Any();
+
+	#endregion
 
 	[Export]
 	public WorldType World { get; set; }
@@ -72,6 +80,15 @@ public partial class Entity : Node
 	public void DidJump()
 	{
 		Stamina.Value -= PassiveAttributes.StaminaUsageJump;
+	}
+
+	public void ApplyDamage(Damage dmg)
+	{
+		GD.Print($"Applied {dmg.FlatValue} damage to {Name}");
+
+		GD.Print($"BEFORE: {Beverage.Value}");
+		Beverage.Value -= dmg.FlatValue;
+		GD.Print($"AFTER: {Beverage.Value}");
 	}
 
 	// #region Beverage

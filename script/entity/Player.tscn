@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=21 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dgsrqwxhhqcd2" path="res://script/handlers/InputHandler.tscn" id="6_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
 [ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="7_ugmt5"]
+[ext_resource type="PackedScene" uid="uid://cr34ni3yf8ukt" path="res://script/handlers/AbilityHandler.tscn" id="8_dgh2j"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="8_dw050"]
 [ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="9_s8apa"]
 [ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="10_7ilxq"]
+[ext_resource type="PackedScene" uid="uid://cwhn3n6egbob3" path="res://script/entity/ability/types/EggThrowAbility.tscn" id="11_6h1lh"]
 [ext_resource type="PackedScene" uid="uid://8ueu6e3t55rr" path="res://script/entity/cc/CrowdControl.tscn" id="11_q3jhd"]
 [ext_resource type="AudioStream" uid="uid://bvb0sie53xfv8" path="res://sound/effects/auto_jodler_1.wav" id="11_rcb7a"]
 [ext_resource type="PackedScene" uid="uid://gwen8nmp2tx3" path="res://script/entity/ability/Abilities.tscn" id="11_u77ui"]
@@ -27,7 +29,7 @@ streams_count = 2
 stream_0/stream = ExtResource("11_rcb7a")
 stream_1/stream = ExtResource("12_il6l0")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "Entity")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity")]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_onrkg")
@@ -36,6 +38,7 @@ InputHandler = NodePath("Handlers/InputHandler")
 MovementHandler = NodePath("Handlers/MovementHandler")
 JumpHandler = NodePath("Handlers/JumpHandler")
 AnimationHandler = NodePath("Handlers/AnimationHandler")
+AbilityHandler = NodePath("Handlers/AbilityHandler")
 Entity = NodePath("Entity")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -63,6 +66,8 @@ Entity = NodePath("../../Entity")
 [node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("7_ugmt5")]
 Sprite = NodePath("../../AnimatedSprite2D")
 
+[node name="AbilityHandler" parent="Handlers" instance=ExtResource("8_dgh2j")]
+
 [node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC", "Abilities") instance=ExtResource("9_s8apa")]
 PassiveAttributes = NodePath("PassiveAttributes")
 CC = NodePath("CrowdControl")
@@ -74,7 +79,7 @@ Abilities = NodePath("Abilities")
 
 [node name="Basic" type="Node" parent="Entity/Abilities"]
 
-[node name="AutoJodlerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("12_6h1lh")]
+[node name="EggThrowAbility" parent="Entity/Abilities/Basic" instance=ExtResource("11_6h1lh")]
 
 [node name="Complex" type="Node" parent="Entity/Abilities"]
 

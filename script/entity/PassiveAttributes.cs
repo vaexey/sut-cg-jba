@@ -7,7 +7,7 @@ public partial class PassiveAttributes : Node
 
 	[ExportGroup("Main attributes")]
 	// Max health modifier
-	[Export] public double BoozeToleranceIndex { get; set; } = 1.0;
+	[Export] public double BoozeToleranceIndex { get; set; } = 10.0;
 
 	// Stamina usage modifier
 	[Export] public double Swiftness { get; set; } = 1.0;
@@ -41,7 +41,6 @@ public partial class PassiveAttributes : Node
 	[Export] public float SpeedModifierFlat { get; set; } = 0;
 
 	#endregion
-	
 
 	#region Calculated
 

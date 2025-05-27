@@ -5,10 +5,9 @@ using System.Linq;
 public partial class World : Node
 {
     [ExportSubgroup("Nodes")]
-    [Export]
-    public Node EntitiesContainer { get; set; }
-    [Export]
-    public Player Player { get; set; }
+    [Export] public Node EntitiesContainer { get; set; }
+    [Export] public Player Player { get; set; }
+    [Export] public Node2D MainEnemy { get; set; }
 
     public Entity[] GetEntities()
     {
@@ -18,6 +17,8 @@ public partial class World : Node
             .Select(iec => iec.Entity)
             .ToArray();
     }
+
+    public IEntityContainer GetEnemy() => (IEntityContainer)MainEnemy;
 
     public void AddProjectile(SimpleProjectile projectile)
     {

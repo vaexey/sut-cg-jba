@@ -5,9 +5,8 @@ using System.Linq;
 public partial class AutoJodlerAbility : Ability
 {
 
-    public override void Use(IEntityContainer entity)
+    public override void Cast(IEntityContainer entity)
     {
-        base.Use(entity);
 
         var proj = ProjectileLibrary.AutoJodlerProjectile.Make();
 
