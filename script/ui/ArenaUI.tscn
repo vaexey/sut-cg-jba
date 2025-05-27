@@ -21,13 +21,26 @@ text = "Stats"
 [node name="AbilityBar" parent="." instance=ExtResource("3_m5to1")]
 
 [node name="PlayerStats" parent="." instance=ExtResource("3_7883h")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = 378.0
-offset_right = 23.901
-offset_bottom = 378.04
+offset_top = -102.0
+offset_right = 180.853
+offset_bottom = -18.92
+grow_horizontal = 1
+grow_vertical = 0
 
 [node name="EnemyStats" parent="." instance=ExtResource("3_7883h")]
-offset_left = 668.0
-offset_top = 372.0
-offset_right = 667.901
-offset_bottom = 372.04
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -108.0
+offset_right = -28.147
+offset_bottom = -24.92
+grow_horizontal = 0
+grow_vertical = 0

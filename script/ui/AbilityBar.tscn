@@ -18,11 +18,15 @@ Complex3 = NodePath("Complex/Complex3")
 Godlike = NodePath("Godlike")
 
 [node name="Godlike" parent="." instance=ExtResource("1_k8n46")]
-offset_left = 802.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -51.0
 offset_top = 15.0
-offset_right = 834.0
+offset_right = -19.0
 offset_bottom = 47.0
-grow_horizontal = 1
+grow_horizontal = 0
 grow_vertical = 1
 Round = true
 Highlight = true
@@ -112,28 +116,37 @@ grow_vertical = 1
 [node name="Complex" type="Node" parent="."]
 
 [node name="Complex1" parent="Complex" instance=ExtResource("1_k8n46")]
-offset_left = 736.0
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
 offset_top = 15.0
-offset_right = 768.0
+offset_right = -85.0
 offset_bottom = 47.0
 grow_horizontal = 1
 grow_vertical = 1
 Highlight = true
 
 [node name="Complex2" parent="Complex" instance=ExtResource("1_k8n46")]
-offset_left = 770.0
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
 offset_top = 15.0
-offset_right = 802.0
+offset_right = -51.0
 offset_bottom = 47.0
 grow_horizontal = 1
 grow_vertical = 1
 Highlight = true
 
 [node name="Complex3" parent="Complex" instance=ExtResource("1_k8n46")]
-offset_left = 802.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -51.0
 offset_top = 47.0
-offset_right = 834.0
+offset_right = -19.0
 offset_bottom = 79.0
-grow_horizontal = 1
+grow_horizontal = 0
 grow_vertical = 1
 Highlight = true
