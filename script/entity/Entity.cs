@@ -84,10 +84,18 @@ public partial class Entity : Node
 
 	public void ApplyDamage(Damage dmg)
 	{
-		GD.Print($"Applied {dmg.FlatValue} damage to {Name}");
+		// GD.Print($"Applied {dmg.FlatValue} damage to {Name}");
 
+		// GD.Print($"BEFORE: {Beverage.Value}");
+		// Beverage.Value -= dmg.FlatValue;
+		// GD.Print($"AFTER: {Beverage.Value}");
+		GD.Print($"Damage to {Name}: {dmg.FlatValue}(+{dmg.PercentageValue}%)");
+		
 		GD.Print($"BEFORE: {Beverage.Value}");
-		Beverage.Value -= dmg.FlatValue;
+
+		double flat = dmg.FlatValue + dmg.PercentageValue * Beverage.Max;
+		Beverage.Value -= flat;
+
 		GD.Print($"AFTER: {Beverage.Value}");
 	}
 

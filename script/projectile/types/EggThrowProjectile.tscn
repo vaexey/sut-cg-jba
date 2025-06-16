@@ -12,6 +12,8 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_k63tn")
 ProjectileVelocity = 500.0
+DamageFlat = 10.0
+DamageFlags = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708

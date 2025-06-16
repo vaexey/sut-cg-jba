@@ -9,7 +9,7 @@ public partial class SimpleProjectile : CharacterBody2D
     [Export]
     public Entity OwnerEntity { get; set; }
 
-    [ExportSubgroup("Settings")]
+    [ExportSubgroup("Projectile settings")]
     [Export]
     public string DisplayName { get; set; } = "Unnamed projectile";
     [Export]
@@ -20,6 +20,15 @@ public partial class SimpleProjectile : CharacterBody2D
 
     [Export]
     public bool DestroyOnCollision { get; set; } = true;
+
+    [ExportSubgroup("Damage settings")]
+    [Export]
+    public double DamageFlat { get; set; } = 0;
+    [Export]
+    public double DamagePercentage { get; set; } = 0;
+    [Export]
+    public DamageFlags DamageFlags { get; set; } = 0;
+
 
     // [Export]
     // public bool IgnoreOwnerCollision { get; set; } = true;
@@ -34,17 +43,17 @@ public partial class SimpleProjectile : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if(ProjectileGravity > 0 && !IsOnFloor())
+        if (ProjectileGravity > 0 && !IsOnFloor())
             Velocity = Velocity + new Vector2(0, ProjectileGravity * (float)delta);
 
         MoveAndSlide();
 
         var collisions = GetSlideCollisionCount();
 
-        if(collisions > 0)
+        if (collisions > 0)
         {
             var objs = new GodotObject[collisions];
-            for(int i = 0; i < collisions; i++)
+            for (int i = 0; i < collisions; i++)
             {
                 objs[i] = GetSlideCollision(i).GetCollider();
             }
@@ -60,21 +69,21 @@ public partial class SimpleProjectile : CharacterBody2D
         var entities = new List<Entity>();
         var players = new List<Player>();
 
-        foreach(var node in rawObjects.Distinct())
+        foreach (var node in rawObjects.Distinct())
         {
             var type = node.GetType();
 
-            if(!type.IsAssignableTo(typeof(Node)))
+            if (!type.IsAssignableTo(typeof(Node)))
                 continue;
 
             nodes.Add((Node)node);
 
-            if(!type.IsAssignableTo(typeof(IEntityContainer)))
+            if (!type.IsAssignableTo(typeof(IEntityContainer)))
                 continue;
 
             entities.Add(((IEntityContainer)node).Entity);
 
-            if(!type.IsAssignableTo(typeof(Player)))
+            if (!type.IsAssignableTo(typeof(Player)))
                 continue;
 
             players.Add((Player)node);
@@ -89,14 +98,14 @@ public partial class SimpleProjectile : CharacterBody2D
 
         var targets = entities.Where(ent => ent != OwnerEntity);
 
-        if(targets.Any() || nodes.Length != entities.Length)
+        if (targets.Any() || nodes.Length != entities.Length)
         {
             foreach (var item in targets)
             {
                 GD.Print($"Projectile collided with {item.Name}");
             }
 
-            if(DestroyOnCollision)
+            if (DestroyOnCollision)
             {
                 QueueFree();
             }
@@ -106,10 +115,20 @@ public partial class SimpleProjectile : CharacterBody2D
     public virtual void Shoot(Vector2 from, Vector2 to)
     {
         Position = from;
-        
+
         LookAt(to);
 
         Velocity = new Vector2(ProjectileVelocity, 0).Rotated(Rotation);
+    }
+
+    protected virtual void ApplyDamageFromProjectile(Entity target)
+    {
+        var dmg = new Damage(OwnerEntity);
+        dmg.FlatValue = DamageFlat;
+        dmg.PercentageValue = DamagePercentage;
+        dmg.Flags = DamageFlags;
+
+        target.ApplyDamage(dmg);
     }
 
 }
