@@ -7,6 +7,8 @@ public partial class InterpolatedHealthBar : TextureProgressBar
     [ExportSubgroup("Settings")]
 
     [Export] public double TimeToChange { get; set; } = 0.3;
+    [Export] public bool ShowLabel { get; set; } = true;
+    [Export] public bool ShowAsPercentage { get; set; } = false;
 
     // [Export]
     // public double Real { get; set; } = 0.25;
@@ -22,9 +24,13 @@ public partial class InterpolatedHealthBar : TextureProgressBar
     public TextureProgressBar Transparent { get; set; }
     [Export]
     public TextureProgressBar Opaque { get; set; }
+    [Export]
+    public Label Label { get; set; }
 
-    private double Real {
-        get {
+    private double Real
+    {
+        get
+        {
             return Value / MaxValue;
         }
     }
@@ -39,14 +45,23 @@ public partial class InterpolatedHealthBar : TextureProgressBar
         var speed = Math.Abs(Real - Interpolated) / TimeToChange;
         Interpolated = Mathf.MoveToward(Interpolated, Real, speed * delta);
 
-        if(Interpolated > Real)
+        if (Interpolated > Real)
         {
             Transparent.Value = Interpolated * 100;
             Opaque.Value = Real * 100;
-        } else {
+        }
+        else
+        {
             Transparent.Value = Real * 100;
             Opaque.Value = Interpolated * 100;
         }
 
+        // Label.Text = !ShowLabel ?
+        //     "" :
+        //     $"{Math.Round(Value)}/{Math.Round(MaxValue)}";
+        Label.Text =
+            !ShowLabel ? "" :
+            !ShowAsPercentage ? $"{Math.Round(Value)}/{Math.Round(MaxValue)}" :
+                $"{Math.Round(Value / MaxValue * 1000) / 10.0}/100%";
     }
 }

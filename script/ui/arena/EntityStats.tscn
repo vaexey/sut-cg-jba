@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chgwgsxjmoa12"]
 
-[ext_resource type="PackedScene" uid="uid://byvj16ruksqdr" path="res://script/ui/InterpolatedHealthBar.tscn" id="1_cgg3m"]
-[ext_resource type="Script" uid="uid://wk3oo0jj4yub" path="res://script/ui/EntityStats.cs" id="1_sopql"]
+[ext_resource type="PackedScene" uid="uid://byvj16ruksqdr" path="res://script/ui/arena/InterpolatedHealthBar.tscn" id="1_cgg3m"]
+[ext_resource type="Script" uid="uid://wk3oo0jj4yub" path="res://script/ui/arena/EntityStats.cs" id="1_sopql"]
 
 [node name="EntityStats" type="Control" node_paths=PackedStringArray("BeverageBar", "StaminaBar", "InspirationBar")]
 layout_mode = 3
@@ -16,21 +16,22 @@ BeverageBar = NodePath("Beverage")
 StaminaBar = NodePath("Stamina")
 InspirationBar = NodePath("Inspiration")
 
-[node name="Stamina" parent="." instance=ExtResource("1_cgg3m")]
-layout_mode = 0
-offset_top = 29.0
-offset_bottom = 45.0
-scale = Vector2(1.6, 1.6)
-TimeToChange = 0.5
-OpaqueTint = Color(1, 1, 0, 1)
-TransparentTint = Color(0.989825, 1, 0.756121, 1)
-
 [node name="Beverage" parent="." instance=ExtResource("1_cgg3m")]
 layout_mode = 0
 scale = Vector2(1.6, 1.6)
 TimeToChange = 0.5
 OpaqueTint = Color(1, 0.607843, 0, 1)
 TransparentTint = Color(1, 0.824276, 0.654916, 1)
+
+[node name="Stamina" parent="." instance=ExtResource("1_cgg3m")]
+layout_mode = 0
+offset_top = 29.0
+offset_bottom = 45.0
+scale = Vector2(1.6, 1.6)
+TimeToChange = 0.5
+ShowAsPercentage = true
+OpaqueTint = Color(1, 1, 0, 1)
+TransparentTint = Color(0.989825, 1, 0.756121, 1)
 
 [node name="Inspiration" parent="." instance=ExtResource("1_cgg3m")]
 layout_mode = 0

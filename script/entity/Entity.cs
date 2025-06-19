@@ -47,30 +47,30 @@ public partial class Entity : Node
 		);
 	}
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		World = WorldType.FindFor(this);
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		// Stamina.Value = Mathf.MoveToward(
 		// 	Stamina.Value, 
 		// 	Stamina.Max, 
 		// 	PassiveAttributes.StaminaRegen * delta
 		// 	);
 
-		if(Beverage.Percentage <= 0)
+		if (Beverage.Percentage <= 0)
 		{
 			IsAlive = false;
 		}
 
-		if(IsAlive)
+		if (IsAlive)
 		{
 			Stamina.Regen = PassiveAttributes.StaminaRegen;
 			Stamina.Process(delta);
 		}
-    }
+	}
 
 	public bool CanJump()
 	{
@@ -79,7 +79,8 @@ public partial class Entity : Node
 
 	public void DidJump()
 	{
-		Stamina.Value -= PassiveAttributes.StaminaUsageJump;
+		// Stamina.Value -= PassiveAttributes.StaminaUsageJump;
+		ConsumeStamina(PassiveAttributes.StaminaUsageJump);
 	}
 
 	public void ApplyDamage(Damage dmg)
@@ -90,13 +91,23 @@ public partial class Entity : Node
 		// Beverage.Value -= dmg.FlatValue;
 		// GD.Print($"AFTER: {Beverage.Value}");
 		GD.Print($"Damage to {Name}: {dmg.FlatValue}(+{dmg.PercentageValue}%)");
-		
+
 		GD.Print($"BEFORE: {Beverage.Value}");
 
 		double flat = dmg.FlatValue + dmg.PercentageValue * Beverage.Max;
 		Beverage.Value -= flat;
 
 		GD.Print($"AFTER: {Beverage.Value}");
+	}
+
+	public void ConsumeStamina(double value)
+	{
+		Stamina.Value -= value;
+	}
+
+	public void ConsumeInspiration(double value)
+	{
+		Inspiration.Value -= value;
 	}
 
 	// #region Beverage

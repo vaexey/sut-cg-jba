@@ -9,6 +9,7 @@ public partial class AbilityIcon : Control
     [ExportSubgroup("Settings")]
     [Export] public bool Round { get; set; } = false;
     [Export] public bool Highlight { get; set; } = false;
+    [Export] public bool Detached { get; set; } = false;
 
     [ExportSubgroup("Nodes")]
     [Export] public Ability Ability { get; set; }
@@ -18,12 +19,19 @@ public partial class AbilityIcon : Control
     [Export] public Sprite2D BackgroundSprite { get; set; }
     [Export] public Sprite2D IconSprite { get; set; }
     [Export] public Label OverlayLabel { get; set; }
+    [Export] public Label CostLabel { get; set; }
 
     [ExportSubgroup("Resources")]
     [Export] public Texture2D DefaultAtlas { get; set; }
     [Export] public Texture2D HighlightAtlas { get; set; }
     [Export] public Texture2D RoundAtlas { get; set; }
     [Export] public Texture2D RoundHighlightAtlas { get; set; }
+    
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color CostColorPhysical { get; set; } = Color.Color8(255, 128, 128, 255);
+    
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color CostColorInspired { get; set; } = Color.Color8(128, 128, 255, 255);
 
     // protected IEntityContainer _EntityContainer => (IEntityContainer)EntityContainer;
 
@@ -34,26 +42,35 @@ public partial class AbilityIcon : Control
     public override void _Process(double delta)
     {
         var atlas = (AtlasTexture)BackgroundSprite.Texture;
-        
-        if(!Round)
+
+        if (!Round)
         {
             atlas.Atlas = !Highlight ? DefaultAtlas : HighlightAtlas;
-        } else {
+        }
+        else
+        {
             atlas.Atlas = !Highlight ? RoundAtlas : RoundHighlightAtlas;
         }
-        
-        if(Engine.IsEditorHint()) return;
+
+        if (Engine.IsEditorHint()) return;
 
         var shader = (ShaderMaterial)TintCanvas.Material;
 
-        if(Ability == null)
+        if (Ability == null)
         {
             shader.SetShaderParameter("tint_enable", true);
             OverlayLabel.Text = "";
+            CostLabel.Text = "";
             return;
         }
 
-        var trial = Ability.CanUse((IEntityContainer)EntityContainer);
+        var trial = AbilityUsageTrialResult.OK;
+
+        if (!Detached)
+        {
+            trial = Ability.CanUse((IEntityContainer)EntityContainer);
+        }
+
         var canUse = trial == AbilityUsageTrialResult.OK;
 
         shader.SetShaderParameter("tint_enable", !canUse);
@@ -62,10 +79,33 @@ public partial class AbilityIcon : Control
         IconSprite.Texture = Ability.IconTexture;
 
         OverlayLabel.Text = (trial == AbilityUsageTrialResult.OnCooldown) ?
-            Ability.CooldownLeft.ToString("N1") : 
+            Ability.CooldownLeft.ToString("N1") :
             "";
 
         TooltipText = WordWrap(Ability.ShortDescription, 40).ToArray().Join("\n");
+
+        double cost = 0;
+        string costString = "";
+
+        if (!Detached)
+            cost = Ability.GetUseCostTotal(((IEntityContainer)EntityContainer).Entity);
+
+        var costColor = Color.Color8(0, 0, 0, 0);
+
+        if (Ability.CategoryType == AbilityCategory.Physical)
+        {
+            costColor = CostColorPhysical;
+            costString = Math.Round(cost * 1000) / 10.0 + "%";
+        }
+
+        if (Ability.CategoryType == AbilityCategory.Inspired)
+        {
+            costColor = CostColorInspired;
+            costString = Math.Round(cost) + "";
+        }
+
+        CostLabel.Text = cost > 0 ? costString : "";
+        CostLabel.LabelSettings.FontColor = costColor;
     }
     public static List<string> WordWrap( string text, int maxLineLength )
     {

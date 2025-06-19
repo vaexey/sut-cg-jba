@@ -7,7 +7,9 @@
 script = ExtResource("1_qxqwv")
 DisplayName = "Auto-jodler"
 ShortDescription = "Franzl honks twice using his old-fashioned horn and summons a BMW Dixi that comes from off-screen and rides through walls to the destination pointed by Franzl, damaging everything in its way."
+CategoryType = 2
 IconTexture = ExtResource("2_ry8u2")
 CastMode = 4
 CastTime = 0.5
 Cooldown = 5.0
+UseCostFlat = 150.0

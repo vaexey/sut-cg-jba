@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgyqe8wqw53kb"]
 
-[ext_resource type="Script" uid="uid://bictc8vjntxp8" path="res://script/ui/ArenaUI.cs" id="1_fa5n7"]
-[ext_resource type="PackedScene" uid="uid://chgwgsxjmoa12" path="res://script/ui/EntityStats.tscn" id="3_7883h"]
-[ext_resource type="PackedScene" uid="uid://dsfpk5smk1mvw" path="res://script/ui/AbilityBar.tscn" id="3_m5to1"]
+[ext_resource type="Script" uid="uid://bictc8vjntxp8" path="res://script/ui/arena/ArenaUI.cs" id="1_fa5n7"]
+[ext_resource type="PackedScene" uid="uid://chgwgsxjmoa12" path="res://script/ui/arena/EntityStats.tscn" id="3_7883h"]
+[ext_resource type="PackedScene" uid="uid://dsfpk5smk1mvw" path="res://script/ui/arena/AbilityBar.tscn" id="3_m5to1"]
 
 [node name="ArenaUI" type="CanvasLayer" node_paths=PackedStringArray("StatsLabel", "AbilityBar", "PlayerStats", "EnemyStats")]
 script = ExtResource("1_fa5n7")

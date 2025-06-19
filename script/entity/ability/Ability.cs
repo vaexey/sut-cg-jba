@@ -6,10 +6,14 @@ public partial class Ability : Node
     [ExportSubgroup("Settings")]
     [Export] public string DisplayName { get; set; } = "Unnamed ability";
     [Export] public string ShortDescription { get; set; } = "Abcdefg";
+    [Export] public AbilityPower PowerType { get; set; } = AbilityPower.Basic;
+    [Export] public AbilityCategory CategoryType { get; set; } = AbilityCategory.Physical;
     [Export] public Texture2D IconTexture { get; set; }
     [Export] public AbilityCastMode CastMode { get; set; } = AbilityCastMode.Instant;
     [Export] public double CastTime { get; set; } = 0;
     [Export] public double Cooldown { get; set; } = 1;
+    [Export] public double UseCostFlat { get; set; } = 0;
+    [Export] public double UseCostPercentage { get; set; } = 0;
 
     public double CooldownLeft { get; set; } = 0;
     public double CastTimeLeft { get; set; } = 0;
@@ -20,9 +24,19 @@ public partial class Ability : Node
     {
         if(IsOnCooldown)
             return AbilityUsageTrialResult.OnCooldown;
-        
-        if(IsCasting)
-            return AbilityUsageTrialResult.IsAlreadyCasting;
+
+        var cost = GetUseCostTotal(owner.Entity);
+
+        if (CategoryType == AbilityCategory.Physical)
+            if (owner.Entity.Stamina.Value < cost)
+                return AbilityUsageTrialResult.NoStamina;
+
+        if (CategoryType == AbilityCategory.Inspired)
+            if (owner.Entity.Inspiration.Value < cost)
+                return AbilityUsageTrialResult.NoInspiration;
+
+        if (IsCasting)
+                    return AbilityUsageTrialResult.IsAlreadyCasting;
 
         if(!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
             return AbilityUsageTrialResult.IsSilenced;
@@ -33,18 +47,50 @@ public partial class Ability : Node
         return AbilityUsageTrialResult.OK;
     }
 
+    // This method is called when entity wants to check
+    // the cost of this ability (eg. for UI)
+    // Value is flat Stamina/Inspiration based on category.
+    // Usually, this method does not need to be overriden.
+    public virtual double GetUseCostTotal(Entity ent)
+    {
+        double value = 0;
+
+        if (CategoryType == AbilityCategory.Physical)
+            value = ent.Stamina.Value;
+
+        if (CategoryType == AbilityCategory.Inspired)
+            value = ent.Inspiration.Value;
+
+        return UseCostFlat + UseCostPercentage * value;
+    }
+
+    // This method is called when respective ability cost
+    // should be consumed.
+    // Usually, this method does not need to be overriden.
+    public virtual void ConsumeCost(Entity ent)
+    {
+        var cost = GetUseCostTotal(ent);
+        if (CategoryType == AbilityCategory.Physical)
+            ent.ConsumeStamina(cost);
+
+        if (CategoryType == AbilityCategory.Inspired)
+            ent.ConsumeInspiration(cost);
+    }
+
     // This method is called when entity wants to cast this ability.
     // The entity should earlier check whether this is possible using CanUse.
     // Usually, this method does not need to be overriden.
     public virtual void Use(IEntityContainer owner)
     {
-        if(CastTime > 0)
+        if (CastTime > 0)
         {
             CastTimeLeft = CastTime;
             return;
         }
 
         CooldownLeft += Cooldown;
+
+        ConsumeCost(owner.Entity);
         Cast(owner);
     }
 
@@ -95,6 +141,7 @@ public partial class Ability : Node
             if(!IsCasting)
             {
                 CooldownLeft += Cooldown;
+                ConsumeCost(owner.Entity);
                 Cast(owner);
             }
         }

@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://su8ses5e76ge"]
+[gd_scene load_steps=14 format=3 uid="uid://su8ses5e76ge"]
 
 [ext_resource type="Texture2D" uid="uid://cbhf5sib6e2u7" path="res://art/ui/icon/iron_T.png" id="1_q7fsc"]
 [ext_resource type="Texture2D" uid="uid://bdk240farbge" path="res://art/ui/icon/iron_AN.png" id="1_wfpww"]
-[ext_resource type="Script" uid="uid://tl3pu1pnf7p1" path="res://script/ui/AbilityIcon.cs" id="1_xluf0"]
+[ext_resource type="Script" uid="uid://tl3pu1pnf7p1" path="res://script/ui/arena/AbilityIcon.cs" id="1_xluf0"]
 [ext_resource type="Shader" uid="uid://bf3pii48hni6y" path="res://shader/tint.gdshader" id="2_a3ywx"]
 [ext_resource type="Texture2D" uid="uid://xus0mxag2gvy" path="res://art/ui/icon/iron_BN.png" id="3_dvuxm"]
 [ext_resource type="Texture2D" uid="uid://c47v6iordtbx6" path="res://art/ui/icon/iron_CN.png" id="4_olbi4"]
@@ -26,9 +26,14 @@ atlas = ExtResource("1_q7fsc")
 region = Rect2(320, 160, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1y5qb"]
+resource_local_to_scene = true
 font = ExtResource("5_qr7n7")
 
-[node name="AbilityIcon" type="Control" node_paths=PackedStringArray("TintCanvas", "BackgroundSprite", "IconSprite", "OverlayLabel")]
+[sub_resource type="LabelSettings" id="LabelSettings_ep8fr"]
+resource_local_to_scene = true
+font = ExtResource("5_qr7n7")
+
+[node name="AbilityIcon" type="Control" node_paths=PackedStringArray("TintCanvas", "BackgroundSprite", "IconSprite", "OverlayLabel", "CostLabel")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -0.207001
@@ -42,6 +47,7 @@ TintCanvas = NodePath("IconTint")
 BackgroundSprite = NodePath("IconTint/Background")
 IconSprite = NodePath("IconTint/Icon")
 OverlayLabel = NodePath("OverlayLabel")
+CostLabel = NodePath("CostLabel")
 DefaultAtlas = ExtResource("1_wfpww")
 HighlightAtlas = ExtResource("3_dvuxm")
 RoundAtlas = ExtResource("4_olbi4")
@@ -65,4 +71,13 @@ offset_bottom = 32.0
 text = "10.0"
 label_settings = SubResource("LabelSettings_1y5qb")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CostLabel" type="Label" parent="."]
+offset_top = 21.0
+offset_right = 33.0
+offset_bottom = 34.0
+text = "999"
+label_settings = SubResource("LabelSettings_ep8fr")
+horizontal_alignment = 2
 vertical_alignment = 1

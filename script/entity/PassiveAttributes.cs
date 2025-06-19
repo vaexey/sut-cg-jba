@@ -13,13 +13,13 @@ public partial class PassiveAttributes : Node
 	[Export] public double Swiftness { get; set; } = 1.0;
 
 	// Max mana modifier
-	[Export] public double OpenMindedness { get; set; } = 1.0;
+	[Export] public double OpenMindedness { get; set; } = 10.0;
 
 	[ExportGroup("Health")]
 	[Export] public double BeverageMaxFromBTI = 10.0;
 
 	[ExportGroup("Magic")]
-	[Export] public double InspirationMaxFromOM = 10.0;
+	[Export] public double InspirationMaxFromOM = 20.0;
 
 	[ExportGroup("Movement")]
 

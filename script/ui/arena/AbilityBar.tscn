@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsfpk5smk1mvw"]
 
-[ext_resource type="Script" uid="uid://dcpfwit63wxry" path="res://script/ui/AbilityBar.cs" id="1_ev76g"]
-[ext_resource type="PackedScene" uid="uid://su8ses5e76ge" path="res://script/ui/AbilityIcon.tscn" id="1_k8n46"]
+[ext_resource type="Script" uid="uid://dcpfwit63wxry" path="res://script/ui/arena/AbilityBar.cs" id="1_ev76g"]
+[ext_resource type="PackedScene" uid="uid://su8ses5e76ge" path="res://script/ui/arena/AbilityIcon.tscn" id="1_k8n46"]
 
 [node name="AbilityBar" type="Control" node_paths=PackedStringArray("BasicList", "Complex1", "Complex2", "Complex3", "Godlike")]
 layout_mode = 3

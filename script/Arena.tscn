@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ds5b8ypji4f0p" path="res://script/entity/Player.tscn" id="8_1bxem"]
 [ext_resource type="PackedScene" uid="uid://btojp7njqkq8e" path="res://script/entity/SimpleEnemy.tscn" id="8_j72dr"]
 [ext_resource type="Material" uid="uid://cir8jyqs4gq3p" path="res://art/material/blur.tres" id="9_38jan"]
-[ext_resource type="PackedScene" uid="uid://bgyqe8wqw53kb" path="res://script/ui/ArenaUI.tscn" id="10_iw0c0"]
+[ext_resource type="PackedScene" uid="uid://bgyqe8wqw53kb" path="res://script/ui/arena/ArenaUI.tscn" id="10_iw0c0"]
 [ext_resource type="Script" uid="uid://n84es0kxwrat" path="res://script/ArenaCamera2D.cs" id="10_k7ccj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n068f"]

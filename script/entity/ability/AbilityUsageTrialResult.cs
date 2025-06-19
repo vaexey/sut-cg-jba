@@ -7,5 +7,8 @@ public enum AbilityUsageTrialResult
     IsAlreadyCasting,
     IsCastingOther,
     IsSilenced,
+
+    NoStamina,
     
+    NoInspiration,
 }
