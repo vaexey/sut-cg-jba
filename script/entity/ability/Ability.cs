@@ -56,7 +56,7 @@ public partial class Ability : Node
         double value = 0;
 
         if (CategoryType == AbilityCategory.Physical)
-            value = ent.Stamina.Value;
+            value = ent.Stamina.Value * ent.PassiveAttributes.StaminaUsageModifier;
 
         if (CategoryType == AbilityCategory.Inspired)
             value = ent.Inspiration.Value;

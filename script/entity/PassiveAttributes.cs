@@ -34,21 +34,27 @@ public partial class PassiveAttributes : Node
 	[Export] public float GroundDeceleration { get; set; } = 4000;
 	[Export] public float AirAcceleration { get; set; } = 5000;
 	[Export] public float AirDeceleration { get; set; } = 1500;
-	
+
 	[ExportSubgroup("Modifiers")]
 
 	[Export] public float SpeedModifierMultiplicative { get; set; } = 1;
 	[Export] public float SpeedModifierFlat { get; set; } = 0;
+	[Export] public float StaminaHalvingExponent { get; set; } = 20;
 
 	#endregion
 
 	#region Calculated
 
-	public float Speed {
-		get {
+	public float Speed
+	{
+		get
+		{
 			return BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat;
 		}
 	}
+
+	public double StaminaUsageModifier => Math.Pow(Math.E, Swiftness * Math.Log(0.5) / StaminaHalvingExponent);
+
 
 	#endregion
 
