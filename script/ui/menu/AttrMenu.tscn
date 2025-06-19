@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://b30elxkh63dq4"]
+
+[ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="1_8xtxk"]
+
+[node name="AttrMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -453.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttrPointsLeft" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_right = 19.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_8xtxk")
+theme_override_font_sizes/font_size = 50
+text = "50"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -325.0
+offset_right = 100.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="BoozeToleranceSliderLabel" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8xtxk")
+theme_override_font_sizes/font_size = 32
+text = "Booze Tolerance"
+horizontal_alignment = 1
+
+[node name="SwiftnessSliderLabel" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8xtxk")
+theme_override_font_sizes/font_size = 32
+text = "Swiftness"
+horizontal_alignment = 1
+
+[node name="OpenMindednessSliderLabel" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8xtxk")
+theme_override_font_sizes/font_size = 32
+text = "Open Mindedness"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -305.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="BoozeToleranceSlider" type="HSlider" parent="VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+
+[node name="SwiftnessSlider" type="HSlider" parent="VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="OpenMindednessSlider" type="HSlider" parent="VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 8

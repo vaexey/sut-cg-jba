@@ -1,0 +1,399 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3dksuurggmrm"]
+
+[ext_resource type="PackedScene" uid="uid://su8ses5e76ge" path="res://script/ui/arena/AbilityIcon.tscn" id="1_gng67"]
+
+[node name="AbilitiesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -653.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Row1" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -136.0
+offset_right = 48.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="Base1" parent="Row1" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Row1/Base1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Base2" parent="Row1" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base3" parent="Row1" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base4" parent="Row1" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base5" parent="Row1" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Row2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -96.0
+offset_right = 48.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="Base1" parent="Row2" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base2" parent="Row2" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base3" parent="Row2" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base4" parent="Row2" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Base5" parent="Row2" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Row3" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="Complex1" parent="Row3" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Complex2" parent="Row3" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Complex3" parent="Row3" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="Godlike" parent="Row3" instance=ExtResource("1_gng67")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -185.0
+offset_right = 108.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control2" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control2" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control2/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control3" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control3" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control3/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control4" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control4" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control4/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control5" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control5" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer/Control5/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control2" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control2" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control2/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control3" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control3" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control3/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control4" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control4" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control4/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control5" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control5" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer2/Control5/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control2" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control2" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control2/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control3" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control3" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control3/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control4" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control4" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control4/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control5" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control5" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer3/Control5/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control2" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control2" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control2/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control3" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control3" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control3/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control4" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control4" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control4/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control5" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control5" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer4/Control5/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control2" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control2" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control2/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control3" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control3" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control3/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control4" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control4" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control4/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
+
+[node name="Control5" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="AbilityIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control5" instance=ExtResource("1_gng67")]
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer5/Control5/AbilityIcon"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 33.0
