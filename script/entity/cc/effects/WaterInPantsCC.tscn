@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://gr51bo6kosd1"]
+[gd_scene load_steps=3 format=3 uid="uid://gr51bo6kosd1"]
 
 [ext_resource type="Script" uid="uid://ddqockhpfvd0u" path="res://script/entity/cc/effects/WaterInPantsCC.cs" id="1_pkml5"]
+[ext_resource type="Texture2D" uid="uid://b0sf5sdu3rgfv" path="res://art/ui/icon/cc/water_in_pants.png" id="2_4fb8b"]
 
 [node name="WaterInPantsCC" type="Node"]
 script = ExtResource("1_pkml5")
 DisplayName = "Water in pants"
+IconTexture = ExtResource("2_4fb8b")
