@@ -43,14 +43,54 @@ grow_vertical = 2
 [node name="Base2" parent="Row1" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row1/Base2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Base3" parent="Row1" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row1/Base3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Base4" parent="Row1" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row1/Base4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Base5" parent="Row1" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row1/Base5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -70,17 +110,67 @@ theme_override_constants/separation = 35
 [node name="Base1" parent="Row2" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row2/Base1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Base2" parent="Row2" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row2/Base2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Base3" parent="Row2" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row2/Base3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Base4" parent="Row2" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row2/Base4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Base5" parent="Row2" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row2/Base5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Row3" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -100,14 +190,54 @@ theme_override_constants/separation = 35
 [node name="Complex1" parent="Row3" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row3/Complex1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Complex2" parent="Row3" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row3/Complex2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Complex3" parent="Row3" instance=ExtResource("1_gng67")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Row3/Complex3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Godlike" parent="Row3" instance=ExtResource("1_gng67")]
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Row3/Godlike"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1

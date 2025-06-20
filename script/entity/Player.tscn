@@ -42,11 +42,10 @@ AbilityHandler = NodePath("Handlers/AbilityHandler")
 Entity = NodePath("Entity")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -3)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u77ui")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.108079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4flbx")
