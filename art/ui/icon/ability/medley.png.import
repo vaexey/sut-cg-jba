@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cai2x5682dr0c"
-path="res://.godot/imported/jodelvers.png-b98d24d548d3e290ef27e91a699600aa.ctex"
+uid="uid://bvybp66jb8k6v"
+path="res://.godot/imported/medley.png-3f1d7ba57767c3dece121a641a06e290.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/icon/ability/jodelvers.png"
-dest_files=["res://.godot/imported/jodelvers.png-b98d24d548d3e290ef27e91a699600aa.ctex"]
+source_file="res://art/ui/icon/ability/medley.png"
+dest_files=["res://.godot/imported/medley.png-3f1d7ba57767c3dece121a641a06e290.ctex"]
 
 [params]
 

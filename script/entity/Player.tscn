@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=29 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://bn7c3w881fx25" path="res://script/handlers/LoopingSoundHandler.cs" id="14_l8xdv"]
 [ext_resource type="PackedScene" uid="uid://cvh1k0ufhexx0" path="res://script/entity/ability/types/HypeUpAbility.tscn" id="15_kt7ga"]
 [ext_resource type="PackedScene" uid="uid://b3i5fkahlycjy" path="res://script/entity/ability/types/ContemplateAbility.tscn" id="16_44opu"]
+[ext_resource type="PackedScene" uid="uid://b35omic602nh5" path="res://script/entity/ability/types/MedleyAbility.tscn" id="17_k86aw"]
 [ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="21_vuq83"]
 [ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="22_8sw75"]
 
@@ -90,8 +91,6 @@ Abilities = NodePath("Abilities")
 
 [node name="PilznerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("13_j7smh")]
 
-[node name="JodelversAbility" parent="Entity/Abilities/Basic" instance=ExtResource("14_8sw75")]
-
 [node name="HypeUpAbility" parent="Entity/Abilities/Basic" instance=ExtResource("15_kt7ga")]
 
 [node name="ContemplateAbility" parent="Entity/Abilities/Basic" instance=ExtResource("16_44opu")]
@@ -104,11 +103,15 @@ Abilities = NodePath("Abilities")
 
 [node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
 
+[node name="JodelversAbility" parent="Entity/Abilities/Complex/Slot 2" instance=ExtResource("14_8sw75")]
+
 [node name="Slot 3" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Complex/Slot 3" instance=ExtResource("12_6h1lh")]
 
 [node name="Godlike" type="Node" parent="Entity/Abilities"]
 
-[node name="AutoJodlerAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("12_6h1lh")]
+[node name="MedleyAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("17_k86aw")]
 
 [node name="CrowdControl" parent="Entity" node_paths=PackedStringArray("ParentEntity") instance=ExtResource("11_q3jhd")]
 ParentEntity = NodePath("..")

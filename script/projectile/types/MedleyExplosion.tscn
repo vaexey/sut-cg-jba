@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgjdimtgskft6"]
+
+[ext_resource type="Script" uid="uid://cvjxeiaeipvmo" path="res://script/projectile/types/MedleyExplosion.cs" id="1_23ro0"]
+[ext_resource type="AudioStream" uid="uid://bcboqncbahx0s" path="res://sound/ability/medley_explosion.mp3" id="2_2cqi5"]
+[ext_resource type="Shader" uid="uid://bdvuldymtq3uw" path="res://shader/blur.gdshader" id="2_dm2ye"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdmvu"]
+shader = ExtResource("2_dm2ye")
+shader_parameter/radius = 4
+shader_parameter/minAlpha = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="MedleyExplosion" type="CharacterBody2D" node_paths=PackedStringArray("FadedObject")]
+collision_layer = 0
+script = ExtResource("1_23ro0")
+FadedObject = NodePath("CanvasGroup")
+ProjectileVelocity = 0.0
+ProjectileGravity = 0.0
+Stationary = true
+DestroyOnCollision = false
+FadeTime = 1.0
+DestroyAfterTime = 3.0
+
+[node name="RightCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+rotation = -3.14159
+polygon = PackedVector2Array(0, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_pdmvu")
+
+[node name="RightSprite" type="Polygon2D" parent="CanvasGroup"]
+color = Color(1, 0, 1, 0.392157)
+polygon = PackedVector2Array(0, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)
+
+[node name="LeftSprite" type="Polygon2D" parent="CanvasGroup"]
+rotation = 3.14159
+color = Color(1, 0, 1, 0.392157)
+polygon = PackedVector2Array(0, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2cqi5")
+autoplay = true

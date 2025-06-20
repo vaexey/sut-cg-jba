@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvhfq8j5end4p"]
 
 [ext_resource type="Script" uid="uid://bm4c8x7tamg8o" path="res://script/entity/ability/types/JodelversAbility.cs" id="1_us3h7"]
-[ext_resource type="Texture2D" uid="uid://bghkjft6xxjv7" path="res://art/ui/icon/ability/jodelvers.png" id="2_2ap78"]
+[ext_resource type="Texture2D" uid="uid://cai2x5682dr0c" path="res://art/ui/icon/ability/jodelvers.png" id="2_2ap78"]
 [ext_resource type="AudioStream" uid="uid://ca4ay5al30ok8" path="res://sound/ability/jodelvers.mp3" id="2_liwp7"]
 [ext_resource type="AudioStream" uid="uid://ctc6mewxvoee6" path="res://sound/ability/jodelvers_boom.mp3" id="3_n6ku7"]
 

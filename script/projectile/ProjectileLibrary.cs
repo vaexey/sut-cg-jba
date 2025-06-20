@@ -35,4 +35,5 @@ public sealed class ProjectileLibrary
     public static PackedProjectile<KegThrowProjectile> KegThrowProjectile => Get<KegThrowProjectile>();
     public static PackedProjectile<KegThrowExplosion> KegThrowExplosion => Get<KegThrowExplosion>();
     public static PackedProjectile<JodelversExplosion> JodelversExplosion => Get<JodelversExplosion>();
+    public static PackedProjectile<MedleyExplosion> MedleyExplosion => Get<MedleyExplosion>();
 }

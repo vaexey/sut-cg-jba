@@ -23,6 +23,10 @@ public partial class Ability : Node
     
 	[Signal]
 	public delegate void OnCastEventHandler();
+	[Signal]
+	public delegate void OnStartCastEventHandler();
+	[Signal]
+	public delegate void OnStopCastEventHandler();
 
     public virtual AbilityUsageTrialResult CanUse(IEntityContainer owner)
     {
@@ -92,6 +96,7 @@ public partial class Ability : Node
         if (CastTime > 0)
         {
             CastTimeLeft = CastTime;
+            EmitSignal(SignalName.OnStartCast);
             return;
         }
 
@@ -99,6 +104,7 @@ public partial class Ability : Node
 
         ConsumeCost(owner.Entity);
         Cast(owner);
+        EmitSignal(SignalName.OnStartCast);
         EmitSignal(SignalName.OnCast);
     }
 
@@ -123,9 +129,10 @@ public partial class Ability : Node
 
     public virtual void OnCastCancelInput(IEntityContainer owner)
     {
-        if(CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
+        if (CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
         {
             CastTimeLeft = 0;
+            EmitSignal(SignalName.OnStopCast);
         }
     }
 
@@ -141,6 +148,7 @@ public partial class Ability : Node
             if(CastMode.HasFlag(AbilityCastMode.CastTimeInterruptable) && owner.Entity.IsSilenced)
             {
                 CastTimeLeft = 0;
+                EmitSignal(SignalName.OnStopCast);
                 return;
             }
             
