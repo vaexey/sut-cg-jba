@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1bqw5ci54bip"]
+[gd_scene load_steps=9 format=3 uid="uid://b1bqw5ci54bip"]
 
 [ext_resource type="Script" uid="uid://thutoq5u1it1" path="res://script/projectile/types/KegThrowExplosion.cs" id="1_ajwkp"]
 [ext_resource type="Texture2D" uid="uid://br26yhmk70qfk" path="res://art/tiles/village_props.png" id="1_vyan1"]
 [ext_resource type="SpriteFrames" uid="uid://dsukimlfb7ned" path="res://art/projectile/explosions/gas1/gas1.tres" id="2_1y786"]
+[ext_resource type="Shader" uid="uid://8q3nh3iff8bh" path="res://shader/hue.gdshader" id="2_l1s58"]
 [ext_resource type="AudioStream" uid="uid://bwbeise87d6j3" path="res://sound/ability/keg_throw_explosion.mp3" id="4_5achx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ib6w4"]
+shader = ExtResource("2_l1s58")
+shader_parameter/hue_shift = 0.808
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajwkp"]
 atlas = ExtResource("1_vyan1")
@@ -26,12 +31,13 @@ DestroyAfterTime = 1.0
 DamageFlat = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ib6w4")
 position = Vector2(0, -19)
 scale = Vector2(2.3125, 2.3125)
 sprite_frames = ExtResource("2_1y786")
 autoplay = "default"
-frame = 51
-frame_progress = 1.0
+frame = 14
+frame_progress = 0.24996
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -41,6 +47,7 @@ scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_ajwkp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_1y786")
 
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]

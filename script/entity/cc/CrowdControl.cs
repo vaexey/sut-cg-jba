@@ -48,6 +48,17 @@ public partial class CrowdControl : Node
         AddEffect(effect);
     }
 
+    public void Cleanse()
+    {
+        var effects = GetEffects();
+    
+        foreach (var cc in effects)
+        {
+            cc.End(ParentEntity);
+            cc.QueueFree();
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();

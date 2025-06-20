@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://btojp7njqkq8e"]
+[gd_scene load_steps=21 format=3 uid="uid://btojp7njqkq8e"]
 
 [ext_resource type="Script" uid="uid://duxfu7y6nkh4w" path="res://script/entity/SimpleEnemy.cs" id="1_tgbra"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_s7nyt"]
+[ext_resource type="PackedScene" uid="uid://dc4uv7x5xhjyl" path="res://script/ui/arena/EntityBar.tscn" id="3_p7vb4"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="3_tgbra"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="5_xb81b"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="6_8tb1w"]
@@ -9,6 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="8_i2b6t"]
 [ext_resource type="PackedScene" uid="uid://8ueu6e3t55rr" path="res://script/entity/cc/CrowdControl.tscn" id="8_tgbra"]
 [ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="9_208p5"]
+[ext_resource type="PackedScene" uid="uid://gwen8nmp2tx3" path="res://script/entity/ability/Abilities.tscn" id="11_g582f"]
+[ext_resource type="PackedScene" uid="uid://cwhn3n6egbob3" path="res://script/entity/ability/types/EggThrowAbility.tscn" id="12_j47eg"]
+[ext_resource type="PackedScene" uid="uid://cb4vs8rxfc6ha" path="res://script/entity/ability/types/PilznerAbility.tscn" id="13_6hyy3"]
+[ext_resource type="PackedScene" uid="uid://cvh1k0ufhexx0" path="res://script/entity/ability/types/HypeUpAbility.tscn" id="14_67eai"]
+[ext_resource type="PackedScene" uid="uid://b3i5fkahlycjy" path="res://script/entity/ability/types/ContemplateAbility.tscn" id="15_1qfwu"]
+[ext_resource type="PackedScene" uid="uid://cfd6a4dheecxf" path="res://script/entity/ability/types/KegThrowAbility.tscn" id="16_v2nms"]
+[ext_resource type="PackedScene" uid="uid://bvhfq8j5end4p" path="res://script/entity/ability/types/JodelversAbility.tscn" id="17_irw1g"]
+[ext_resource type="PackedScene" uid="uid://bwuud6qdp0gwh" path="res://script/entity/ability/types/AutoJodlerAbility.tscn" id="18_nthuj"]
+[ext_resource type="PackedScene" uid="uid://b35omic602nh5" path="res://script/entity/ability/types/MedleyAbility.tscn" id="19_gtsb5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7nyt"]
 radius = 18.0
@@ -32,6 +42,12 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s7nyt")
 
+[node name="EntityBar" parent="." node_paths=PackedStringArray("Entity") instance=ExtResource("3_p7vb4")]
+offset_top = -50.0
+offset_right = 0.0
+offset_bottom = -49.76
+Entity = NodePath("../Entity")
+
 [node name="Handlers" type="Node" parent="."]
 
 [node name="GravityHandler" parent="Handlers" instance=ExtResource("3_tgbra")]
@@ -45,11 +61,42 @@ Entity = NodePath("../../Entity")
 [node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("7_pq6kc")]
 Sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC") instance=ExtResource("8_i2b6t")]
+[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC", "Abilities") instance=ExtResource("8_i2b6t")]
 PassiveAttributes = NodePath("PassiveAttributes")
 CC = NodePath("CrowdControl")
+Abilities = NodePath("Abilities")
 
 [node name="CrowdControl" parent="Entity" node_paths=PackedStringArray("ParentEntity") instance=ExtResource("8_tgbra")]
 ParentEntity = NodePath("..")
 
 [node name="PassiveAttributes" parent="Entity" instance=ExtResource("9_208p5")]
+
+[node name="Abilities" parent="Entity" instance=ExtResource("11_g582f")]
+
+[node name="Basic" type="Node" parent="Entity/Abilities"]
+
+[node name="EggThrowAbility" parent="Entity/Abilities/Basic" instance=ExtResource("12_j47eg")]
+
+[node name="PilznerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("13_6hyy3")]
+
+[node name="HypeUpAbility" parent="Entity/Abilities/Basic" instance=ExtResource("14_67eai")]
+
+[node name="ContemplateAbility" parent="Entity/Abilities/Basic" instance=ExtResource("15_1qfwu")]
+
+[node name="Complex" type="Node" parent="Entity/Abilities"]
+
+[node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="KegThrowAbility" parent="Entity/Abilities/Complex/Slot 1" instance=ExtResource("16_v2nms")]
+
+[node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="JodelversAbility" parent="Entity/Abilities/Complex/Slot 2" instance=ExtResource("17_irw1g")]
+
+[node name="Slot 3" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Complex/Slot 3" instance=ExtResource("18_nthuj")]
+
+[node name="Godlike" type="Node" parent="Entity/Abilities"]
+
+[node name="MedleyAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("19_gtsb5")]

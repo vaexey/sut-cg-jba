@@ -62,7 +62,8 @@ public partial class Entity : Node
 
 		if (Beverage.Percentage <= 0)
 		{
-			IsAlive = false;
+			// IsAlive = false;
+			Kill();
 		}
 
 		if (IsAlive)
@@ -78,9 +79,20 @@ public partial class Entity : Node
 		}
 	}
 
+	public void Kill()
+	{
+		IsAlive = false;
+
+		CC.Cleanse();
+		IsSilenced = true;
+		IsCrippledHorizontally = true;
+		IsCrippledVertically = true;
+	}
+
 	public bool CanJump()
 	{
-		return Stamina.Value > PassiveAttributes.StaminaMinJump;
+		return Stamina.Value > PassiveAttributes.StaminaMinJump
+			&& !IsCrippledVertically;
 	}
 
 	public void DidJump()

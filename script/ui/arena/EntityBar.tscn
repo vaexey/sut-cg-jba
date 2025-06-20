@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc4uv7x5xhjyl"]
+
+[ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="1_jh18r"]
+[ext_resource type="Script" uid="uid://cd3yegtanrj6c" path="res://script/ui/arena/EntityBar.cs" id="1_qtr3m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_46e6l"]
+font = ExtResource("1_jh18r")
+font_color = Color(0.63, 0.63, 0.63, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tcqpb"]
+font = ExtResource("1_jh18r")
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qtr3m"]
+font = ExtResource("1_jh18r")
+
+[node name="EntityBar" type="Control" node_paths=PackedStringArray("Title", "RIP", "Silenced", "Crippled", "Slowed", "CastingGroup", "CastingBar")]
+layout_mode = 3
+anchor_right = 0.154
+anchor_bottom = 0.187
+offset_right = -0.362015
+offset_bottom = 0.239998
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtr3m")
+Title = NodePath("VBoxContainer/Title")
+RIP = NodePath("VBoxContainer/RIP")
+Silenced = NodePath("VBoxContainer/Silenced")
+Crippled = NodePath("VBoxContainer/Crippled")
+Slowed = NodePath("VBoxContainer/Slowed")
+CastingGroup = NodePath("VBoxContainer/CastingInfo")
+CastingBar = NodePath("VBoxContainer/CastingInfo/ProgressBar")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -41.0
+offset_top = -90.0
+offset_right = 41.0
+offset_bottom = -3.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="RIP" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "R.I.P."
+label_settings = SubResource("LabelSettings_46e6l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Franzl"
+horizontal_alignment = 1
+
+[node name="Silenced" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Silenced"
+label_settings = SubResource("LabelSettings_tcqpb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crippled" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Crippled"
+label_settings = SubResource("LabelSettings_tcqpb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slowed" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Slowed"
+label_settings = SubResource("LabelSettings_tcqpb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CastingInfo" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/CastingInfo"]
+layout_mode = 2
+text = "Casting..."
+label_settings = SubResource("LabelSettings_qtr3m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/CastingInfo"]
+layout_mode = 2
+max_value = 1.0
+value = 0.5
+show_percentage = false

@@ -9,6 +9,7 @@ public partial class CrowdControlEffect : Node
     public string DisplayName { get; set; } = "Unnamed CC";
     [Export]
     public string ShortDescription { get; set; } = "Abcdeefg";
+    [Export] public Texture2D IconTexture { get; set; }
 
     [ExportSubgroup("Modifiers")]
     [Export]
@@ -33,6 +34,21 @@ public partial class CrowdControlEffect : Node
     public virtual bool OnDuplicateEffects(Entity effected, CrowdControlEffect[] duplicates)
     {
         return true;
+    }
+    
+    protected virtual bool OnDuplicateSelectLongest(Entity effected, CrowdControlEffect[] duplicates)
+    {
+        if (duplicates.Length == 0)
+            return true;
+
+        var times = duplicates.Select(cc => cc.Time).ToList();
+        times.Add(Time);
+
+        var max = times.Max();
+
+        duplicates[0].Time = max;
+
+        return false;
     }
 
     // The key on which duplication will be determined

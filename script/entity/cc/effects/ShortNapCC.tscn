@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl26pv3rmyip1"]
+
+[ext_resource type="Script" uid="uid://cdlese68jsgxg" path="res://script/entity/cc/effects/ShortNapCC.cs" id="1_uhboa"]
+
+[node name="ShortNapCC" type="Node"]
+script = ExtResource("1_uhboa")
+DisplayName = "Short nap"

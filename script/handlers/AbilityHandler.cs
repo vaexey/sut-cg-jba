@@ -12,6 +12,8 @@ public partial class AbilityHandler : Node
 	public delegate void NoManaTriggerEventHandler();
 	[Signal]
 	public delegate void CooldownTriggerEventHandler();
+	[Signal]
+	public delegate void SilencedTriggerEventHandler();
 
     public void HandleAbilities(IEntityContainer ec, InputHandler input, double delta)
     {
@@ -87,10 +89,14 @@ public partial class AbilityHandler : Node
                 case AbilityUsageTrialResult.OnCooldown:
                     EmitSignal(SignalName.CooldownTrigger);
                     break;
-                    
+
                 case AbilityUsageTrialResult.NoInspiration:
                 case AbilityUsageTrialResult.NoStamina:
                     EmitSignal(SignalName.NoManaTrigger);
+                    break;
+
+                case AbilityUsageTrialResult.IsSilenced:
+                    EmitSignal(SignalName.SilencedTrigger);
                     break;
             }
         }

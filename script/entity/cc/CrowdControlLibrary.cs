@@ -32,4 +32,5 @@ public sealed class CrowdControlLibrary
     public static PackedCrowdControl<HikingInstinctCC> HikingInstinct => Get<HikingInstinctCC>();
     public static PackedCrowdControl<WaterInPantsCC> WaterInPants => Get<WaterInPantsCC>();
     public static PackedCrowdControl<AppenzellerCC> Appenzeller => Get<AppenzellerCC>();
+    public static PackedCrowdControl<ShortNapCC> ShortNap => Get<ShortNapCC>();
 }

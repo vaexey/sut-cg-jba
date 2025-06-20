@@ -33,6 +33,9 @@ public partial class Ability : Node
         if (!owner.Entity.IsAlive)
             return AbilityUsageTrialResult.EntityDead;
 
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
+            return AbilityUsageTrialResult.IsSilenced;
+
         if (IsOnCooldown)
             return AbilityUsageTrialResult.OnCooldown;
 
@@ -48,9 +51,6 @@ public partial class Ability : Node
 
         if (IsCasting)
             return AbilityUsageTrialResult.IsAlreadyCasting;
-
-        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
-            return AbilityUsageTrialResult.IsSilenced;
 
         if (!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
             return AbilityUsageTrialResult.IsCastingOther;

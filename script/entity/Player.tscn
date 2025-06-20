@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=31 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
+[ext_resource type="PackedScene" uid="uid://dc4uv7x5xhjyl" path="res://script/ui/arena/EntityBar.tscn" id="3_avt36"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://dgsrqwxhhqcd2" path="res://script/handlers/InputHandler.tscn" id="6_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="7_dw050"]
@@ -26,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b35omic602nh5" path="res://script/entity/ability/types/MedleyAbility.tscn" id="17_k86aw"]
 [ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="21_vuq83"]
 [ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="22_8sw75"]
+[ext_resource type="AudioStream" uid="uid://7wf3vhj82cji" path="res://sound/ui/silenced.mp3" id="28_80ifh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 18.0
@@ -58,6 +60,12 @@ frame_progress = 0.108079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="EntityBar" parent="." node_paths=PackedStringArray("Entity") instance=ExtResource("3_avt36")]
+offset_top = -37.0
+offset_right = 0.0
+offset_bottom = -36.76
+Entity = NodePath("../Entity")
 
 [node name="Handlers" type="Node" parent="."]
 
@@ -135,7 +143,12 @@ volume_db = -12.0
 stream = ExtResource("22_8sw75")
 volume_db = -12.0
 
+[node name="SilencedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_80ifh")
+volume_db = -12.0
+
 [connection signal="SetGrassSound" from="Handlers/MovementHandler" to="GrassSoundEffect" method="SetKeepPlaying"]
 [connection signal="JumpStarted" from="Handlers/JumpHandler" to="JumpSoundEffect" method="play"]
 [connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="CooldownSound" method="play"]
 [connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="NoManaSound" method="play"]
+[connection signal="SilencedTrigger" from="Handlers/AbilityHandler" to="SilencedSound" method="play"]

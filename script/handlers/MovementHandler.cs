@@ -10,7 +10,7 @@ public partial class MovementHandler : Node
 	[Signal]
 	public delegate void SetGrassSoundEventHandler(bool grass);
 
-	public void HandleHorizontal(CharacterBody2D body, double delta, float direction)
+	public void HandleHorizontal(CharacterBody2D body, Entity ent, double delta, float direction)
 	{
 		float accel;
 
@@ -21,6 +21,12 @@ public partial class MovementHandler : Node
 		else
 		{
 			accel = direction != 0 ? Entity.PassiveAttributes.AirAcceleration : Entity.PassiveAttributes.AirDeceleration;
+		}
+
+		if (ent.IsCrippledHorizontally)
+		{
+			direction = 0;
+			accel = Entity.PassiveAttributes.GroundDeceleration;
 		}
 
 		EmitSignal(

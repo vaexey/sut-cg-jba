@@ -29,7 +29,7 @@ public partial class Player : CharacterBody2D, IEntityContainer
 		base._PhysicsProcess(delta);
 
 		GravityHandler.HandleGravity(this, delta);
-		MovementHandler.HandleHorizontal(this, delta, InputHandler.HorizontalInput);
+		MovementHandler.HandleHorizontal(this, Entity, delta, InputHandler.HorizontalInput);
 		JumpHandler.HandleJump(this, InputHandler.GetJumpPressed(), InputHandler.GetJumpReleased());
 		AnimationHandler.HandleHorizontalFlip(InputHandler.HorizontalInput);
 
