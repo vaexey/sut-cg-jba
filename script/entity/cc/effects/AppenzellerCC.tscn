@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx7nhbihqylew"]
+
+[ext_resource type="Script" uid="uid://dy0os1ymws6ee" path="res://script/entity/cc/effects/AppenzellerCC.cs" id="1_qthmt"]
+[ext_resource type="Texture2D" uid="uid://c3dy7vv8albsl" path="res://art/ui/icon/cc/appenzeller.png" id="2_qshhk"]
+
+[node name="AppenzellerCC" type="Node"]
+script = ExtResource("1_qthmt")
+DisplayName = "Appenzeller"
+IconTexture = ExtResource("2_qshhk")

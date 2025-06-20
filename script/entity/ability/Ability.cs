@@ -20,9 +20,23 @@ public partial class Ability : Node
     public bool IsCasting => CastTimeLeft > 0;
     public bool IsOnCooldown => CooldownLeft > 0;
     
+    
+	[Signal]
+	public delegate void OnCastEventHandler();
+	[Signal]
+	public delegate void OnStartCastEventHandler();
+	[Signal]
+	public delegate void OnStopCastEventHandler();
+
     public virtual AbilityUsageTrialResult CanUse(IEntityContainer owner)
     {
-        if(IsOnCooldown)
+        if (!owner.Entity.IsAlive)
+            return AbilityUsageTrialResult.EntityDead;
+
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
+            return AbilityUsageTrialResult.IsSilenced;
+
+        if (IsOnCooldown)
             return AbilityUsageTrialResult.OnCooldown;
 
         var cost = GetUseCostTotal(owner.Entity);
@@ -36,12 +50,9 @@ public partial class Ability : Node
                 return AbilityUsageTrialResult.NoInspiration;
 
         if (IsCasting)
-                    return AbilityUsageTrialResult.IsAlreadyCasting;
+            return AbilityUsageTrialResult.IsAlreadyCasting;
 
-        if(!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
-            return AbilityUsageTrialResult.IsSilenced;
-
-        if(!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
             return AbilityUsageTrialResult.IsCastingOther;
 
         return AbilityUsageTrialResult.OK;
@@ -56,7 +67,7 @@ public partial class Ability : Node
         double value = 0;
 
         if (CategoryType == AbilityCategory.Physical)
-            value = ent.Stamina.Value;
+            value = ent.Stamina.Value * ent.PassiveAttributes.StaminaUsageModifier;
 
         if (CategoryType == AbilityCategory.Inspired)
             value = ent.Inspiration.Value;
@@ -85,6 +96,7 @@ public partial class Ability : Node
         if (CastTime > 0)
         {
             CastTimeLeft = CastTime;
+            EmitSignal(SignalName.OnStartCast);
             return;
         }
 
@@ -92,6 +104,8 @@ public partial class Ability : Node
 
         ConsumeCost(owner.Entity);
         Cast(owner);
+        EmitSignal(SignalName.OnStartCast);
+        EmitSignal(SignalName.OnCast);
     }
 
     // This method is called to execute the ability effect,
@@ -115,9 +129,10 @@ public partial class Ability : Node
 
     public virtual void OnCastCancelInput(IEntityContainer owner)
     {
-        if(CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
+        if (CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
         {
             CastTimeLeft = 0;
+            EmitSignal(SignalName.OnStopCast);
         }
     }
 
@@ -133,6 +148,7 @@ public partial class Ability : Node
             if(CastMode.HasFlag(AbilityCastMode.CastTimeInterruptable) && owner.Entity.IsSilenced)
             {
                 CastTimeLeft = 0;
+                EmitSignal(SignalName.OnStopCast);
                 return;
             }
             
@@ -143,6 +159,7 @@ public partial class Ability : Node
                 CooldownLeft += Cooldown;
                 ConsumeCost(owner.Entity);
                 Cast(owner);
+                EmitSignal(SignalName.OnCast);
             }
         }
     }

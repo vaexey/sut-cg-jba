@@ -62,25 +62,46 @@ public partial class Entity : Node
 
 		if (Beverage.Percentage <= 0)
 		{
-			IsAlive = false;
+			// IsAlive = false;
+			Kill();
 		}
 
 		if (IsAlive)
 		{
+			Beverage.Regen = PassiveAttributes.BeverageRegen;
+			Beverage.Process(delta);
+
 			Stamina.Regen = PassiveAttributes.StaminaRegen;
 			Stamina.Process(delta);
+
+			Inspiration.Regen = PassiveAttributes.InspirationRegen;
+			Inspiration.Process(delta);
 		}
+	}
+
+	public void Kill()
+	{
+		IsAlive = false;
+
+		CC.Cleanse();
+		IsSilenced = true;
+		IsCrippledHorizontally = true;
+		IsCrippledVertically = true;
 	}
 
 	public bool CanJump()
 	{
-		return Stamina.Value > PassiveAttributes.StaminaMinJump;
+		return Stamina.Value > PassiveAttributes.StaminaMinJump
+			&& !IsCrippledVertically;
 	}
 
 	public void DidJump()
 	{
 		// Stamina.Value -= PassiveAttributes.StaminaUsageJump;
-		ConsumeStamina(PassiveAttributes.StaminaUsageJump);
+		ConsumeStamina(
+			PassiveAttributes.StaminaUsageJump *
+			PassiveAttributes.StaminaUsageModifier
+		);
 	}
 
 	public void ApplyDamage(Damage dmg)

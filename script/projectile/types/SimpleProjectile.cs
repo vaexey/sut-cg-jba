@@ -8,6 +8,8 @@ public partial class SimpleProjectile : CharacterBody2D
     [ExportSubgroup("Nodes")]
     [Export]
     public Entity OwnerEntity { get; set; }
+    [Export]
+    public CanvasItem FadedObject { get; set; }
 
     [ExportSubgroup("Projectile settings")]
     [Export]
@@ -19,7 +21,19 @@ public partial class SimpleProjectile : CharacterBody2D
     public float ProjectileGravity { get; set; } = 500;
 
     [Export]
+    public bool Stationary { get; set; } = false;
+
+    [Export]
     public bool DestroyOnCollision { get; set; } = true;
+
+    [Export]
+    public double DestroyOnCollisionDelay { get; set; } = 0;
+
+    [Export]
+    public double FadeTime { get; set; } = 0;
+
+    [Export]
+    public double DestroyAfterTime { get; set; } = 15.0;
 
     [ExportSubgroup("Damage settings")]
     [Export]
@@ -29,6 +43,8 @@ public partial class SimpleProjectile : CharacterBody2D
     [Export]
     public DamageFlags DamageFlags { get; set; } = 0;
 
+    public bool JustCreated = true;
+    public double TimeLeft = 0;
 
     // [Export]
     // public bool IgnoreOwnerCollision { get; set; } = true;
@@ -40,13 +56,41 @@ public partial class SimpleProjectile : CharacterBody2D
     //         AddCollisionExceptionWith();
     //     }
     // }
+    public override void _Ready()
+    {
+        JustCreated = true;
+        TimeLeft = DestroyAfterTime;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (FadedObject != null)
+        {
+            double fade = Math.Clamp(
+                (FadeTime - TimeLeft) / FadeTime,
+                0, 1
+            );
+
+            FadedObject.SelfModulate = Color.Color8(
+                255,
+                255,
+                255,
+                (byte)((1 - fade) * 255)
+            );
+        }
+    }
 
     public override void _PhysicsProcess(double delta)
     {
         if (ProjectileGravity > 0 && !IsOnFloor())
             Velocity = Velocity + new Vector2(0, ProjectileGravity * (float)delta);
 
+        var oldPos = Position;
+
         MoveAndSlide();
+
+        if (Stationary)
+            Position = oldPos;
 
         var collisions = GetSlideCollisionCount();
 
@@ -60,6 +104,14 @@ public partial class SimpleProjectile : CharacterBody2D
 
             GD.Print($"Slided with {objs.Length}");
             OnCollisionRaw(objs);
+        }
+
+        TimeLeft = Mathf.MoveToward(TimeLeft, 0, delta);
+        JustCreated = false;
+
+        if (TimeLeft <= 0)
+        {
+            QueueFree();
         }
     }
 
@@ -107,7 +159,8 @@ public partial class SimpleProjectile : CharacterBody2D
 
             if (DestroyOnCollision)
             {
-                QueueFree();
+                // QueueFree();
+                TimeLeft = DestroyOnCollisionDelay;
             }
         }
     }

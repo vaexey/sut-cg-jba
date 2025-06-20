@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b35omic602nh5"]
+
+[ext_resource type="Script" uid="uid://gyrblcu6ka0j" path="res://script/entity/ability/types/MedleyAbility.cs" id="1_1ukcu"]
+[ext_resource type="Texture2D" uid="uid://bvybp66jb8k6v" path="res://art/ui/icon/ability/medley.png" id="2_yvmow"]
+[ext_resource type="AudioStream" uid="uid://d1wtavksqmf3v" path="res://sound/ability/medley_cast.mp3" id="3_yvmow"]
+
+[node name="MedleyAbility" type="Node"]
+script = ExtResource("1_1ukcu")
+DisplayName = "Medley"
+ShortDescription = "Franzl sings his well-known song, creating a terrifying sound wave around him that slows and damages enemies."
+CategoryType = 2
+IconTexture = ExtResource("2_yvmow")
+CastMode = 12
+CastTime = 1.0
+Cooldown = 10.0
+UseCostFlat = 10.0
+UseCostPercentage = 0.2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yvmow")
+
+[connection signal="OnStartCast" from="." to="AudioStreamPlayer2D" method="play"]
+[connection signal="OnStopCast" from="." to="AudioStreamPlayer2D" method="stop"]

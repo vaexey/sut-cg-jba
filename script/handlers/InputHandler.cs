@@ -20,4 +20,17 @@ public partial class InputHandler : Node
 	public bool GetAbilityComplex2() => Input.IsActionJustPressed("ability_complex2");
 	public bool GetAbilityComplex3() => Input.IsActionJustPressed("ability_complex3");
 	public bool GetAbilityGodlike() => Input.IsActionJustPressed("ability_godlike");
+
+	public int GetAbilityBasicIndex()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			if (Input.IsActionJustPressed($"ability_basic_{i + 1}"))
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
 }

@@ -29,7 +29,7 @@ public partial class SimpleEnemy : CharacterBody2D, IEntityContainer
         bool jumpR = false;
 
 		GravityHandler.HandleGravity(this, delta);
-		MovementHandler.HandleHorizontal(this, delta, horizontal);
+		MovementHandler.HandleHorizontal(this, Entity, delta, horizontal);
 		JumpHandler.HandleJump(this, jump, jumpR);
 		AnimationHandler.HandleHorizontalFlip(horizontal);
 

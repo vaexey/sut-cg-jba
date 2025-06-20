@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b3ly7woe8uiu2"]
+[gd_scene load_steps=16 format=4 uid="uid://b3ly7woe8uiu2"]
 
 [ext_resource type="Script" uid="uid://dsh1iskx3mp2" path="res://script/Arena.cs" id="1_d70xx"]
 [ext_resource type="Shader" uid="uid://bdvuldymtq3uw" path="res://shader/blur.gdshader" id="2_iw0c0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Material" uid="uid://cir8jyqs4gq3p" path="res://art/material/blur.tres" id="9_38jan"]
 [ext_resource type="PackedScene" uid="uid://bgyqe8wqw53kb" path="res://script/ui/arena/ArenaUI.tscn" id="10_iw0c0"]
 [ext_resource type="Script" uid="uid://n84es0kxwrat" path="res://script/ArenaCamera2D.cs" id="10_k7ccj"]
+[ext_resource type="PackedScene" uid="uid://6p5puirwbkw4" path="res://script/ui/arena/PauseUI.tscn" id="13_wqdsx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n068f"]
 shader = ExtResource("2_iw0c0")
@@ -165,3 +166,5 @@ collision_enabled = false
 
 [node name="ArenaUI" parent="UI" node_paths=PackedStringArray("World") instance=ExtResource("10_iw0c0")]
 World = NodePath("../../World")
+
+[node name="PauseUI" parent="UI" instance=ExtResource("13_wqdsx")]
