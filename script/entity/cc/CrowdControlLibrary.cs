@@ -28,6 +28,8 @@ public sealed class CrowdControlLibrary
     {
         return CC<T>(typeof(T).Name);
     }
-    
+
     public static PackedCrowdControl<HikingInstinctCC> HikingInstinct => Get<HikingInstinctCC>();
+    public static PackedCrowdControl<WaterInPantsCC> WaterInPants => Get<WaterInPantsCC>();
+    public static PackedCrowdControl<AppenzellerCC> Appenzeller => Get<AppenzellerCC>();
 }

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bslc3kpronha5"]
+
+[ext_resource type="Script" uid="uid://cgsjcnprd5ema" path="res://script/projectile/types/JodelversExplosion.cs" id="1_cqv02"]
+
+[node name="JodelversExplosion" type="CharacterBody2D" node_paths=PackedStringArray("FadedObject")]
+collision_layer = 0
+script = ExtResource("1_cqv02")
+FadedObject = NodePath("Polygon2D")
+ProjectileVelocity = 0.0
+ProjectileGravity = 0.0
+Stationary = true
+DestroyOnCollision = false
+FadeTime = 1.0
+DestroyAfterTime = 1.0
+DamageFlat = 50.0
+DamagePercentage = 0.01
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 0.392157)
+polygon = PackedVector2Array(0, 0, 350, 45, 350, -45)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, 0, 350, 45, 350, -45)

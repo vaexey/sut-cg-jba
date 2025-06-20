@@ -67,8 +67,14 @@ public partial class Entity : Node
 
 		if (IsAlive)
 		{
+			Beverage.Regen = PassiveAttributes.BeverageRegen;
+			Beverage.Process(delta);
+
 			Stamina.Regen = PassiveAttributes.StaminaRegen;
 			Stamina.Process(delta);
+
+			Inspiration.Regen = PassiveAttributes.InspirationRegen;
+			Inspiration.Process(delta);
 		}
 	}
 
@@ -80,7 +86,10 @@ public partial class Entity : Node
 	public void DidJump()
 	{
 		// Stamina.Value -= PassiveAttributes.StaminaUsageJump;
-		ConsumeStamina(PassiveAttributes.StaminaUsageJump);
+		ConsumeStamina(
+			PassiveAttributes.StaminaUsageJump *
+			PassiveAttributes.StaminaUsageModifier
+		);
 	}
 
 	public void ApplyDamage(Damage dmg)

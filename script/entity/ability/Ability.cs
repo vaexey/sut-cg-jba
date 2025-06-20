@@ -20,9 +20,16 @@ public partial class Ability : Node
     public bool IsCasting => CastTimeLeft > 0;
     public bool IsOnCooldown => CooldownLeft > 0;
     
+    
+	[Signal]
+	public delegate void OnCastEventHandler();
+
     public virtual AbilityUsageTrialResult CanUse(IEntityContainer owner)
     {
-        if(IsOnCooldown)
+        if (!owner.Entity.IsAlive)
+            return AbilityUsageTrialResult.EntityDead;
+
+        if (IsOnCooldown)
             return AbilityUsageTrialResult.OnCooldown;
 
         var cost = GetUseCostTotal(owner.Entity);
@@ -36,12 +43,12 @@ public partial class Ability : Node
                 return AbilityUsageTrialResult.NoInspiration;
 
         if (IsCasting)
-                    return AbilityUsageTrialResult.IsAlreadyCasting;
+            return AbilityUsageTrialResult.IsAlreadyCasting;
 
-        if(!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
             return AbilityUsageTrialResult.IsSilenced;
 
-        if(!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
             return AbilityUsageTrialResult.IsCastingOther;
 
         return AbilityUsageTrialResult.OK;
@@ -92,6 +99,7 @@ public partial class Ability : Node
 
         ConsumeCost(owner.Entity);
         Cast(owner);
+        EmitSignal(SignalName.OnCast);
     }
 
     // This method is called to execute the ability effect,
@@ -143,6 +151,7 @@ public partial class Ability : Node
                 CooldownLeft += Cooldown;
                 ConsumeCost(owner.Entity);
                 Cast(owner);
+                EmitSignal(SignalName.OnCast);
             }
         }
     }

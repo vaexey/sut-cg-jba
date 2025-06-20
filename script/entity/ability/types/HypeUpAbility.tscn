@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvh1k0ufhexx0"]
+
+[ext_resource type="Script" uid="uid://bla7hplkyy7g2" path="res://script/entity/ability/types/HypeUpAbility.cs" id="1_wgkgv"]
+[ext_resource type="Texture2D" uid="uid://bn3ew8avu5gsl" path="res://art/ui/icon/ability/hype_up.png" id="2_geju5"]
+[ext_resource type="AudioStream" uid="uid://br8gkd2m8pql7" path="res://sound/ability/hype_up.mp3" id="3_gkkr3"]
+
+[node name="HypeUpAbility" type="Node"]
+script = ExtResource("1_wgkgv")
+DisplayName = "Hype up"
+ShortDescription = "Franzl hypes himself up, regaining 50% of missing stamina, at a cost of 50% remaining inspiration."
+CategoryType = 2
+IconTexture = ExtResource("2_geju5")
+Cooldown = 10.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gkkr3")
+volume_db = -6.0
+
+[connection signal="OnCast" from="." to="AudioStreamPlayer2D" method="play"]

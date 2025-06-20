@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfd6a4dheecxf"]
+
+[ext_resource type="Script" uid="uid://dkvtbpvscy820" path="res://script/entity/ability/types/KegThrowAbility.cs" id="1_vspsg"]
+[ext_resource type="Texture2D" uid="uid://br26yhmk70qfk" path="res://art/tiles/village_props.png" id="2_rdol6"]
+[ext_resource type="AudioStream" uid="uid://e6ys0tfoo7pk" path="res://sound/ability/keg_throw_cast.mp3" id="3_0awie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0awie"]
+atlas = ExtResource("2_rdol6")
+region = Rect2(192, 32, 32, 32)
+
+[node name="KegThrowAbility" type="Node"]
+script = ExtResource("1_vspsg")
+DisplayName = "Keg throw"
+ShortDescription = "Franzl picks up his keg with a random amount of beer and throws it in the direction he is pointing at. The keg explodes with beer on contact with anything, dealing damage based on the amount of beer that was inside."
+IconTexture = SubResource("AtlasTexture_0awie")
+Cooldown = 2.0
+UseCostFlat = 0.1
+UseCostPercentage = 0.3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0awie")
+volume_db = -12.0
+
+[connection signal="OnCast" from="." to="AudioStreamPlayer2D" method="play"]

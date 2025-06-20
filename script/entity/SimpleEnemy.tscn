@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btojp7njqkq8e"]
+[gd_scene load_steps=11 format=3 uid="uid://btojp7njqkq8e"]
 
 [ext_resource type="Script" uid="uid://duxfu7y6nkh4w" path="res://script/entity/SimpleEnemy.cs" id="1_tgbra"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_s7nyt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="6_8tb1w"]
 [ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="7_pq6kc"]
 [ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="8_i2b6t"]
+[ext_resource type="PackedScene" uid="uid://8ueu6e3t55rr" path="res://script/entity/cc/CrowdControl.tscn" id="8_tgbra"]
 [ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="9_208p5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7nyt"]
@@ -44,7 +45,11 @@ Entity = NodePath("../../Entity")
 [node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("7_pq6kc")]
 Sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes") instance=ExtResource("8_i2b6t")]
+[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC") instance=ExtResource("8_i2b6t")]
 PassiveAttributes = NodePath("PassiveAttributes")
+CC = NodePath("CrowdControl")
+
+[node name="CrowdControl" parent="Entity" node_paths=PackedStringArray("ParentEntity") instance=ExtResource("8_tgbra")]
+ParentEntity = NodePath("..")
 
 [node name="PassiveAttributes" parent="Entity" instance=ExtResource("9_208p5")]

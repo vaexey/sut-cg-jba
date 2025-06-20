@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd0ec86xs7mwk"]
+
+[ext_resource type="Texture2D" uid="uid://br26yhmk70qfk" path="res://art/tiles/village_props.png" id="1_pwrp4"]
+[ext_resource type="Script" uid="uid://d35tsi3m4mdfg" path="res://script/projectile/types/KegThrowProjectile.cs" id="1_r5y12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5y12"]
+atlas = ExtResource("1_pwrp4")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5y12"]
+radius = 20.0
+height = 42.0
+
+[node name="KegThrowProjectile" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_r5y12")
+ProjectileVelocity = 300.0
+ProjectileGravity = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 0)
+rotation = 1.5708
+texture = SubResource("AtlasTexture_r5y12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_r5y12")

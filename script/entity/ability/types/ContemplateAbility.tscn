@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3i5fkahlycjy"]
+
+[ext_resource type="Script" uid="uid://dmg0ttsf4cff" path="res://script/entity/ability/types/ContemplateAbility.cs" id="1_ak04m"]
+[ext_resource type="Texture2D" uid="uid://cty3e21g57b6b" path="res://art/ui/icon/ability/contemplate.png" id="2_ai2me"]
+[ext_resource type="AudioStream" uid="uid://di770hfhuq0ii" path="res://sound/ability/contemplate.mp3" id="2_j4wm5"]
+
+[node name="ContemplateAbility" type="Node"]
+script = ExtResource("1_ak04m")
+DisplayName = "Contemplate"
+ShortDescription = "Franzl stops to contemplate, slowing himself and gaining flat value of 50% inspiration at a cost of 90% of remaining stamina."
+IconTexture = ExtResource("2_ai2me")
+CastMode = 12
+CastTime = 0.5
+Cooldown = 10.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_j4wm5")
+
+[connection signal="OnCast" from="." to="AudioStreamPlayer2D" method="play"]

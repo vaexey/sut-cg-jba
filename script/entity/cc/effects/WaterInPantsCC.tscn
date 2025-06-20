@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://gr51bo6kosd1"]
+
+[ext_resource type="Script" uid="uid://ddqockhpfvd0u" path="res://script/entity/cc/effects/WaterInPantsCC.cs" id="1_pkml5"]
+
+[node name="WaterInPantsCC" type="Node"]
+script = ExtResource("1_pkml5")
+DisplayName = "Water in pants"

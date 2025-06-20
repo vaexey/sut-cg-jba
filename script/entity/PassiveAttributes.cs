@@ -28,7 +28,7 @@ public partial class PassiveAttributes : Node
 	[Export] public double StaminaRegen = 0.1;
 	[Export] public double StaminaUsageJump = 0.1;
 	[Export] public double StaminaMinJump = 0.15;
-	[Export] public float JumpVelocity = 350;
+	[Export] public float JumpVelocityBase = 350;
 	[Export] public float BaseSpeed { get; set; } = 200;
 	[Export] public float GroundAcceleration { get; set; } = 3000;
 	[Export] public float GroundDeceleration { get; set; } = 4000;
@@ -39,6 +39,8 @@ public partial class PassiveAttributes : Node
 
 	[Export] public float SpeedModifierMultiplicative { get; set; } = 1;
 	[Export] public float SpeedModifierFlat { get; set; } = 0;
+	[Export] public float JumpModifierMultiplicative { get; set; } = 1;
+	[Export] public float JumpModifierFlat { get; set; } = 0;
 	[Export] public float StaminaHalvingExponent { get; set; } = 20;
 
 	#endregion
@@ -49,12 +51,16 @@ public partial class PassiveAttributes : Node
 	{
 		get
 		{
-			return BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat;
+			return Math.Max(0, BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);
 		}
 	}
 
+	public float JumpVelocity => Math.Max(0, JumpVelocityBase * JumpModifierMultiplicative + JumpModifierFlat);
+
 	public double StaminaUsageModifier => Math.Pow(Math.E, Swiftness * Math.Log(0.5) / StaminaHalvingExponent);
 
+	public double BeverageRegen => BoozeToleranceIndex * 0.1;
+	public double InspirationRegen => OpenMindedness * 0.1;
 
 	#endregion
 

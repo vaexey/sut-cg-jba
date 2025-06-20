@@ -28,8 +28,11 @@ public sealed class ProjectileLibrary
     {
         return CC<T>(typeof(T).Name);
     }
-    
+
     public static PackedProjectile<SimpleProjectile> SimpleProjectile => Get<SimpleProjectile>();
     public static PackedProjectile<AutoJodlerProjectile> AutoJodlerProjectile => Get<AutoJodlerProjectile>();
     public static PackedProjectile<EggThrowProjectile> EggThrowProjectile => Get<EggThrowProjectile>();
+    public static PackedProjectile<KegThrowProjectile> KegThrowProjectile => Get<KegThrowProjectile>();
+    public static PackedProjectile<KegThrowExplosion> KegThrowExplosion => Get<KegThrowExplosion>();
+    public static PackedProjectile<JodelversExplosion> JodelversExplosion => Get<JodelversExplosion>();
 }

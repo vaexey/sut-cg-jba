@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=28 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
@@ -16,8 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://gwen8nmp2tx3" path="res://script/entity/ability/Abilities.tscn" id="11_u77ui"]
 [ext_resource type="PackedScene" uid="uid://bwuud6qdp0gwh" path="res://script/entity/ability/types/AutoJodlerAbility.tscn" id="12_6h1lh"]
 [ext_resource type="AudioStream" uid="uid://b8u403tahp6mi" path="res://sound/effects/auto_jodler_2.wav" id="12_il6l0"]
+[ext_resource type="PackedScene" uid="uid://cfd6a4dheecxf" path="res://script/entity/ability/types/KegThrowAbility.tscn" id="13_iirio"]
 [ext_resource type="AudioStream" uid="uid://bca7cgirqdqyc" path="res://sound/effects/grass/Grass.tres" id="13_il6l0"]
+[ext_resource type="PackedScene" uid="uid://cb4vs8rxfc6ha" path="res://script/entity/ability/types/PilznerAbility.tscn" id="13_j7smh"]
+[ext_resource type="PackedScene" uid="uid://bvhfq8j5end4p" path="res://script/entity/ability/types/JodelversAbility.tscn" id="14_8sw75"]
 [ext_resource type="Script" uid="uid://bn7c3w881fx25" path="res://script/handlers/LoopingSoundHandler.cs" id="14_l8xdv"]
+[ext_resource type="PackedScene" uid="uid://cvh1k0ufhexx0" path="res://script/entity/ability/types/HypeUpAbility.tscn" id="15_kt7ga"]
+[ext_resource type="PackedScene" uid="uid://b3i5fkahlycjy" path="res://script/entity/ability/types/ContemplateAbility.tscn" id="16_44opu"]
+[ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="21_vuq83"]
+[ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="22_8sw75"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 18.0
@@ -81,9 +88,19 @@ Abilities = NodePath("Abilities")
 
 [node name="EggThrowAbility" parent="Entity/Abilities/Basic" instance=ExtResource("11_6h1lh")]
 
+[node name="PilznerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("13_j7smh")]
+
+[node name="JodelversAbility" parent="Entity/Abilities/Basic" instance=ExtResource("14_8sw75")]
+
+[node name="HypeUpAbility" parent="Entity/Abilities/Basic" instance=ExtResource("15_kt7ga")]
+
+[node name="ContemplateAbility" parent="Entity/Abilities/Basic" instance=ExtResource("16_44opu")]
+
 [node name="Complex" type="Node" parent="Entity/Abilities"]
 
 [node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="KegThrowAbility" parent="Entity/Abilities/Complex/Slot 1" instance=ExtResource("13_iirio")]
 
 [node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
 
@@ -107,5 +124,15 @@ script = ExtResource("14_l8xdv")
 IntervalMin = 0.25
 IntervalMax = 0.3
 
+[node name="NoManaSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_vuq83")
+volume_db = -12.0
+
+[node name="CooldownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_8sw75")
+volume_db = -12.0
+
 [connection signal="SetGrassSound" from="Handlers/MovementHandler" to="GrassSoundEffect" method="SetKeepPlaying"]
 [connection signal="JumpStarted" from="Handlers/JumpHandler" to="JumpSoundEffect" method="play"]
+[connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="CooldownSound" method="play"]
+[connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="NoManaSound" method="play"]

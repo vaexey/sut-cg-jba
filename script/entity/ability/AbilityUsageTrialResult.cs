@@ -9,6 +9,8 @@ public enum AbilityUsageTrialResult
     IsSilenced,
 
     NoStamina,
-    
+
     NoInspiration,
+    
+    EntityDead,
 }

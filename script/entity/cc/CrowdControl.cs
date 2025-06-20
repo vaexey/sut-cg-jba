@@ -52,7 +52,7 @@ public partial class CrowdControl : Node
     {
         base._Ready();
 
-        AddEffect(CrowdControlLibrary.HikingInstinct.Make());
+        // AddEffect(CrowdControlLibrary.HikingInstinct.Make());
     }
 
     public override void _PhysicsProcess(double delta)
