@@ -5,12 +5,12 @@ using System.Linq;
 public partial class AutoJodlerAbility : Ability
 {
 
-    public override void Cast(IEntityContainer entity)
+    public override void Cast(Entity entity)
     {
 
         var proj = ProjectileLibrary.AutoJodlerProjectile.Make();
 
-        var node = (Node2D)entity;
+        var node = entity.Parent2D;
         var src = node.GlobalPosition;
 
         var to = node.GetGlobalMousePosition();
@@ -21,9 +21,9 @@ public partial class AutoJodlerAbility : Ability
         var from = src + diff;
 
         proj.Shoot(from, to);
-        proj.OwnerEntity = entity.Entity;
+        proj.OwnerEntity = entity;
 
-        entity.Entity.World.AddProjectile(proj);
+        entity.World.AddProjectile(proj);
     }
 
 }

@@ -28,31 +28,31 @@ public partial class Ability : Node
 	[Signal]
 	public delegate void OnStopCastEventHandler();
 
-    public virtual AbilityUsageTrialResult CanUse(IEntityContainer owner)
+    public virtual AbilityUsageTrialResult CanUse(Entity owner)
     {
-        if (!owner.Entity.IsAlive)
+        if (!owner.IsAlive)
             return AbilityUsageTrialResult.EntityDead;
 
-        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.Entity.IsSilenced)
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringCC) && owner.IsSilenced)
             return AbilityUsageTrialResult.IsSilenced;
 
         if (IsOnCooldown)
             return AbilityUsageTrialResult.OnCooldown;
 
-        var cost = GetUseCostTotal(owner.Entity);
+        var cost = GetUseCostTotal(owner);
 
         if (CategoryType == AbilityCategory.Physical)
-            if (owner.Entity.Stamina.Value < cost)
+            if (owner.Stamina.Value < cost)
                 return AbilityUsageTrialResult.NoStamina;
 
         if (CategoryType == AbilityCategory.Inspired)
-            if (owner.Entity.Inspiration.Value < cost)
+            if (owner.Inspiration.Value < cost)
                 return AbilityUsageTrialResult.NoInspiration;
 
         if (IsCasting)
             return AbilityUsageTrialResult.IsAlreadyCasting;
 
-        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.Entity.IsCasting)
+        if (!CastMode.HasFlag(AbilityCastMode.CastableDuringOther) && owner.IsCasting)
             return AbilityUsageTrialResult.IsCastingOther;
 
         return AbilityUsageTrialResult.OK;
@@ -91,7 +91,7 @@ public partial class Ability : Node
     // This method is called when entity wants to cast this ability.
     // The entity should earlier check whether this is possible using CanUse.
     // Usually, this method does not need to be overriden.
-    public virtual void Use(IEntityContainer owner)
+    public virtual void Use(Entity owner)
     {
         if (CastTime > 0)
         {
@@ -102,7 +102,7 @@ public partial class Ability : Node
 
         CooldownLeft += Cooldown;
 
-        ConsumeCost(owner.Entity);
+        ConsumeCost(owner);
         Cast(owner);
         EmitSignal(SignalName.OnStartCast);
         EmitSignal(SignalName.OnCast);
@@ -111,12 +111,12 @@ public partial class Ability : Node
     // This method is called to execute the ability effect,
     // e.g. after cast time is complete.
     // This method should be overwritten for each ability.
-    public virtual void Cast(IEntityContainer owner)
+    public virtual void Cast(Entity owner)
     {
         
     }
 
-    public virtual void ProcessOwner(IEntityContainer owner, double delta)
+    public virtual void ProcessOwner(Entity owner, double delta)
     {
         ProcessCooldown(delta);
         ProcessCastTime(delta, owner);
@@ -127,7 +127,7 @@ public partial class Ability : Node
         CooldownLeft = Math.Max(0, CooldownLeft - delta);
     }
 
-    public virtual void OnCastCancelInput(IEntityContainer owner)
+    public virtual void OnCastCancelInput(Entity owner)
     {
         if (CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
         {
@@ -136,16 +136,16 @@ public partial class Ability : Node
         }
     }
 
-    protected virtual void ProcessCastTime(double delta, IEntityContainer owner)
+    protected virtual void ProcessCastTime(double delta, Entity owner)
     {
         if(IsCasting)
         {
-            if(CastMode.HasFlag(AbilityCastMode.CastTimeResetOnInterrupt) && owner.Entity.IsSilenced)
+            if(CastMode.HasFlag(AbilityCastMode.CastTimeResetOnInterrupt) && owner.IsSilenced)
             {
                 CastTimeLeft = CastTime;
             }
 
-            if(CastMode.HasFlag(AbilityCastMode.CastTimeInterruptable) && owner.Entity.IsSilenced)
+            if(CastMode.HasFlag(AbilityCastMode.CastTimeInterruptable) && owner.IsSilenced)
             {
                 CastTimeLeft = 0;
                 EmitSignal(SignalName.OnStopCast);
@@ -157,7 +157,7 @@ public partial class Ability : Node
             if(!IsCasting)
             {
                 CooldownLeft += Cooldown;
-                ConsumeCost(owner.Entity);
+                ConsumeCost(owner);
                 Cast(owner);
                 EmitSignal(SignalName.OnCast);
             }

@@ -3,10 +3,8 @@ using System;
 
 public partial class PilznerAbility : Ability
 {
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity ent)
     {
-        var ent = owner.Entity;
-
         var speed = CrowdControlLibrary.HikingInstinct.Make();
         var jumpBoost = CrowdControlLibrary.Appenzeller.Make();
 

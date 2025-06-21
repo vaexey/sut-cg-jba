@@ -15,9 +15,9 @@ public partial class AbilityHandler : Node
 	[Signal]
 	public delegate void SilencedTriggerEventHandler();
 
-    public void HandleAbilities(IEntityContainer ec, InputHandler input, double delta)
+    public void HandleAbilities(Entity ent, InputHandler input, double delta)
     {
-        var abilities = ec.Entity.Abilities;
+        var abilities = ent.Abilities;
 
         if (input.GetAbilityBasicNext())
         {
@@ -44,27 +44,27 @@ public partial class AbilityHandler : Node
         if (input.GetAbilityComplex3()) abilityInputs++;
         if (input.GetAbilityGodlike()) abilityInputs++;
 
-        var node = (CharacterBody2D)ec;
+        var node = (CharacterBody2D)ent.Parent2D;
 
-        if (ec.Entity.IsCasting && (abilityInputs > 0 || node.Velocity.Length() > 0))
+        if (ent.IsCasting && (abilityInputs > 0 || node.Velocity.Length() > 0))
         {
-            abilities.OnCastCancelInput(ec);
+            abilities.OnCastCancelInput(ent);
         }
 
-        HandleAbility(ec, abilities.BasicSelected, input.GetAbilityBasic(), delta);
+        HandleAbility(ent, abilities.BasicSelected, input.GetAbilityBasic(), delta);
 
         foreach (var basic in abilities.Basic.Where(x => x != abilities.BasicSelected))
         {
-            HandleAbility(ec, basic, false, delta);
+            HandleAbility(ent, basic, false, delta);
         }
 
-        HandleAbility(ec, abilities.Complex1, input.GetAbilityComplex1(), delta);
-        HandleAbility(ec, abilities.Complex2, input.GetAbilityComplex2(), delta);
-        HandleAbility(ec, abilities.Complex3, input.GetAbilityComplex3(), delta);
-        HandleAbility(ec, abilities.Godlike, input.GetAbilityGodlike(), delta);
+        HandleAbility(ent, abilities.Complex1, input.GetAbilityComplex1(), delta);
+        HandleAbility(ent, abilities.Complex2, input.GetAbilityComplex2(), delta);
+        HandleAbility(ent, abilities.Complex3, input.GetAbilityComplex3(), delta);
+        HandleAbility(ent, abilities.Godlike, input.GetAbilityGodlike(), delta);
     }
 
-    protected void HandleAbility(IEntityContainer ec, Ability ability, bool input, double delta)
+    protected void HandleAbility(Entity ent, Ability ability, bool input, double delta)
     {
         if(ability == null)
         {
@@ -74,16 +74,16 @@ public partial class AbilityHandler : Node
             return;
         }
 
-        ability.ProcessOwner(ec, delta);
+        ability.ProcessOwner(ent, delta);
 
         if (input)
         {
-            var canUse = ability.CanUse(ec);
+            var canUse = ability.CanUse(ent);
 
             switch (canUse)
             {
                 case AbilityUsageTrialResult.OK:
-                    ability.Use(ec);
+                    ability.Use(ent);
                     break;
 
                 case AbilityUsageTrialResult.OnCooldown:

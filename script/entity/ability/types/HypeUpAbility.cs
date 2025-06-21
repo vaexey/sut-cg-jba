@@ -10,10 +10,8 @@ public partial class HypeUpAbility : Ability
         return ent.Inspiration.Value * 0.5;
     }
 
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
-        var ent = owner.Entity;
-
-        ent.Stamina.Value += (ent.Stamina.Max - ent.Stamina.Value) * 0.5;
+        owner.Stamina.Value += (owner.Stamina.Max - owner.Stamina.Value) * 0.5;
     }
 }

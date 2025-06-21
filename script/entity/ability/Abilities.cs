@@ -38,7 +38,7 @@ public partial class Abilities : Node
         GodlikeParent = GetNode("Godlike");
     }
 
-    public void OnCastCancelInput(IEntityContainer owner)
+    public void OnCastCancelInput(Entity owner)
     {
         foreach(var ability in All)
             ability.OnCastCancelInput(owner);

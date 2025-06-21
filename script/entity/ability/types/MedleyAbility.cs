@@ -3,16 +3,16 @@ using System;
 
 public partial class MedleyAbility : Ability
 {
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
         var proj = ProjectileLibrary.MedleyExplosion.Make();
 
-        var node = (Node2D)owner;
+        var node = owner.Parent2D;
 
         proj.Position = node.Position;
-        proj.OwnerEntity = owner.Entity;
+        proj.OwnerEntity = owner;
         proj.AddCollisionExceptionWith(node);
 
-        owner.Entity.World.AddProjectile(proj);
+        owner.World.AddProjectile(proj);
     }
 }

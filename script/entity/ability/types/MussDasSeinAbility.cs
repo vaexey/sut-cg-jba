@@ -9,13 +9,11 @@ public partial class MussDasSeinAbility : Ability
 	[Signal]
 	public delegate void OnReflectedEventHandler();
 
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
-        var ent = owner.Entity;
-
         var muss = CrowdControlLibrary.MussDasSein.Make();
 
-        ent.CC.AddEffect(muss, 0.75);
+        owner.CC.AddEffect(muss, 0.75);
     }
 
     public void OnReflectedSignal()

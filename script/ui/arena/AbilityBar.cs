@@ -5,8 +5,7 @@ using System.Linq;
 public partial class AbilityBar : Control
 {
     [ExportSubgroup("Nodes")]
-    [Export] public Node2D EntityContainer { get; set; }
-    // protected IEntityContainer _EntityContainer => (IEntityContainer)EntityContainer;
+    [Export] public Entity Entity { get; set; }
 
     [ExportSubgroup("UI Nodes")]
     [Export] public Node BasicList { get; set; }
@@ -18,19 +17,19 @@ public partial class AbilityBar : Control
     public override void _Process(double delta)
     {
         // TODO: Probably not efficient
-        Complex1.EntityContainer = EntityContainer;
-        Complex2.EntityContainer = EntityContainer;
-        Complex3.EntityContainer = EntityContainer;
-        Godlike.EntityContainer = EntityContainer;
+        Complex1.Entity = Entity;
+        Complex2.Entity = Entity;
+        Complex3.Entity = Entity;
+        Godlike.Entity = Entity;
 
-        var abilities = ((IEntityContainer)EntityContainer).Entity.Abilities;
+        var abilities = Entity.Abilities;
         
         for(int i = 0; i < 10; i++)
         {
             var icon = BasicList.GetChild<AbilityIcon>(i);
             var basic = abilities.Basic.ElementAtOrDefault(i);
 
-            icon.EntityContainer = EntityContainer;
+            icon.Entity = Entity;
             icon.Ability = basic;
             icon.Highlight = i == abilities.BasicIndex;
         }

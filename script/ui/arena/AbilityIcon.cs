@@ -13,7 +13,7 @@ public partial class AbilityIcon : Control
 
     [ExportSubgroup("Nodes")]
     [Export] public Ability Ability { get; set; }
-    [Export] public Node2D EntityContainer { get; set; }
+    [Export] public Entity Entity { get; set; }
 
     [Export] public CanvasGroup TintCanvas { get; set; }
     [Export] public Sprite2D BackgroundSprite { get; set; }
@@ -32,8 +32,6 @@ public partial class AbilityIcon : Control
     
     [Export(PropertyHint.ColorNoAlpha)]
     public Color CostColorInspired { get; set; } = Color.Color8(128, 128, 255, 255);
-
-    // protected IEntityContainer _EntityContainer => (IEntityContainer)EntityContainer;
 
     public override void _Ready()
     {
@@ -68,7 +66,7 @@ public partial class AbilityIcon : Control
 
         if (!Detached)
         {
-            trial = Ability.CanUse((IEntityContainer)EntityContainer);
+            trial = Ability.CanUse(Entity);
         }
 
         var canUse = trial == AbilityUsageTrialResult.OK;
@@ -88,7 +86,7 @@ public partial class AbilityIcon : Control
         string costString = "";
 
         if (!Detached)
-            cost = Ability.GetUseCostTotal(((IEntityContainer)EntityContainer).Entity);
+            cost = Ability.GetUseCostTotal(Entity);
 
         var costColor = Color.Color8(0, 0, 0, 0);
 

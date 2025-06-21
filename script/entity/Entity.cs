@@ -11,6 +11,8 @@ public partial class Entity : Node
 	[Export] public CrowdControl CC { get; set; }
 
 	[Export] public Abilities Abilities { get; set; }
+
+	public Node2D Parent2D => GetParent<Node2D>();
 	#endregion
 
 	#region Realtime attributes

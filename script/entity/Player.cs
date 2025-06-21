@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D, IEntityContainer
     public override void _Process(double delta)
     {
 		// TODO: propagate delta
-		AbilityHandler.HandleAbilities(this, InputHandler, delta);
+		AbilityHandler.HandleAbilities(Entity, InputHandler, delta);
 
 		// if(Input.IsActionJustPressed("ability_basic"))
 		// {

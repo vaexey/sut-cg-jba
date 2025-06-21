@@ -10,10 +10,8 @@ public partial class ContemplateAbility : Ability
         return ent.Stamina.Value * 0.9;
     }
 
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
-        var ent = owner.Entity;
-
-        ent.Inspiration.Value += ent.Inspiration.Max * 0.5;
+        owner.Inspiration.Value += owner.Inspiration.Max * 0.5;
     }
 }

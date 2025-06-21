@@ -32,7 +32,7 @@ public partial class ArenaUI : CanvasLayer
         //     }";
         StatsLabel.Text = "CC: " + World.Player.Entity.CC.GetEffects().Select(cc => cc.DisplayName).ToArray().Join(", ");
 
-        AbilityBar.EntityContainer = World.Player;
+        AbilityBar.Entity = World.Player.Entity;
         PlayerStats.Entity = World.Player.Entity;
         EnemyStats.Entity = World.GetEnemy().Entity;
     }

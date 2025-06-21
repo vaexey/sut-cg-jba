@@ -3,12 +3,10 @@ using System;
 
 public partial class BibiHendlAbility : Ability
 {
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
-        var ent = owner.Entity;
-
         var hendl = CrowdControlLibrary.BibiHendl.Make();
 
-        ent.CC.AddEffect(hendl, 2);
+        owner.CC.AddEffect(hendl, 2);
     }
 }

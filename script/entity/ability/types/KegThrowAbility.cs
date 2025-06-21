@@ -3,16 +3,16 @@ using System;
 
 public partial class KegThrowAbility : Ability
 {
-    public override void Cast(IEntityContainer entity)
+    public override void Cast(Entity entity)
     {
         var proj = ProjectileLibrary.KegThrowProjectile.Make();
 
-        var node = (Node2D)entity;
+        var node = entity.Parent2D;
         
         proj.Shoot(node.Position, node.GetGlobalMousePosition());
-        proj.OwnerEntity = entity.Entity;
+        proj.OwnerEntity = entity;
         proj.AddCollisionExceptionWith(node);
 
-        entity.Entity.World.AddProjectile(proj);
+        entity.World.AddProjectile(proj);
     }
 }

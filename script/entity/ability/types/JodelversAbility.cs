@@ -3,16 +3,16 @@ using System;
 
 public partial class JodelversAbility : Ability
 {
-    public override void Cast(IEntityContainer owner)
+    public override void Cast(Entity owner)
     {
         var proj = ProjectileLibrary.JodelversExplosion.Make();
 
-        var node = (Node2D)owner;
+        var node = owner.Parent2D;
 
         proj.Shoot(node.Position, node.GetGlobalMousePosition());
-        proj.OwnerEntity = owner.Entity;
+        proj.OwnerEntity = owner;
         proj.AddCollisionExceptionWith(node);
 
-        owner.Entity.World.AddProjectile(proj);
+        owner.World.AddProjectile(proj);
     }
 }
