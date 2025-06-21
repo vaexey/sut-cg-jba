@@ -100,3 +100,5 @@ ParentEntity = NodePath("..")
 [node name="Godlike" type="Node" parent="Entity/Abilities"]
 
 [node name="MedleyAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("19_gtsb5")]
+
+[connection signal="OnDamaged" from="Entity" to="Handlers/AnimationHandler" method="OnDamaged"]

@@ -93,6 +93,7 @@ public partial class Entity : Node
 		IsSilenced = true;
 		IsCrippledHorizontally = true;
 		IsCrippledVertically = true;
+
 	}
 
 	public bool CanJump()

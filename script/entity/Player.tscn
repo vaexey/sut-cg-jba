@@ -57,8 +57,10 @@ Entity = NodePath("Entity")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u77ui")
-animation = &"fall"
+animation = &"death"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4flbx")
@@ -166,4 +168,5 @@ volume_db = 6.0
 [connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/CooldownSound" method="play"]
 [connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/NoManaSound" method="play"]
 [connection signal="SilencedTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/SilencedSound" method="play"]
+[connection signal="OnDamaged" from="Entity" to="Handlers/AnimationHandler" method="OnDamaged"]
 [connection signal="OnDamaged" from="Entity" to="LocalSounds/DamagedSound" method="play"]
