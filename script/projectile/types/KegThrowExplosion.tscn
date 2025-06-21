@@ -29,6 +29,7 @@ DestroyOnCollision = false
 FadeTime = 1.0
 DestroyAfterTime = 1.0
 DamageFlat = 40.0
+DamageFlags = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ib6w4")

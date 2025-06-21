@@ -14,9 +14,12 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_bjpax")
 Sprite = NodePath("Sprite2D")
+DisplayName = "Auto jodler Dixi"
 ProjectileVelocity = 600.0
 ProjectileGravity = 0.0
 DestroyOnCollision = false
+DamagePercentage = 10.0
+DamageFlags = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lh6p5")

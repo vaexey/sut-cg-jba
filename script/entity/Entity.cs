@@ -27,6 +27,10 @@ public partial class Entity : Node
 
 	#endregion
 
+
+	[Signal]
+	public delegate void OnDamagedEventHandler();
+
 	[Export]
 	public WorldType World { get; set; }
 
@@ -111,14 +115,22 @@ public partial class Entity : Node
 		// GD.Print($"BEFORE: {Beverage.Value}");
 		// Beverage.Value -= dmg.FlatValue;
 		// GD.Print($"AFTER: {Beverage.Value}");
-		GD.Print($"Damage to {Name}: {dmg.FlatValue}(+{dmg.PercentageValue}%)");
 
-		GD.Print($"BEFORE: {Beverage.Value}");
 
 		double flat = dmg.FlatValue + dmg.PercentageValue * Beverage.Max;
-		Beverage.Value -= flat;
+		GD.Print($"Damage to {Name}: {dmg.FlatValue}(+{dmg.PercentageValue}%) == {flat}");
 
+		if (dmg.Flags.HasFlag(DamageFlags.SourcePhysical))
+			flat = PassiveAttributes.PhysicalDamageProcess(flat);
+		if (dmg.Flags.HasFlag(DamageFlags.SourceInspired))
+			flat = PassiveAttributes.InspiredDamageProcess(flat);
+
+		GD.Print($"After reductions: {flat}");
+		GD.Print($"BEFORE: {Beverage.Value}");
+		Beverage.Value -= flat;
 		GD.Print($"AFTER: {Beverage.Value}");
+
+		EmitSignal(SignalName.OnDamaged);
 	}
 
 	public void ConsumeStamina(double value)

@@ -43,6 +43,9 @@ public partial class PassiveAttributes : Node
 	[Export] public float JumpModifierFlat { get; set; } = 0;
 	[Export] public float StaminaHalvingExponent { get; set; } = 20;
 
+	[Export] public double ReceivedDamagePhysicalModifier { get; set; } = 1;
+	[Export] public double ReceivedDamageInspiredModifier { get; set; } = 1;
+
 	#endregion
 
 	#region Calculated
@@ -61,6 +64,9 @@ public partial class PassiveAttributes : Node
 
 	public double BeverageRegen => BoozeToleranceIndex * 0.1;
 	public double InspirationRegen => OpenMindedness * 0.1;
+
+	public double PhysicalDamageProcess(double flat) => Math.Max(0, flat * ReceivedDamagePhysicalModifier);
+	public double InspiredDamageProcess(double flat) => Math.Max(0, flat * ReceivedDamageInspiredModifier);
 
 	#endregion
 

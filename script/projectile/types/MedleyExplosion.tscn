@@ -83,6 +83,7 @@ FadeTime = 1.0
 DestroyAfterTime = 3.0
 DamageFlat = 1.0
 DamagePercentage = 0.005
+DamageFlags = 8
 
 [node name="RightCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(32, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)
