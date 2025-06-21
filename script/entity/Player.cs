@@ -32,7 +32,8 @@ public partial class Player : CharacterBody2D, IEntityContainer
 		MovementHandler.HandleHorizontal(this, Entity, delta, InputHandler.HorizontalInput);
 		JumpHandler.HandleJump(this, InputHandler.GetJumpPressed(), InputHandler.GetJumpReleased());
 		AnimationHandler.HandleHorizontalFlip(InputHandler.HorizontalInput);
-		AnimationHandler.HandleWalk(this.Entity.PassiveAttributes.Speed);
+		// AnimationHandler.HandleWalk(this.Entity.PassiveAttributes.Speed);
+		AnimationHandler.HandleAnimations(this, this.Entity.PassiveAttributes.Speed);
 
 		MoveAndSlide();
 	}

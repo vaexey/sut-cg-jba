@@ -5,7 +5,7 @@ public partial class GravityHandler : Node
 {
 	[ExportSubgroup("Settings")]
 	[Export]
-	public float Gravity { get; set; } = 1000;
+	public float Gravity { get; set; } = 700;
 
 	public bool IsFalling { get; protected set; } = false;
 

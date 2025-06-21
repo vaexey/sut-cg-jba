@@ -11,6 +11,9 @@ public partial class CrowdControlEffect : Node
     public string ShortDescription { get; set; } = "Abcdeefg";
     [Export] public Texture2D IconTexture { get; set; }
 
+    [Export]
+    public Texture2D IconTexture { get; set; }
+
     [ExportSubgroup("Modifiers")]
     [Export]
     public virtual double Time { get; set; } = 0.0;
