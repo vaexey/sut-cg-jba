@@ -1,0 +1,180 @@
+[gd_scene load_steps=35 format=3 uid="uid://15x7xjj815am"]
+
+[ext_resource type="Script" uid="uid://dyv3ai5xp3vmc" path="res://script/entity/RemotePlayer.cs" id="1_aiqmr"]
+[ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_kobav"]
+[ext_resource type="PackedScene" uid="uid://dc4uv7x5xhjyl" path="res://script/ui/arena/EntityBar.tscn" id="3_nelh1"]
+[ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="4_afjq7"]
+[ext_resource type="PackedScene" uid="uid://dl54ijgcx4kvk" path="res://script/handlers/RemoteInputHandler.tscn" id="5_aiqmr"]
+[ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="6_g582k"]
+[ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="7_vlgaj"]
+[ext_resource type="PackedScene" uid="uid://dxtuff71oef4m" path="res://script/handlers/AnimationHandler.tscn" id="8_rwqdv"]
+[ext_resource type="PackedScene" uid="uid://cr34ni3yf8ukt" path="res://script/handlers/AbilityHandler.tscn" id="9_30un0"]
+[ext_resource type="PackedScene" uid="uid://d2tlr2ymmc1ps" path="res://script/entity/Entity.tscn" id="10_pq3mq"]
+[ext_resource type="PackedScene" uid="uid://dhvbds5d2uebf" path="res://script/entity/PassiveAttributes.tscn" id="11_21jl2"]
+[ext_resource type="PackedScene" uid="uid://gwen8nmp2tx3" path="res://script/entity/ability/Abilities.tscn" id="12_mb3r3"]
+[ext_resource type="PackedScene" uid="uid://cwhn3n6egbob3" path="res://script/entity/ability/types/EggThrowAbility.tscn" id="13_tvy5j"]
+[ext_resource type="PackedScene" uid="uid://cb4vs8rxfc6ha" path="res://script/entity/ability/types/PilznerAbility.tscn" id="14_5vxqi"]
+[ext_resource type="PackedScene" uid="uid://cvh1k0ufhexx0" path="res://script/entity/ability/types/HypeUpAbility.tscn" id="15_scgnw"]
+[ext_resource type="PackedScene" uid="uid://b3i5fkahlycjy" path="res://script/entity/ability/types/ContemplateAbility.tscn" id="16_qvek8"]
+[ext_resource type="PackedScene" uid="uid://bu3lo8elhs3po" path="res://script/entity/ability/types/BibiHendlAbility.tscn" id="17_8bmn2"]
+[ext_resource type="PackedScene" uid="uid://dfl2afquun2a7" path="res://script/entity/ability/types/MussDasSeinAbility.tscn" id="18_yjhpo"]
+[ext_resource type="PackedScene" uid="uid://cfd6a4dheecxf" path="res://script/entity/ability/types/KegThrowAbility.tscn" id="19_r5glg"]
+[ext_resource type="PackedScene" uid="uid://bvhfq8j5end4p" path="res://script/entity/ability/types/JodelversAbility.tscn" id="20_q43qs"]
+[ext_resource type="PackedScene" uid="uid://bwuud6qdp0gwh" path="res://script/entity/ability/types/AutoJodlerAbility.tscn" id="21_bgi3s"]
+[ext_resource type="PackedScene" uid="uid://b35omic602nh5" path="res://script/entity/ability/types/MedleyAbility.tscn" id="22_x4q6h"]
+[ext_resource type="PackedScene" uid="uid://8ueu6e3t55rr" path="res://script/entity/cc/CrowdControl.tscn" id="23_lwk7u"]
+[ext_resource type="AudioStream" uid="uid://bvb0sie53xfv8" path="res://sound/effects/auto_jodler_1.wav" id="24_2igpl"]
+[ext_resource type="AudioStream" uid="uid://b8u403tahp6mi" path="res://sound/effects/auto_jodler_2.wav" id="25_ywwdl"]
+[ext_resource type="AudioStream" uid="uid://bca7cgirqdqyc" path="res://sound/effects/grass/Grass.tres" id="26_xgpxp"]
+[ext_resource type="Script" uid="uid://bn7c3w881fx25" path="res://script/handlers/LoopingSoundHandler.cs" id="27_4s4nj"]
+[ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="28_0ribd"]
+[ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="29_r42yg"]
+[ext_resource type="AudioStream" uid="uid://7wf3vhj82cji" path="res://sound/ui/silenced.mp3" id="30_kmylj"]
+[ext_resource type="AudioStream" uid="uid://6glvu344yxqh" path="res://sound/player/damaged/damaged.tres" id="31_t1sv8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wm5x6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:Id")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l8xdv"]
+random_pitch = 1.05
+streams_count = 2
+stream_0/stream = ExtResource("24_2igpl")
+stream_1/stream = ExtResource("25_ywwdl")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity")]
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_aiqmr")
+GravityHandler = NodePath("Handlers/GravityHandler")
+InputHandler = NodePath("Handlers/RemoteInputHandler")
+MovementHandler = NodePath("Handlers/MovementHandler")
+JumpHandler = NodePath("Handlers/JumpHandler")
+AnimationHandler = NodePath("Handlers/AnimationHandler")
+AbilityHandler = NodePath("Handlers/AbilityHandler")
+Entity = NodePath("Entity")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wm5x6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_kobav")
+animation = &"fall"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="EntityBar" parent="." node_paths=PackedStringArray("Entity") instance=ExtResource("3_nelh1")]
+offset_top = -37.0
+offset_right = 0.0
+offset_bottom = -36.76
+Entity = NodePath("../Entity")
+
+[node name="Handlers" type="Node" parent="."]
+
+[node name="GravityHandler" parent="Handlers" instance=ExtResource("4_afjq7")]
+
+[node name="RemoteInputHandler" parent="Handlers" instance=ExtResource("5_aiqmr")]
+
+[node name="MovementHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("6_g582k")]
+Entity = NodePath("../../Entity")
+
+[node name="JumpHandler" parent="Handlers" node_paths=PackedStringArray("Entity") instance=ExtResource("7_vlgaj")]
+Entity = NodePath("../../Entity")
+
+[node name="AnimationHandler" parent="Handlers" node_paths=PackedStringArray("Sprite") instance=ExtResource("8_rwqdv")]
+Sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="AbilityHandler" parent="Handlers" instance=ExtResource("9_30un0")]
+
+[node name="Entity" parent="." node_paths=PackedStringArray("PassiveAttributes", "CC", "Abilities") instance=ExtResource("10_pq3mq")]
+PassiveAttributes = NodePath("PassiveAttributes")
+CC = NodePath("CrowdControl")
+Abilities = NodePath("Abilities")
+
+[node name="PassiveAttributes" parent="Entity" instance=ExtResource("11_21jl2")]
+
+[node name="Abilities" parent="Entity" instance=ExtResource("12_mb3r3")]
+
+[node name="Basic" type="Node" parent="Entity/Abilities"]
+
+[node name="EggThrowAbility" parent="Entity/Abilities/Basic" instance=ExtResource("13_tvy5j")]
+
+[node name="PilznerAbility" parent="Entity/Abilities/Basic" instance=ExtResource("14_5vxqi")]
+
+[node name="HypeUpAbility" parent="Entity/Abilities/Basic" instance=ExtResource("15_scgnw")]
+
+[node name="ContemplateAbility" parent="Entity/Abilities/Basic" instance=ExtResource("16_qvek8")]
+
+[node name="BibiHendlAbility" parent="Entity/Abilities/Basic" instance=ExtResource("17_8bmn2")]
+
+[node name="MussDasSeinAbility" parent="Entity/Abilities/Basic" instance=ExtResource("18_yjhpo")]
+
+[node name="Complex" type="Node" parent="Entity/Abilities"]
+
+[node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="KegThrowAbility" parent="Entity/Abilities/Complex/Slot 1" instance=ExtResource("19_r5glg")]
+
+[node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="JodelversAbility" parent="Entity/Abilities/Complex/Slot 2" instance=ExtResource("20_q43qs")]
+
+[node name="Slot 3" type="Node" parent="Entity/Abilities/Complex"]
+
+[node name="AutoJodlerAbility" parent="Entity/Abilities/Complex/Slot 3" instance=ExtResource("21_bgi3s")]
+
+[node name="Godlike" type="Node" parent="Entity/Abilities"]
+
+[node name="MedleyAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("22_x4q6h")]
+
+[node name="CrowdControl" parent="Entity" node_paths=PackedStringArray("ParentEntity") instance=ExtResource("23_lwk7u")]
+ParentEntity = NodePath("..")
+
+[node name="GlobalSounds" type="Node" parent="."]
+
+[node name="JumpSoundEffect" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = SubResource("AudioStreamRandomizer_l8xdv")
+
+[node name="GrassSoundEffect" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("26_xgpxp")
+volume_db = -15.0
+max_polyphony = 3
+script = ExtResource("27_4s4nj")
+IntervalMin = 0.25
+IntervalMax = 0.3
+
+[node name="NoManaSound" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("28_0ribd")
+volume_db = -12.0
+
+[node name="CooldownSound" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("29_r42yg")
+volume_db = -12.0
+
+[node name="SilencedSound" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("30_kmylj")
+volume_db = -12.0
+
+[node name="LocalSounds" type="Node" parent="."]
+
+[node name="DamagedSound" type="AudioStreamPlayer2D" parent="LocalSounds"]
+stream = ExtResource("31_t1sv8")
+volume_db = 6.0
+
+[connection signal="SetGrassSound" from="Handlers/MovementHandler" to="GlobalSounds/GrassSoundEffect" method="SetKeepPlaying"]
+[connection signal="JumpStarted" from="Handlers/JumpHandler" to="GlobalSounds/JumpSoundEffect" method="play"]
+[connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/CooldownSound" method="play"]
+[connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/NoManaSound" method="play"]
+[connection signal="SilencedTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/SilencedSound" method="play"]
+[connection signal="OnDamaged" from="Entity" to="LocalSounds/DamagedSound" method="play"]

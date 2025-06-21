@@ -24,8 +24,11 @@ public partial class JumpHandler : Node
 
 	public void HandleJump(CharacterBody2D body, bool wantToJump, bool wantsToStopJump)
 	{
-		if(HasJustLanded(body))
-			IsJumping = false;
+		if (!Multiplayer.IsServer())
+			return;
+
+		if (HasJustLanded(body))
+				IsJumping = false;
 
 		if(IsAllowedToJump(body) && wantToJump && Entity.CanJump())
 			jump(body);

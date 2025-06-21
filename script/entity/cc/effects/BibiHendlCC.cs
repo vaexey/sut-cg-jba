@@ -10,7 +10,8 @@ public partial class BibiHendlCC : CrowdControlEffect
 
     public override void Start(Entity effected)
     {
-        ReferenceNode = effected.World.Player;
+        // ReferenceNode = effected.World.Player;
+        ReferenceNode = effected.Parent2D;
 
         effected.PassiveAttributes.ReceivedDamagePhysicalModifier -= 1;
         effected.PassiveAttributes.ReceivedDamageInspiredModifier -= 1;

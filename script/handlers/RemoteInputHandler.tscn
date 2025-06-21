@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl54ijgcx4kvk"]
+
+[ext_resource type="Script" uid="uid://hmoqe81u140o" path="res://script/handlers/RemoteInputHandler.cs" id="1_sr8pb"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sr8pb"]
+properties/0/path = NodePath(".:HorizontalInput")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="RemoteInputHandler" type="Node" node_paths=PackedStringArray("Sync")]
+script = ExtResource("1_sr8pb")
+Sync = NodePath("MultiplayerSynchronizer")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_sr8pb")

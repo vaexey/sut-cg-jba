@@ -31,5 +31,7 @@ public partial class EntityBar : Control
         Slowed.Visible = Entity.IsAlive && (Entity.PassiveAttributes.Speed < Entity.PassiveAttributes.BaseSpeed);
 
         RIP.Visible = !Entity.IsAlive;
+
+        Title.Text = $"{((Player)Entity.Parent2D).Id}";
     }
 }

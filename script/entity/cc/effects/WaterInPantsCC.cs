@@ -11,7 +11,6 @@ public partial class WaterInPantsCC : CrowdControlEffect
 
     public override void Start(Entity effected)
     {
-        GD.Print(effected);
         effected.PassiveAttributes.SpeedModifierMultiplicative -= 0.5f;
     }
 

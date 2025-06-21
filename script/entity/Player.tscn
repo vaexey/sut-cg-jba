@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=35 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
@@ -32,6 +32,14 @@
 [ext_resource type="AudioStream" uid="uid://7wf3vhj82cji" path="res://sound/ui/silenced.mp3" id="28_80ifh"]
 [ext_resource type="AudioStream" uid="uid://6glvu344yxqh" path="res://sound/player/damaged/damaged.tres" id="29_c1cp6"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wm5x6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:Id")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 18.0
 height = 58.0
@@ -53,6 +61,9 @@ JumpHandler = NodePath("Handlers/JumpHandler")
 AnimationHandler = NodePath("Handlers/AnimationHandler")
 AbilityHandler = NodePath("Handlers/AbilityHandler")
 Entity = NodePath("Entity")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wm5x6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

@@ -6,8 +6,21 @@ public partial class World : Node
 {
     [ExportSubgroup("Nodes")]
     [Export] public Node EntitiesContainer { get; set; }
-    [Export] public Player Player { get; set; }
-    [Export] public Node2D MainEnemy { get; set; }
+
+    public Player LeftPlayer => EntitiesContainer
+        .GetChildren()
+        .Select(node => (Player)node)
+        .Where(p => p.Id == 1)
+        .FirstOrDefault();
+    
+    public Player RightPlayer => EntitiesContainer
+        .GetChildren()
+        .Select(node => (Player)node)
+        .Where(p => p.Id != 1)
+        .FirstOrDefault();
+
+    public Player LocalPlayer => Multiplayer.GetUniqueId() == 1 ? LeftPlayer : RightPlayer;
+    public Player RemotePlayer => Multiplayer.GetUniqueId() == 1 ? RightPlayer : LeftPlayer;
 
     public Entity[] GetEntities()
     {
@@ -18,11 +31,11 @@ public partial class World : Node
             .ToArray();
     }
 
-    public IEntityContainer GetEnemy() => (IEntityContainer)MainEnemy;
+    // public IEntityContainer GetEnemy() => (IEntityContainer)MainEnemy;
 
     public void AddProjectile(SimpleProjectile projectile)
     {
-        AddChild(projectile);
+        AddChild(projectile, true);
     }
 
     public static World FindFor(Node node)
