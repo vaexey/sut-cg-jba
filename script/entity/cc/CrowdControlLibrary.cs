@@ -34,4 +34,5 @@ public sealed class CrowdControlLibrary
     public static PackedCrowdControl<AppenzellerCC> Appenzeller => Get<AppenzellerCC>();
     public static PackedCrowdControl<ShortNapCC> ShortNap => Get<ShortNapCC>();
     public static PackedCrowdControl<BibiHendlCC> BibiHendl => Get<BibiHendlCC>();
+    public static PackedCrowdControl<MussDasSeinCC> MussDasSein => Get<MussDasSeinCC>();
 }

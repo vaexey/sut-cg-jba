@@ -18,7 +18,7 @@ DisplayName = "Auto jodler Dixi"
 ProjectileVelocity = 600.0
 ProjectileGravity = 0.0
 DestroyOnCollision = false
-DamagePercentage = 10.0
+DamagePercentage = 0.1
 DamageFlags = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ds5b8ypji4f0p"]
+[gd_scene load_steps=34 format=3 uid="uid://ds5b8ypji4f0p"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_u77ui"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b3i5fkahlycjy" path="res://script/entity/ability/types/ContemplateAbility.tscn" id="16_44opu"]
 [ext_resource type="PackedScene" uid="uid://bu3lo8elhs3po" path="res://script/entity/ability/types/BibiHendlAbility.tscn" id="17_i6w07"]
 [ext_resource type="PackedScene" uid="uid://b35omic602nh5" path="res://script/entity/ability/types/MedleyAbility.tscn" id="17_k86aw"]
+[ext_resource type="PackedScene" uid="uid://dfl2afquun2a7" path="res://script/entity/ability/types/MussDasSeinAbility.tscn" id="18_wm5x6"]
 [ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="21_vuq83"]
 [ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="22_8sw75"]
 [ext_resource type="AudioStream" uid="uid://7wf3vhj82cji" path="res://sound/ui/silenced.mp3" id="28_80ifh"]
@@ -105,6 +106,8 @@ Abilities = NodePath("Abilities")
 [node name="ContemplateAbility" parent="Entity/Abilities/Basic" instance=ExtResource("16_44opu")]
 
 [node name="BibiHendlAbility" parent="Entity/Abilities/Basic" instance=ExtResource("17_i6w07")]
+
+[node name="MussDasSeinAbility" parent="Entity/Abilities/Basic" instance=ExtResource("18_wm5x6")]
 
 [node name="Complex" type="Node" parent="Entity/Abilities"]
 

@@ -21,6 +21,9 @@ public partial class SimpleProjectile : CharacterBody2D
     public float ProjectileGravity { get; set; } = 500;
 
     [Export]
+    public float RotationSpeed { get; set; } = 0;
+
+    [Export]
     public bool Stationary { get; set; } = false;
 
     [Export]
@@ -77,6 +80,11 @@ public partial class SimpleProjectile : CharacterBody2D
                 255,
                 (byte)((1 - fade) * 255)
             );
+        }
+
+        if (RotationSpeed > 0)
+        {
+            Rotation += (float)((RotationSpeed * 2 * Math.PI) * delta);
         }
     }
 

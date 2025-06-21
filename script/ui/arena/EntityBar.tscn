@@ -48,11 +48,6 @@ label_settings = SubResource("LabelSettings_46e6l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Franzl"
-horizontal_alignment = 1
-
 [node name="Silenced" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Silenced"
@@ -90,3 +85,8 @@ layout_mode = 2
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Franzl"
+horizontal_alignment = 1

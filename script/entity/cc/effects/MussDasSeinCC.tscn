@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkq5vwloh6bm8"]
+
+[ext_resource type="Script" uid="uid://bge4mhatuxupr" path="res://script/entity/cc/effects/MussDasSeinCC.cs" id="1_y3q5b"]
+[ext_resource type="Texture2D" uid="uid://ckvipeb4ygm1b" path="res://art/ui/icon/ability/muss_das_sein.png" id="2_03xvs"]
+
+[node name="MussDasSeinCC" type="Node"]
+script = ExtResource("1_y3q5b")
+DisplayName = "Muas das sei?"
+IconTexture = ExtResource("2_03xvs")

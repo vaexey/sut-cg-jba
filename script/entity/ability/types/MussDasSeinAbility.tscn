@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfl2afquun2a7"]
+
+[ext_resource type="Script" uid="uid://vvjkvc4w2fok" path="res://script/entity/ability/types/MussDasSeinAbility.cs" id="1_cor5e"]
+[ext_resource type="Texture2D" uid="uid://ckvipeb4ygm1b" path="res://art/ui/icon/ability/muss_das_sein.png" id="2_g4g20"]
+[ext_resource type="AudioStream" uid="uid://d2a3i2x8sqykr" path="res://sound/ability/muss_das_sein_cast.mp3" id="3_g4g20"]
+[ext_resource type="AudioStream" uid="uid://0lwse5mntnqr" path="res://sound/ability/muss_das_sein_fail.mp3" id="4_je8fd"]
+[ext_resource type="AudioStream" uid="uid://cwq8efkw5osgp" path="res://sound/ability/muss_das_sein_reflect.mp3" id="5_di4qn"]
+
+[node name="MussDasSeinAbility" type="Node"]
+script = ExtResource("1_cor5e")
+DisplayName = "Muas das sei?"
+ShortDescription = "Franzl asks his opponent whether the incoming crowd control effect is obligatory. If Franzl is affected with any crowd control effect during his quote, he reflects it to the nearest entity with bonus 5% max beverage damage. If not affected, he is slowed for 1 s."
+IconTexture = ExtResource("2_g4g20")
+
+[node name="CastSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_g4g20")
+
+[node name="FailSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_je8fd")
+
+[node name="ReflectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_di4qn")
+volume_db = -6.0
+
+[connection signal="OnCast" from="." to="CastSound" method="play"]
+[connection signal="OnFailed" from="." to="FailSound" method="play"]
+[connection signal="OnReflected" from="." to="ReflectSound" method="play"]
