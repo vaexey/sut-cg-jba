@@ -27,6 +27,9 @@ public partial class Ability : Node
 	[Signal]
 	public delegate void OnStopCastEventHandler();
 
+    [Rpc(CallLocal = false)] private void RpcOnCast() => EmitSignal(SignalName.OnCast);
+    [Rpc(CallLocal = false)] private void RpcOnStartCast() => EmitSignal(SignalName.OnStartCast);
+    [Rpc(CallLocal = false)] private void RpcOnStopCast() => EmitSignal(SignalName.OnStopCast);
 
     public MultiplayerSynchronizer Sync { get; set; }
     public override void _Ready()
@@ -38,6 +41,13 @@ public partial class Ability : Node
         Sync.ReplicationConfig = new();
         Sync.ReplicationConfig.AddProperty($":CooldownLeft");
         Sync.ReplicationConfig.AddProperty($":CastTimeLeft");
+
+        if (Multiplayer.IsServer())
+        {
+            OnCast += () => Rpc(MethodName.RpcOnCast);
+            OnStartCast += () => Rpc(MethodName.RpcOnStartCast);
+            OnStopCast += () => Rpc(MethodName.RpcOnStopCast);
+        }
     }
 
     public virtual AbilityUsageTrialResult CanUse(Entity owner)

@@ -32,10 +32,10 @@ public partial class PauseUI : CanvasLayer
     {
         // if (!Multiplayer.IsServer()) return;
 
-        // if (Input.IsActionJustPressed("game_pause"))
-        // {
-        //     Pause();
-        // }
+        if (Input.IsActionJustPressed("game_pause"))
+        {
+            OnQuitButton();
+        }
 
         var now = Time.GetTicksMsec();
         double realDelta = (now - LastProcess) / 1000.0;

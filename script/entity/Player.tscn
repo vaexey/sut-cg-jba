@@ -162,17 +162,6 @@ ParentEntity = NodePath("..")
 
 [node name="GlobalSounds" type="Node" parent="."]
 
-[node name="JumpSoundEffect" type="AudioStreamPlayer" parent="GlobalSounds"]
-stream = SubResource("AudioStreamRandomizer_l8xdv")
-
-[node name="GrassSoundEffect" type="AudioStreamPlayer" parent="GlobalSounds"]
-stream = ExtResource("26_xgpxp")
-volume_db = -15.0
-max_polyphony = 3
-script = ExtResource("27_4s4nj")
-IntervalMin = 0.25
-IntervalMax = 0.3
-
 [node name="NoManaSound" type="AudioStreamPlayer" parent="GlobalSounds"]
 stream = ExtResource("28_0ribd")
 volume_db = -12.0
@@ -185,14 +174,23 @@ volume_db = -12.0
 stream = ExtResource("30_kmylj")
 volume_db = -12.0
 
-[node name="LocalSounds" type="Node" parent="."]
+[node name="LocalSounds" type="Node2D" parent="."]
 
 [node name="DamagedSound" type="AudioStreamPlayer2D" parent="LocalSounds"]
 stream = ExtResource("31_t1sv8")
 volume_db = 6.0
 
-[connection signal="SetGrassSound" from="Handlers/MovementHandler" to="GlobalSounds/GrassSoundEffect" method="SetKeepPlaying"]
-[connection signal="JumpStarted" from="Handlers/JumpHandler" to="GlobalSounds/JumpSoundEffect" method="play"]
+[node name="JumpSoundEffect" type="AudioStreamPlayer2D" parent="LocalSounds"]
+stream = SubResource("AudioStreamRandomizer_l8xdv")
+
+[node name="GrassSoundEffect" type="AudioStreamPlayer2D" parent="LocalSounds"]
+stream = ExtResource("26_xgpxp")
+volume_db = -15.0
+max_polyphony = 3
+script = ExtResource("27_4s4nj")
+
+[connection signal="SetGrassSound" from="Handlers/MovementHandler" to="LocalSounds/GrassSoundEffect" method="SetKeepPlaying"]
+[connection signal="JumpStarted" from="Handlers/JumpHandler" to="LocalSounds/JumpSoundEffect" method="play"]
 [connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/CooldownSound" method="play"]
 [connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/NoManaSound" method="play"]
 [connection signal="SilencedTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/SilencedSound" method="play"]

@@ -11,12 +11,21 @@ public partial class JumpHandler : Node
 	[Export]
 	public Timer CoyoteTimer { get; set; }
 
-	[Signal]
-	public delegate void JumpStartedEventHandler();
-
 	bool IsGoingUp = false;
 	bool IsJumping = false;
 	bool LastFrameOnFloor = false;
+
+	[Signal]
+	public delegate void JumpStartedEventHandler();
+	[Rpc(CallLocal = false)] private void RpcJumpStarted() => EmitSignal(SignalName.JumpStarted);
+
+	public override void _Ready()
+	{
+		if (Multiplayer.IsServer())
+        {
+            JumpStarted += () => Rpc(MethodName.RpcJumpStarted);
+        }
+	}
 
 	public bool HasJustLanded(CharacterBody2D body) => body.IsOnFloor() && !LastFrameOnFloor && IsJumping;
 	public bool IsAllowedToJump(CharacterBody2D body) => body.IsOnFloor() || !CoyoteTimer.IsStopped();

@@ -31,10 +31,6 @@ public partial class Entity : Node2D
 
 	#endregion
 
-
-	[Signal]
-	public delegate void OnDamagedEventHandler();
-
 	// [Export]
 	// public WorldType World { get; set; }
 	public WorldType World => WorldType.FindFor(this);
@@ -47,7 +43,18 @@ public partial class Entity : Node2D
 	[Export] private int MPS_IsCrippledVertically { get => IsCrippledVertically; set => IsCrippledVertically = value; }
 	[Export] private int MPS_IsSilenced { get => IsSilenced; set => IsSilenced = value; }
 	[Export] private bool MPS_IsAlive { get => IsAlive; set => IsAlive = value; }
-	
+
+	[Signal]
+	public delegate void OnDamagedEventHandler();
+	[Rpc(CallLocal = false)] private void RpcOnDamaged() => EmitSignal(SignalName.OnDamaged);
+
+	public override void _Ready()
+	{
+		if (Multiplayer.IsServer())
+        {
+            OnDamaged += () => Rpc(MethodName.RpcOnDamaged);
+        }
+	}
 
 	public Entity()
 	{

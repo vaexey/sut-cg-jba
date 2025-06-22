@@ -15,6 +15,20 @@ public partial class AbilityHandler : Node
 	[Signal]
 	public delegate void SilencedTriggerEventHandler();
 
+    [Rpc(CallLocal = false)] private void RpcNoManaTrigger() => EmitSignal(SignalName.NoManaTrigger);
+    [Rpc(CallLocal = false)] private void RpcCooldownTrigger() => EmitSignal(SignalName.CooldownTrigger);
+    [Rpc(CallLocal = false)] private void RpcSilencedTrigger() => EmitSignal(SignalName.SilencedTrigger);
+
+    public override void _Ready()
+    {
+        if (Multiplayer.IsServer())
+        {
+            NoManaTrigger += () => Rpc(MethodName.RpcNoManaTrigger);
+            CooldownTrigger += () => Rpc(MethodName.RpcCooldownTrigger);
+            SilencedTrigger += () => Rpc(MethodName.RpcSilencedTrigger);
+        }
+    }
+
     public void HandleAbilities(Entity ent, InputHandler input, double delta)
     {
         if (!Multiplayer.IsServer()) return;

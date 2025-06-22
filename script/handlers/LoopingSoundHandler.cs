@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [Tool]
-public partial class LoopingSoundHandler : AudioStreamPlayer
+public partial class LoopingSoundHandler : AudioStreamPlayer2D
 {
     [ExportCategory("Settings")]
     [Export]

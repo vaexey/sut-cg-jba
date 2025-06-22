@@ -9,12 +9,24 @@ public partial class MovementHandler : Node
 
 	[Signal]
 	public delegate void SetGrassSoundEventHandler(bool grass);
+	[Rpc(CallLocal = false)] private void RpcSetGrassSound(bool grass) => EmitSignal(SignalName.SetGrassSound, grass);
+
+	public override void _Ready()
+	{
+		if (Multiplayer.IsServer())
+        {
+            SetGrassSound += (grass) => Rpc(MethodName.RpcSetGrassSound, grass);
+        }
+    }
 
 	public void HandleHorizontal(CharacterBody2D body, Entity ent, double delta, float direction)
 	{
+		if (!Multiplayer.IsServer())
+			return;
+
 		float accel;
 
-		if(body.IsOnFloor())
+		if (body.IsOnFloor())
 		{
 			accel = direction != 0 ? Entity.PassiveAttributes.GroundAcceleration : Entity.PassiveAttributes.GroundDeceleration;
 		}
@@ -33,7 +45,7 @@ public partial class MovementHandler : Node
 			SignalName.SetGrassSound,
 			body.IsOnFloor() && body.Velocity.X != 0
 			);
-		
+
 		body.Velocity = new(
 			Mathf.MoveToward(body.Velocity.X, direction * Entity.PassiveAttributes.Speed, accel * (float)delta),
 			body.Velocity.Y
