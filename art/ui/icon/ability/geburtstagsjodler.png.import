@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvjht8h6dud"
-path="res://.godot/imported/pilzner.png-5506622f0ba60ec61db150078441d10a.ctex"
+uid="uid://bw3nvpijnsl2o"
+path="res://.godot/imported/geburtstagsjodler.png-eb61ef1552f44da59435ba603df31b08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/icon/ability/pilzner.png"
-dest_files=["res://.godot/imported/pilzner.png-5506622f0ba60ec61db150078441d10a.ctex"]
+source_file="res://art/ui/icon/ability/geburtstagsjodler.png"
+dest_files=["res://.godot/imported/geburtstagsjodler.png-eb61ef1552f44da59435ba603df31b08.ctex"]
 
 [params]
 

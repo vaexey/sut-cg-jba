@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxi8fybth7q3f"]
+
+[ext_resource type="Script" uid="uid://dc5ocybmu7y31" path="res://script/entity/ability/KuckucksAbility.cs" id="1_87qdi"]
+[ext_resource type="AudioStream" uid="uid://cqhy6t7x16rak" path="res://sound/ability/kuckucks_cast.mp3" id="2_7yuuw"]
+[ext_resource type="Texture2D" uid="uid://7vddivu556ok" path="res://art/ui/icon/ability/kuckucks.png" id="2_q0k5s"]
+[ext_resource type="AudioStream" uid="uid://0efpyrnb8ttj" path="res://sound/ability/kuckucks_refresh.mp3" id="3_7yuuw"]
+
+[node name="KuckucksAbility" type="Node2D"]
+script = ExtResource("1_87qdi")
+DisplayName = "Kuckucks-Jodler"
+ShortDescription = "Franzl calls his cuckoo, that after a brief moment refreshes cooldowns of all his abilities."
+CategoryType = 2
+IconTexture = ExtResource("2_q0k5s")
+CastTime = 1.5
+Cooldown = 25.0
+UseCostFlat = 15.0
+UseCostPercentage = 0.01
+
+[node name="CastSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_7yuuw")
+volume_db = 6.0
+
+[node name="RefreshSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7yuuw")
+volume_db = -12.0
+
+[connection signal="OnCast" from="." to="RefreshSound" method="play"]
+[connection signal="OnStartCast" from="." to="CastSound" method="play"]

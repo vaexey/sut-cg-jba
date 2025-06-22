@@ -108,6 +108,7 @@ public partial class Ability : Node
         if (CastTime > 0)
         {
             CastTimeLeft = CastTime;
+            StartCast(owner);
             EmitSignal(SignalName.OnStartCast);
             return;
         }
@@ -115,17 +116,21 @@ public partial class Ability : Node
         CooldownLeft += Cooldown;
 
         ConsumeCost(owner);
+        StartCast(owner);
         Cast(owner);
         EmitSignal(SignalName.OnStartCast);
         EmitSignal(SignalName.OnCast);
     }
+
+    public virtual void StartCast(Entity owner) { }
+    public virtual void StopCast(Entity owner) { }
 
     // This method is called to execute the ability effect,
     // e.g. after cast time is complete.
     // This method should be overwritten for each ability.
     public virtual void Cast(Entity owner)
     {
-        
+
     }
 
     public virtual void ResetCooldown()
@@ -149,6 +154,7 @@ public partial class Ability : Node
         if (CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) && IsCasting)
         {
             CastTimeLeft = 0;
+            StopCast(owner);
             EmitSignal(SignalName.OnStopCast);
         }
     }
@@ -165,6 +171,7 @@ public partial class Ability : Node
             if(CastMode.HasFlag(AbilityCastMode.CastTimeInterruptable) && owner.IsSilenced)
             {
                 CastTimeLeft = 0;
+                StopCast(owner);
                 EmitSignal(SignalName.OnStopCast);
                 return;
             }

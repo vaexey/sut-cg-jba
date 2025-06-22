@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvjht8h6dud"
-path="res://.godot/imported/pilzner.png-5506622f0ba60ec61db150078441d10a.ctex"
+uid="uid://7vddivu556ok"
+path="res://.godot/imported/kuckucks.png-fc5e921675f2ed7730f4df2740d551fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/icon/ability/pilzner.png"
-dest_files=["res://.godot/imported/pilzner.png-5506622f0ba60ec61db150078441d10a.ctex"]
+source_file="res://art/ui/icon/ability/kuckucks.png"
+dest_files=["res://.godot/imported/kuckucks.png-fc5e921675f2ed7730f4df2740d551fa.ctex"]
 
 [params]
 

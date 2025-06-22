@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvrnohqgik7jc"]
+
+[ext_resource type="Script" uid="uid://bvhj27vye843n" path="res://script/entity/ability/types/GeburtstagsjodlerAbility.cs" id="1_50frh"]
+[ext_resource type="Texture2D" uid="uid://bw3nvpijnsl2o" path="res://art/ui/icon/ability/geburtstagsjodler.png" id="2_aj8a2"]
+[ext_resource type="AudioStream" uid="uid://cx2ykgvygnisb" path="res://sound/ability/geburtstagsjodler_cast.mp3" id="3_abvbf"]
+[ext_resource type="AudioStream" uid="uid://keek37tqwld8" path="res://sound/ability/geburtstagsjodler_end.mp3" id="4_p4s44"]
+
+[node name="GeburtstagsjodlerAbility" type="Node2D"]
+script = ExtResource("1_50frh")
+DisplayName = "Geburtstagsjodler"
+ShortDescription = "Franzl sings a birthday song that heals him over time and shields from a fraction of the incoming damage for the duration of channeling this ability."
+CategoryType = 2
+IconTexture = ExtResource("2_aj8a2")
+CastMode = 12
+CastTime = 5.0
+Cooldown = 15.0
+UseCostPercentage = 0.25
+
+[node name="CastSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_abvbf")
+volume_db = -6.0
+
+[node name="EndSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p4s44")
+
+[connection signal="OnStartCast" from="." to="CastSound" method="play"]
+[connection signal="OnStopCast" from="." to="CastSound" method="stop"]
+[connection signal="OnStopCast" from="." to="EndSound" method="play"]

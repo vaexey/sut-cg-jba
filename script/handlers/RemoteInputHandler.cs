@@ -83,10 +83,11 @@ public partial class RemoteInputHandler : InputHandler
 
         int idx = base.GetAbilityBasicIndex();
         if (idx != -1)
-            AbilityIndex = idx;
+            Rpc(MethodName.SetAbilityIndex, idx);
+            // AbilityIndex = idx;
 
         if (Input.IsActionJustPressed("move_jump"))
-                Rpc(MethodName.SetJumpPressed);
+            Rpc(MethodName.SetJumpPressed);
         if (Input.IsActionJustReleased("move_jump"))
             Rpc(MethodName.SetJumpReleased);
         if (Input.IsActionJustPressed("ability_basic"))
