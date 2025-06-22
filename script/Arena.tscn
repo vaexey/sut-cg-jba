@@ -143,7 +143,7 @@ stream = ExtResource("11_4qn5d")
 [node name="ArenaMusic" type="AudioStreamPlayer" parent="World/GlobalSounds"]
 process_mode = 3
 stream = ExtResource("12_4qn5d")
-volume_db = -24.0
+volume_db = -30.0
 autoplay = true
 
 [node name="Foreground" type="Node" parent="."]
