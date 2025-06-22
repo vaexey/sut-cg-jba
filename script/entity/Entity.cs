@@ -41,7 +41,10 @@ public partial class Entity : Node
 	[ExportSubgroup("Multiplayer sync")]
 	[Export] private double MPS_Beverage { get => Beverage.Percentage; set => Beverage.Percentage = value; } 
 	[Export] private double MPS_Stamina { get => Stamina.Percentage; set => Stamina.Percentage = value; } 
-	[Export] private double MPS_Inspiration { get => Inspiration.Percentage; set => Inspiration.Percentage = value; } 
+	[Export] private double MPS_Inspiration { get => Inspiration.Percentage; set => Inspiration.Percentage = value; }
+	[Export] private int MPS_IsCrippledHorizontally { get => IsCrippledHorizontally; set => IsCrippledHorizontally = value; }
+	[Export] private int MPS_IsCrippledVertically { get => IsCrippledVertically; set => IsCrippledVertically = value; }
+	[Export] private int MPS_IsSilenced { get => IsSilenced; set => IsSilenced = value; }
 
 	public Entity()
 	{
