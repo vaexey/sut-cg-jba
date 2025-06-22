@@ -6,6 +6,8 @@ public partial class World : Node
 {
     [ExportSubgroup("Nodes")]
     [Export] public Node EntitiesContainer { get; set; }
+    [Export] public Node2D LeftSpawn { get; set; }
+    [Export] public Node2D RightSpawn { get; set; }
 
     public Player LeftPlayer => EntitiesContainer
         .GetChildren()

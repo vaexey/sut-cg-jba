@@ -108,9 +108,11 @@ position = Vector2(0, 302)
 scale = Vector2(2.34, 2.34)
 texture = ExtResource("6_wqdsx")
 
-[node name="World" type="Node" parent="." node_paths=PackedStringArray("EntitiesContainer")]
+[node name="World" type="Node" parent="." node_paths=PackedStringArray("EntitiesContainer", "LeftSpawn", "RightSpawn")]
 script = ExtResource("7_sj0d1")
 EntitiesContainer = NodePath("Entities")
+LeftSpawn = NodePath("LeftSpawn")
+RightSpawn = NodePath("RightSpawn")
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="World"]
 _spawnable_scenes = PackedStringArray("uid://dwi6tffqacc7", "uid://cm4gvftaf3uku", "uid://bslc3kpronha5", "uid://b1bqw5ci54bip", "uid://cd0ec86xs7mwk", "uid://cgjdimtgskft6")
@@ -136,6 +138,12 @@ tile_map_data = PackedByteArray("AAD9/xUAAQABAAEAAAD+/xUAAQABAAEAAAD//xUAAQABAAE
 tile_set = ExtResource("7_4qn5d")
 
 [node name="Entities" type="Node" parent="World"]
+
+[node name="LeftSpawn" type="Node2D" parent="World"]
+position = Vector2(-410, 621)
+
+[node name="RightSpawn" type="Node2D" parent="World"]
+position = Vector2(971, 618)
 
 [node name="Foreground" type="Node" parent="."]
 
