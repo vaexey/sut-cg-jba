@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d3dksuurggmrm" path="res://script/ui/menu/AbilitiesMenu.tscn" id="8_2mitb"]
 [ext_resource type="AudioStream" uid="uid://clohif7r6o1ag" path="res://sound/ui/music_konigsjodler.mp3" id="10_cy40j"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("IpAddress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k85ta")
+IpAddress = NodePath("MarginContainer/VBoxContainer/IpAddress")
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 1
@@ -101,6 +102,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_erklv")
 theme_override_font_sizes/font_size = 42
 text = "Join arena"
+
+[node name="IpAddress" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_erklv")
+theme_override_font_sizes/font_size = 32
+text = "localhost"
+placeholder_text = "IP"
 
 [node name="AbilitiesBtn" type="Button" parent="MarginContainer/VBoxContainer"]
 visible = false

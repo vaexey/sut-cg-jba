@@ -11,6 +11,7 @@ public partial class MainMenu : Control
 
     private Control attrMenu;
     private Control abilityMenu;
+    [Export] private TextEdit IpAddress;
 
     public override void _Ready()
     {
@@ -30,7 +31,7 @@ public partial class MainMenu : Control
     public void OnJoinClick()
     {
         GetTree().ChangeSceneToFile("res://script/Arena.tscn");
-        MultiplayerManager.Instance.JoinGame();
+        MultiplayerManager.Instance.JoinGame(IpAddress.Text);
     }
 
     public void OnAbilitiesClick()

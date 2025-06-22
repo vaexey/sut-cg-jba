@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 public partial class MultiplayerManager : Node
 {
-    const int SERVER_PORT = 25565;
-    const string SERVER_IP = "localhost";
+    const int SERVER_PORT = 25567;
 
     public static MultiplayerManager Instance { get; protected set; }
 
@@ -57,13 +56,13 @@ public partial class MultiplayerManager : Node
         world.EntitiesContainer.AddChild(newPlayer);
     }
 
-    public async void JoinGame()
+    public async void JoinGame(string ip)
     {
         GetTree().ChangeSceneToFile("res://script/Arena.tscn");
         await WaitForScene();
 
         var client = new ENetMultiplayerPeer();
-        client.CreateClient(SERVER_IP, SERVER_PORT);
+        client.CreateClient(ip, SERVER_PORT);
 
         Multiplayer.MultiplayerPeer = client;
         Multiplayer.PeerDisconnected += OnServerDisconnect;
