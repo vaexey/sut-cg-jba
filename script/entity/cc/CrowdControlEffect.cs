@@ -15,6 +15,17 @@ public partial class CrowdControlEffect : Node
     [Export]
     public virtual double Time { get; set; } = 0.0;
 
+    public MultiplayerSynchronizer Sync { get; set; }
+    public override void _Ready()
+    {
+        Sync = new();
+        AddChild(Sync);
+
+        Sync.Name = $"OnReadySync";
+        Sync.ReplicationConfig = new();
+        Sync.ReplicationConfig.AddProperty($":Time");
+    }
+
     public virtual void Start(Entity effected)
     {
 

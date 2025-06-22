@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgyqe8wqw53kb"]
+[gd_scene load_steps=7 format=3 uid="uid://bgyqe8wqw53kb"]
 
 [ext_resource type="Script" uid="uid://bictc8vjntxp8" path="res://script/ui/arena/ArenaUI.cs" id="1_fa5n7"]
 [ext_resource type="PackedScene" uid="uid://chgwgsxjmoa12" path="res://script/ui/arena/EntityStats.tscn" id="3_7883h"]
 [ext_resource type="PackedScene" uid="uid://dsfpk5smk1mvw" path="res://script/ui/arena/AbilityBar.tscn" id="3_m5to1"]
+[ext_resource type="Texture2D" uid="uid://c6tiffcc5n5oa" path="res://art/ui/icon/sound_on.png" id="4_ia6rc"]
+[ext_resource type="Texture2D" uid="uid://u1ei8p2ma2xr" path="res://art/ui/icon/sound_off.png" id="5_uxl2i"]
+[ext_resource type="Script" uid="uid://be34oy0d1kr1p" path="res://script/ui/arena/MuteButton.cs" id="6_uxl2i"]
 
 [node name="ArenaUI" type="CanvasLayer" node_paths=PackedStringArray("StatsLabel", "AbilityBar", "PlayerStats", "EnemyStats")]
 script = ExtResource("1_fa5n7")
@@ -45,3 +48,18 @@ offset_right = -28.147
 offset_bottom = -24.92
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="MuteButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 91.0
+offset_bottom = 123.0
+grow_horizontal = 0
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("4_ia6rc")
+texture_pressed = ExtResource("5_uxl2i")
+stretch_mode = 0
+script = ExtResource("6_uxl2i")

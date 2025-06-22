@@ -47,10 +47,10 @@ public partial class SimpleProjectile : CharacterBody2D
     public DamageFlags DamageFlags { get; set; } = 0;
 
     public bool JustCreated = true;
-    public double TimeLeft = 0;
+    [Export]public double TimeLeft = 0;
 
-    [ExportSubgroup("Multiplayer sync")]
-    [Export] private double MPS_TimeLeft { get => TimeLeft; set => TimeLeft = value; } 
+    // [ExportSubgroup("Multiplayer sync")]
+    // [Export] private double MPS_TimeLeft { get => TimeLeft; set => TimeLeft = value; }
 
     // [Export]
     // public bool IgnoreOwnerCollision { get; set; } = true;
@@ -62,10 +62,21 @@ public partial class SimpleProjectile : CharacterBody2D
     //         AddCollisionExceptionWith();
     //     }
     // }
+    public MultiplayerSynchronizer Sync { get; set; }
     public override void _Ready()
     {
+
         JustCreated = true;
         TimeLeft = DestroyAfterTime;
+        
+        Sync = new();
+        AddChild(Sync);
+
+        Sync.Name = $"OnReadySync";
+        Sync.ReplicationConfig = new();
+        Sync.ReplicationConfig.AddProperty($":TimeLeft");
+        Sync.ReplicationConfig.AddProperty($":position");
+        Sync.ReplicationConfig.AddProperty($":rotation");
     }
 
     public override void _Process(double delta)
