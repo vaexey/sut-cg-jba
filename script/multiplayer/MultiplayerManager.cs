@@ -48,7 +48,7 @@ public partial class MultiplayerManager : Node
 
         var world = (World)GetTree().CurrentScene.GetNode("World");
 
-        var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/RemotePlayer.tscn").Instantiate<RemotePlayer>();
+        var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/Player.tscn").Instantiate<Player>();
         newPlayer.Id = 1;
         newPlayer.Name = "1";
 
@@ -72,7 +72,7 @@ public partial class MultiplayerManager : Node
 
         var world = (World)GetTree().CurrentScene.GetNode("World");
 
-        var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/RemotePlayer.tscn").Instantiate<RemotePlayer>();
+        var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/Player.tscn").Instantiate<Player>();
         newPlayer.Id = id;
         newPlayer.Name = $"{id}";
 
