@@ -1,15 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj0hp6hmad8n3"]
+[gd_scene load_steps=16 format=3 uid="uid://dj0hp6hmad8n3"]
 
 [ext_resource type="Script" uid="uid://8dbmf5bvm0nc" path="res://script/MainMenu.cs" id="1_k85ta"]
 [ext_resource type="Texture2D" uid="uid://n3kp1lak83x" path="res://art/bg/mountain1/1.png" id="2_daanv"]
 [ext_resource type="Texture2D" uid="uid://drjxfb0iexy2p" path="res://art/bg/mountain1/2.png" id="3_w2vuu"]
 [ext_resource type="Texture2D" uid="uid://d1qavkqld7ddk" path="res://art/bg/mountain1/4.png" id="4_r31ta"]
 [ext_resource type="Texture2D" uid="uid://b012k4f880exp" path="res://art/player/cast/franzl_guitar_cast_320003.png" id="5_cy40j"]
+[ext_resource type="Texture2D" uid="uid://b5m5qp8qn0ncj" path="res://art/player/cast/franzl_guitar_cast_320000.png" id="5_fjmld"]
 [ext_resource type="Texture2D" uid="uid://ge34hfm148s2" path="res://art/player/franzl_hat1.png" id="5_r31ta"]
 [ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="6_erklv"]
+[ext_resource type="Texture2D" uid="uid://dy3aonscc42fd" path="res://art/player/cast/franzl_guitar_cast_320001.png" id="6_lcn15"]
 [ext_resource type="PackedScene" uid="uid://b30elxkh63dq4" path="res://script/ui/menu/AttrMenu.tscn" id="7_2mitb"]
+[ext_resource type="Texture2D" uid="uid://qma4swk7awyc" path="res://art/player/cast/franzl_guitar_cast_320002.png" id="7_rt5ul"]
 [ext_resource type="PackedScene" uid="uid://d3dksuurggmrm" path="res://script/ui/menu/AbilitiesMenu.tscn" id="8_2mitb"]
+[ext_resource type="Texture2D" uid="uid://cod1lptsjeo3n" path="res://art/player/cast/franzl_guitar_cast_320004.png" id="9_i2n0p"]
 [ext_resource type="AudioStream" uid="uid://clohif7r6o1ag" path="res://sound/ui/music_konigsjodler.mp3" id="10_cy40j"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ct6xf"]
+frames = 5
+frame_0/texture = ExtResource("5_fjmld")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("6_lcn15")
+frame_1/duration = 0.5
+frame_2/texture = ExtResource("7_rt5ul")
+frame_2/duration = 0.5
+frame_3/texture = ExtResource("5_cy40j")
+frame_3/duration = 0.5
+frame_4/texture = ExtResource("9_i2n0p")
+frame_4/duration = 0.5
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("IpAddress")]
 layout_mode = 3
@@ -58,11 +75,11 @@ texture = ExtResource("4_r31ta")
 
 [node name="Icon2" type="TextureRect" parent="Background"]
 layout_mode = 0
-offset_left = 491.0
-offset_top = 239.0
+offset_left = 466.0
+offset_top = 207.0
 offset_right = 832.0
 offset_bottom = 474.0
-texture = ExtResource("5_cy40j")
+texture = SubResource("AnimatedTexture_ct6xf")
 stretch_mode = 4
 flip_h = true
 

@@ -80,7 +80,7 @@ replication_config = SubResource("SceneReplicationConfig_wm5x6")
 material = SubResource("ShaderMaterial_ebik6")
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_kobav")
-animation = &"idle"
+animation = &"guitar"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
