@@ -28,7 +28,7 @@ public partial class AbilityIcon : Control
     [Export] public Texture2D RoundHighlightAtlas { get; set; }
     
     [Export(PropertyHint.ColorNoAlpha)]
-    public Color CostColorPhysical { get; set; } = Color.Color8(255, 128, 128, 255);
+    public Color CostColorPhysical { get; set; } = Color.Color8(128, 255, 128, 255);
     
     [Export(PropertyHint.ColorNoAlpha)]
     public Color CostColorInspired { get; set; } = Color.Color8(128, 128, 255, 255);
@@ -76,7 +76,7 @@ public partial class AbilityIcon : Control
         // TODO: Probably not efficient
         IconSprite.Texture = Ability.IconTexture;
 
-        OverlayLabel.Text = (trial == AbilityUsageTrialResult.OnCooldown) ?
+        OverlayLabel.Text = (Ability.CooldownLeft > 0) ?
             Ability.CooldownLeft.ToString("N1") :
             "";
 

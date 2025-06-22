@@ -10,7 +10,8 @@ DisplayName = "Bibi Hendl"
 ShortDescription = "Franzl whips out a hen from his pocket that shields him from all sources of damage for a brief moment"
 CategoryType = 2
 IconTexture = ExtResource("2_kxj5i")
-UseCostFlat = 10.0
+Cooldown = 15.0
+UseCostFlat = 25.0
 UseCostPercentage = 0.01
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

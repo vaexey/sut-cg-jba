@@ -116,6 +116,11 @@ public partial class Ability : Node
         
     }
 
+    public virtual void ResetCooldown()
+    {
+        CooldownLeft = 0;
+    }
+
     public virtual void ProcessOwner(Entity owner, double delta)
     {
         ProcessCooldown(delta);

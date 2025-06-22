@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class World : Node
@@ -31,11 +33,14 @@ public partial class World : Node
     public Player LocalPlayer => Multiplayer.GetUniqueId() == 1 ? LeftPlayer : RightPlayer;
     public Player RemotePlayer => Multiplayer.GetUniqueId() == 1 ? RightPlayer : LeftPlayer;
 
+    public IEnumerable<SimpleProjectile> Projectiles => GetChildren()
+            .Where(c => c.GetType().IsAssignableTo(typeof(SimpleProjectile)))
+            .Select(n => (SimpleProjectile)n);
 
-	[Signal]
-	public delegate void OnDefeatEventHandler();
-	[Signal]
-	public delegate void OnVictoryEventHandler();
+    [Signal]
+    public delegate void OnDefeatEventHandler();
+    [Signal]
+    public delegate void OnVictoryEventHandler();
 
     public Entity[] GetEntities()
     {
@@ -70,6 +75,18 @@ public partial class World : Node
         return FindFor(parent);
     }
 
+    public Vector2 SpawnPointFor(Entity ent)
+    {
+        if (((Player)ent.Parent2D).Id == 1)
+        {
+            return LeftSpawn.Position;
+        }
+        else
+        {
+            return RightSpawn.Position;
+        }
+    }
+
     public override void _Ready()
     {
         GameActive = true;
@@ -88,5 +105,17 @@ public partial class World : Node
             else if (LocalVictory)
                 EmitSignal(SignalName.OnVictory);
         }
+    }
+
+    public void ResetWorld()
+    {
+        if (LeftPlayer != null)
+            LeftPlayer.Entity.Spawn();
+
+        if (RightPlayer != null)
+            RightPlayer.Entity.Spawn();
+
+        foreach (var proj in Projectiles)
+            proj.QueueFree();
     }
 }

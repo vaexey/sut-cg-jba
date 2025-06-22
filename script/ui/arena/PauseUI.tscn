@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://brhxaa75ogoyh" path="res://script/ui/arena/PauseUI.cs" id="1_nq2lc"]
 
-[node name="PauseUI" type="CanvasLayer" node_paths=PackedStringArray("Container", "WaitingControl", "VictoryControl", "DefeatControl")]
+[node name="PauseUI" type="CanvasLayer" node_paths=PackedStringArray("Container", "WaitingControl", "VictoryControl", "DefeatControl", "ResetControl")]
 process_mode = 3
 script = ExtResource("1_nq2lc")
 Container = NodePath("Container")
-WaitingControl = NodePath("Container/CenterContainer/WaitingControl")
-VictoryControl = NodePath("Container/CenterContainer/VictoryControl")
-DefeatControl = NodePath("Container/CenterContainer/DefeatControl")
+WaitingControl = NodePath("Container/CenterContainer/AllContainer/WaitingControl")
+VictoryControl = NodePath("Container/CenterContainer/AllContainer/VictoryControl")
+DefeatControl = NodePath("Container/CenterContainer/AllContainer/DefeatControl")
+ResetControl = NodePath("Container/CenterContainer/AllContainer/Reset")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -35,68 +36,76 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WaitingControl" type="VBoxContainer" parent="Container/CenterContainer"]
+[node name="AllContainer" type="VBoxContainer" parent="Container/CenterContainer"]
+layout_mode = 2
+
+[node name="WaitingControl" type="VBoxContainer" parent="Container/CenterContainer/AllContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/CenterContainer/WaitingControl"]
+[node name="Label" type="Label" parent="Container/CenterContainer/AllContainer/WaitingControl"]
 layout_mode = 2
 text = "Waiting for other player to join...
 "
 horizontal_alignment = 1
 
-[node name="QuitButton" type="Button" parent="Container/CenterContainer/WaitingControl"]
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/AllContainer/WaitingControl"]
 layout_mode = 2
 text = "Quit"
 
-[node name="VictoryControl" type="VBoxContainer" parent="Container/CenterContainer"]
+[node name="VictoryControl" type="VBoxContainer" parent="Container/CenterContainer/AllContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/CenterContainer/VictoryControl"]
+[node name="Label" type="Label" parent="Container/CenterContainer/AllContainer/VictoryControl"]
 layout_mode = 2
 text = "Victory
 "
 horizontal_alignment = 1
 
-[node name="QuitButton" type="Button" parent="Container/CenterContainer/VictoryControl"]
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/AllContainer/VictoryControl"]
 layout_mode = 2
 text = "Quit"
 
-[node name="DefeatControl" type="VBoxContainer" parent="Container/CenterContainer"]
+[node name="DefeatControl" type="VBoxContainer" parent="Container/CenterContainer/AllContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/CenterContainer/DefeatControl"]
+[node name="Label" type="Label" parent="Container/CenterContainer/AllContainer/DefeatControl"]
 layout_mode = 2
 text = "Defeat
 "
 horizontal_alignment = 1
 
-[node name="QuitButton" type="Button" parent="Container/CenterContainer/DefeatControl"]
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/AllContainer/DefeatControl"]
 layout_mode = 2
 text = "Quit"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/CenterContainer"]
+[node name="PauseControl" type="VBoxContainer" parent="Container/CenterContainer/AllContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Container/CenterContainer/AllContainer/PauseControl"]
 layout_mode = 2
 text = "Paused
 "
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="Container/CenterContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="Container/CenterContainer/AllContainer/PauseControl"]
 layout_mode = 2
 text = "Resume"
 
-[node name="QuitButton" type="Button" parent="Container/CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/AllContainer/PauseControl"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="Container/CenterContainer/WaitingControl/QuitButton" to="." method="OnQuitButton"]
-[connection signal="pressed" from="Container/CenterContainer/VictoryControl/QuitButton" to="." method="OnQuitButton"]
-[connection signal="pressed" from="Container/CenterContainer/DefeatControl/QuitButton" to="." method="OnQuitButton"]
-[connection signal="pressed" from="Container/CenterContainer/VBoxContainer/ResumeButton" to="." method="OnResumeButton"]
-[connection signal="pressed" from="Container/CenterContainer/VBoxContainer/QuitButton" to="." method="OnQuitButton"]
+[node name="Reset" type="Button" parent="Container/CenterContainer/AllContainer"]
+layout_mode = 2
+text = "Reset game"
+
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/WaitingControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/VictoryControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/DefeatControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/PauseControl/ResumeButton" to="." method="OnResumeButton"]
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/PauseControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/AllContainer/Reset" to="." method="OnResetClick"]

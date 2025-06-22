@@ -46,6 +46,8 @@ public partial class Entity : Node
 	[Export] private int MPS_IsCrippledHorizontally { get => IsCrippledHorizontally; set => IsCrippledHorizontally = value; }
 	[Export] private int MPS_IsCrippledVertically { get => IsCrippledVertically; set => IsCrippledVertically = value; }
 	[Export] private int MPS_IsSilenced { get => IsSilenced; set => IsSilenced = value; }
+	[Export] private bool MPS_IsAlive { get => IsAlive; set => IsAlive = value; }
+	
 
 	public Entity()
 	{
@@ -94,6 +96,24 @@ public partial class Entity : Node
 			Inspiration.Regen = PassiveAttributes.InspirationRegen;
 			Inspiration.Process(delta);
 		}
+	}
+
+	public void Spawn()
+	{
+		Parent2D.Position = World.SpawnPointFor(this);
+
+		Beverage.Percentage = 1;
+		Stamina.Percentage = 1;
+		Inspiration.Percentage = 1;
+
+		IsSilenced = false;
+		IsCrippledHorizontally = false;
+		IsCrippledVertically = false;
+
+		foreach (var ability in Abilities.All)
+			ability.ResetCooldown();
+
+		IsAlive = true;
 	}
 
 	public void Kill()

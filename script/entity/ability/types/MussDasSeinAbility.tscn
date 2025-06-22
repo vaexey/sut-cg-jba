@@ -11,6 +11,9 @@ script = ExtResource("1_cor5e")
 DisplayName = "Muas das sei?"
 ShortDescription = "Franzl asks his opponent whether the incoming crowd control effect is obligatory. If Franzl is affected with any crowd control effect during his quote, he reflects it to the nearest entity with bonus 5% max beverage damage. If not affected, he is slowed for 1 s."
 IconTexture = ExtResource("2_g4g20")
+Cooldown = 15.0
+UseCostFlat = 0.05
+UseCostPercentage = 0.01
 
 [node name="CastSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g4g20")

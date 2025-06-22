@@ -28,10 +28,12 @@ region = Rect2(320, 160, 32, 32)
 [sub_resource type="LabelSettings" id="LabelSettings_1y5qb"]
 resource_local_to_scene = true
 font = ExtResource("5_qr7n7")
+outline_size = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_ep8fr"]
 resource_local_to_scene = true
 font = ExtResource("5_qr7n7")
+outline_size = 1
 
 [node name="AbilityIcon" type="Control" node_paths=PackedStringArray("TintCanvas", "BackgroundSprite", "IconSprite", "OverlayLabel", "CostLabel")]
 layout_mode = 3

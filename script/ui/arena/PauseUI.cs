@@ -9,6 +9,7 @@ public partial class PauseUI : CanvasLayer
     [Export] Control WaitingControl { get; set; }
     [Export] Control VictoryControl { get; set; }
     [Export] Control DefeatControl { get; set; }
+    [Export] Control ResetControl { get; set; }
 
     public double DelayTime { get; set; } = 5;
 
@@ -40,7 +41,12 @@ public partial class PauseUI : CanvasLayer
         double realDelta = (now - LastProcess) / 1000.0;
         LastProcess = now;
 
-        if (ShouldBeWaiting())
+        var shouldBeWaiting = ShouldBeWaiting();
+
+        ResetControl.Visible = Multiplayer.IsServer()
+            && shouldBeWaiting;
+
+        if (shouldBeWaiting)
         {
             UnpauseTime = DelayTime;
             Visible = true;
@@ -85,7 +91,7 @@ public partial class PauseUI : CanvasLayer
                     UnpauseTime = Mathf.MoveToward(UnpauseTime, 0, realDelta);
 
                     var scale = TimingFunction(1 - UnpauseTime / DelayTime);
-                    
+
                     GD.Print($"Unpausing: {scale * 100}%");
                     Engine.TimeScale = Math.Max(0.01, scale);
                     Container.Modulate = new Color(Colors.White, 1f - (float)scale);
@@ -96,7 +102,7 @@ public partial class PauseUI : CanvasLayer
 
     protected bool ShouldBeWaiting()
     {
-        if(!World.PlayersPresent)
+        if (!World.PlayersPresent)
         {
             WaitingControl.Visible = true;
             VictoryControl.Visible = false;
@@ -133,6 +139,11 @@ public partial class PauseUI : CanvasLayer
         // GetTree().ChangeSceneToFile("res://script/MainMenu.tscn");
 
         MultiplayerManager.Instance.QuitGame();
+    }
+
+    public void OnResetClick()
+    {
+        World.ResetWorld();
     }
 
     // private void Pause()

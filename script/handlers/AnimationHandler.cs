@@ -27,17 +27,20 @@ public partial class AnimationHandler : Node
         var animSpeed = entity.PassiveAttributes.Speed / 200;
         var isGoingUp = body.Velocity.Normalized().Y < 0;
 
-        if (playedDeath)
-        {
-            return;
-        }
 
         if (!entity.IsAlive)
         {
+            if (playedDeath)
+            {
+                return;
+            }
+
             playedDeath = true;
             Sprite.Play("death");
             return;
         }
+
+        playedDeath = false;
 
         if (entity.IsCasting)
         {

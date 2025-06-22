@@ -51,9 +51,9 @@ public partial class MultiplayerManager : Node
         var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/Player.tscn").Instantiate<Player>();
         newPlayer.Id = 1;
         newPlayer.Name = "1";
-        newPlayer.Position = world.LeftSpawn.Position;
 
         world.EntitiesContainer.AddChild(newPlayer);
+        newPlayer.Entity.Spawn();
     }
 
     public async void JoinGame(string ip)
@@ -108,9 +108,9 @@ public partial class MultiplayerManager : Node
         var newPlayer = ResourceLoader.Load<PackedScene>($"res://script/entity/Player.tscn").Instantiate<Player>();
         newPlayer.Id = id;
         newPlayer.Name = $"{id}";
-        newPlayer.Position = world.RightSpawn.Position;
 
         world.EntitiesContainer.AddChild(newPlayer);
+        newPlayer.Entity.Spawn();
         world.GameActive = true;
     }
 
