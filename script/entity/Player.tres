@@ -1,11 +1,13 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://ca264ghultx34"]
+[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://ca264ghultx34"]
 
+[ext_resource type="Texture2D" uid="uid://5g7hy6s2vjmo" path="res://art/player/cast/franzl_autojodler_320000.png" id="1_0q2k7"]
 [ext_resource type="Texture2D" uid="uid://bhmy4df7eyk6m" path="res://art/player/midair/franzl_jump_320005.png" id="1_66o4e"]
 [ext_resource type="Texture2D" uid="uid://k44lixffdr5g" path="res://art/player/idle/franzl_idle320000.png" id="1_d2dvb"]
 [ext_resource type="Texture2D" uid="uid://pco6edg6d6kh" path="res://art/player/death/franzl_death_320001.png" id="1_hgqsw"]
 [ext_resource type="Texture2D" uid="uid://cn06mgwmg5fe" path="res://art/player/death/franzl_death_320002.png" id="2_6bk32"]
 [ext_resource type="Texture2D" uid="uid://cvjbpwki3js0g" path="res://art/player/midair/franzl_jump_320006.png" id="2_k58ca"]
 [ext_resource type="Texture2D" uid="uid://cark50id8advs" path="res://art/player/idle/franzl_idle320001.png" id="2_r1ne8"]
+[ext_resource type="Texture2D" uid="uid://cdufpnpwm36ht" path="res://art/player/cast/franzl_autojodler_320001.png" id="2_rqcbq"]
 [ext_resource type="Texture2D" uid="uid://boktpnwknvtt7" path="res://art/player/midair/franzl_jump_320007.png" id="3_3xwcu"]
 [ext_resource type="Texture2D" uid="uid://bjl3a5hw7f4s5" path="res://art/player/death/franzl_death_320003.png" id="3_w35lc"]
 [ext_resource type="Texture2D" uid="uid://ddsrr4f1uijwa" path="res://art/player/idle/franzl_idle320002.png" id="3_yx8ga"]
@@ -29,6 +31,23 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0q2k7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rqcbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_0q2k7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rqcbq")
+}],
+"loop": true,
+"name": &"auto_jodler",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 2.0,
 "texture": ExtResource("1_hgqsw")

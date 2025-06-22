@@ -34,9 +34,14 @@ public partial class AnimationHandler : Node
             Sprite.Play("death");
             return;
         }
-        if (entity.IsSilenced) {
+        if (entity.IsSilenced && entity.IsCrippledHorizontally && entity.IsCrippledVertically) {
             Sprite.Play("sleep", 2.0f);
             return;
+        }
+
+        if (entity.IsCrippledHorizontally || entity.IsCrippledVertically)
+        {
+            // cripple
         }
 
         if (body.IsOnFloor())
