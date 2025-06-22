@@ -78,10 +78,12 @@ public partial class CrowdControl : Node
 
             cc.Time -= delta;
 
-            if(cc.Time <= 0 && Multiplayer.IsServer())
+            if (cc.Time <= 0)
             {
                 cc.End(ParentEntity);
-                cc.QueueFree();
+
+                if (Multiplayer.IsServer())
+                    cc.QueueFree();
             }
         }
     }

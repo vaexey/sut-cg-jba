@@ -13,7 +13,7 @@ public partial class AutoJodlerAbility : Ability
         var node = entity.Parent2D;
         var src = node.GlobalPosition;
 
-        var to = node.GetGlobalMousePosition();
+        var to = entity.PointingAt;
         var vw = node.GetViewport().GetVisibleRect().Size;
         var diff = (src - to).Normalized()
             * (Math.Max(vw.X, vw.Y) / 2f + 20f);

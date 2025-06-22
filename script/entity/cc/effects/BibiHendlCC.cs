@@ -11,22 +11,27 @@ public partial class BibiHendlCC : CrowdControlEffect
     public override void Start(Entity effected)
     {
         // ReferenceNode = effected.World.Player;
-        ReferenceNode = effected.Parent2D;
-
         effected.PassiveAttributes.ReceivedDamagePhysicalModifier -= 1;
         effected.PassiveAttributes.ReceivedDamageInspiredModifier -= 1;
     }
 
     public override void End(Entity effected)
     {
-        ReferenceNode = null;
+        // TODO:
+        // ReferenceNode = null;
 
         effected.PassiveAttributes.ReceivedDamagePhysicalModifier += 1;
         effected.PassiveAttributes.ReceivedDamageInspiredModifier += 1;
     }
 
+    public override void Effect(Entity effected, double delta)
+    {
+        ReferenceNode = effected.Parent2D;
+    }
+
     public override void _Process(double delta)
     {
+
         if (ReferenceNode != null)
         {
             Bubble.Position = ReferenceNode.Position;

@@ -34,6 +34,8 @@ public partial class Player : CharacterBody2D, IEntityContainer
 		if(Multiplayer.IsServer() && InputHandler.GetJumpPressed())
 			GD.Print(Id);
 
+		Entity.PointingAt = InputHandler.PointingAt;
+
 		GravityHandler.HandleGravity(this, delta);
 		MovementHandler.HandleHorizontal(this, Entity, delta, InputHandler.HorizontalInput);
 		JumpHandler.HandleJump(this, InputHandler.GetJumpPressed(), InputHandler.GetJumpReleased());

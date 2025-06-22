@@ -9,7 +9,7 @@ public partial class EggThrowAbility : Ability
 
         var node = entity.Parent2D;
         
-        proj.Shoot(node.Position, node.GetGlobalMousePosition());
+        proj.Shoot(node.Position, entity.PointingAt);
         proj.OwnerEntity = entity;
         proj.AddCollisionExceptionWith(node);
 

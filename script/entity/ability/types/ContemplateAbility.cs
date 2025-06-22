@@ -7,7 +7,7 @@ public partial class ContemplateAbility : Ability
 
     public override double GetUseCostTotal(Entity ent)
     {
-        return ent.Stamina.Value * 0.9;
+        return ent.Stamina.Value * 0.9 * ent.PassiveAttributes.StaminaUsageModifier;
     }
 
     public override void Cast(Entity owner)

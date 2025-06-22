@@ -24,6 +24,7 @@ public partial class Entity : Node
 	public AttributeSemaphore IsCrippledHorizontally { get; set; } = 0;
 	public AttributeSemaphore IsCrippledVertically { get; set; } = 0;
 	public AttributeSemaphore IsSilenced { get; set; } = 0;
+	public Vector2 PointingAt { get; set; } = Vector2.Zero;
 
 	public bool IsCasting => Abilities.All.Where(a => a.IsCasting).Any();
 

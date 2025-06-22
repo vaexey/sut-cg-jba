@@ -1,14 +1,18 @@
 using Godot;
 using System;
 
-public partial class InputHandler : Node
+public partial class InputHandler : Node2D
 {
-    [Export]
+	[Export]
 	public virtual float HorizontalInput { get; set; } = 0;
+
+	[Export]
+	public virtual Vector2 PointingAt { get; set; } = Vector2.Zero;
 
 	public override void _Process(double delta)
 	{
 		HorizontalInput = Input.GetAxis("move_left", "move_right");
+		PointingAt = GetGlobalMousePosition();
 	}
 
 	public virtual bool GetJumpPressed() => Input.IsActionJustPressed("move_jump");
