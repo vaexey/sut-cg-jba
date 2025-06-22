@@ -28,7 +28,7 @@ public partial class PassiveAttributes : Node
 	[Export] public double StaminaRegen = 0.1;
 	[Export] public double StaminaUsageJump = 0.1;
 	[Export] public double StaminaMinJump = 0.15;
-	[Export] public float JumpVelocityBase = 350;
+	[Export] public float JumpVelocityBase = 375;
 	[Export] public float BaseSpeed { get; set; } = 200;
 	[Export] public float GroundAcceleration { get; set; } = 3000;
 	[Export] public float GroundDeceleration { get; set; } = 4000;
