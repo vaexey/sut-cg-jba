@@ -57,10 +57,9 @@ Entity = NodePath("Entity")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_u77ui")
-animation = &"death"
+animation = &"sleep"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
+frame_progress = 0.324856
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4flbx")

@@ -34,6 +34,10 @@ public partial class AnimationHandler : Node
             Sprite.Play("death");
             return;
         }
+        if (entity.IsSilenced) {
+            Sprite.Play("sleep", 2.0f);
+            return;
+        }
 
         if (body.IsOnFloor())
         {

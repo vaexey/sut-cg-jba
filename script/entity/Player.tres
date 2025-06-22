@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://ca264ghultx34"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://ca264ghultx34"]
 
 [ext_resource type="Texture2D" uid="uid://bhmy4df7eyk6m" path="res://art/player/midair/franzl_jump_320005.png" id="1_66o4e"]
 [ext_resource type="Texture2D" uid="uid://k44lixffdr5g" path="res://art/player/idle/franzl_idle320000.png" id="1_d2dvb"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://csoxer4wwpxhe" path="res://art/player/midair/franzl_jump_320004.png" id="13_qdsqc"]
 [ext_resource type="Texture2D" uid="uid://74umxu2xx2kx" path="res://art/player/walk/franzl_walk320007.png" id="13_w35lc"]
 [ext_resource type="Texture2D" uid="uid://ct30h1mb1oco6" path="res://art/player/walk/franzl_walk320000.png" id="14_qdsqc"]
+[ext_resource type="Texture2D" uid="uid://cwbni71c20t4n" path="res://art/player/cc/franzl_sleep_320000.png" id="17_w35lc"]
+[ext_resource type="Texture2D" uid="uid://dscpa1p77kpql" path="res://art/player/cc/franzl_sleep_320001.png" id="18_qdsqc"]
 
 [resource]
 animations = [{
@@ -94,6 +96,17 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_w35lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_qdsqc")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,

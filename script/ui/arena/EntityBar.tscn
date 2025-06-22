@@ -88,5 +88,7 @@ show_percentage = false
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jh18r")
+theme_override_font_sizes/font_size = 20
 text = "Franzl"
 horizontal_alignment = 1
