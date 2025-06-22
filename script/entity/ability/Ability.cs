@@ -20,13 +20,25 @@ public partial class Ability : Node
     public bool IsCasting => CastTimeLeft > 0;
     public bool IsOnCooldown => CooldownLeft > 0;
     
-    
 	[Signal]
 	public delegate void OnCastEventHandler();
 	[Signal]
 	public delegate void OnStartCastEventHandler();
 	[Signal]
 	public delegate void OnStopCastEventHandler();
+
+
+    public MultiplayerSynchronizer Sync { get; set; }
+    public override void _Ready()
+    {
+        Sync = new();
+        AddChild(Sync);
+
+        Sync.Name = $"OnReadySync";
+        Sync.ReplicationConfig = new();
+        Sync.ReplicationConfig.AddProperty($":CooldownLeft");
+        Sync.ReplicationConfig.AddProperty($":CastTimeLeft");
+    }
 
     public virtual AbilityUsageTrialResult CanUse(Entity owner)
     {
