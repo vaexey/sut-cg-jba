@@ -32,6 +32,11 @@ public partial class EntityBar : Control
 
         RIP.Visible = !Entity.IsAlive;
 
-        Title.Text = $"{((Player)Entity.Parent2D).Id}";
+        // Title.Text = $"{((Player)Entity.Parent2D).Id}";
+        var id = ((Player)Entity.Parent2D).Id;
+
+        Title.Text = id == Multiplayer.GetUniqueId()
+            ? "You"
+            : "Enemy";
     }
 }

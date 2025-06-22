@@ -134,6 +134,12 @@ public partial class Entity : Node
 		double flat = dmg.FlatValue + dmg.PercentageValue * Beverage.Max;
 		GD.Print($"Damage to {Name}: {dmg.FlatValue}(+{dmg.PercentageValue}%) == {flat}");
 
+		if (!IsAlive)
+		{
+			GD.Print($"Ignoring: dead already");
+			return;
+		}
+
 		if (dmg.Flags.HasFlag(DamageFlags.SourcePhysical))
 			flat = PassiveAttributes.PhysicalDamageProcess(flat);
 		if (dmg.Flags.HasFlag(DamageFlags.SourceInspired))
@@ -144,7 +150,10 @@ public partial class Entity : Node
 		Beverage.Value -= flat;
 		GD.Print($"AFTER: {Beverage.Value}");
 
-		EmitSignal(SignalName.OnDamaged);
+		if (flat > 0)
+		{
+			EmitSignal(SignalName.OnDamaged);
+		}
 	}
 
 	public void ConsumeStamina(double value)

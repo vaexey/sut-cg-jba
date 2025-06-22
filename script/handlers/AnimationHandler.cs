@@ -8,17 +8,21 @@ public partial class AnimationHandler : Node
     [Export]
     public AnimatedSprite2D Sprite { get; set; }
 
+    public ShaderMaterial Shader => (ShaderMaterial)Sprite.Material;
+
     private bool playedDeath = false;
     public void HandleHorizontalFlip(float direction)
     {
-        if(direction == 0)
+        if (direction == 0)
             return;
-        
+
         Sprite.FlipH = direction < 0;
     }
 
     public void HandleAnimations(CharacterBody2D body, Entity entity)
     {
+        var player = (Player)entity.Parent2D;
+        Shader.SetShaderParameter("enable", player.Id != 1);
 
         var animSpeed = entity.PassiveAttributes.Speed / 200;
         var isGoingUp = body.Velocity.Normalized().Y < 0;
@@ -45,7 +49,7 @@ public partial class AnimationHandler : Node
             }
             else
             {
-                Sprite.Play("death");
+                Sprite.Play("guitar");
             }
 
             return;
@@ -60,11 +64,6 @@ public partial class AnimationHandler : Node
         if (entity.IsCrippledHorizontally || entity.IsCrippledVertically)
         {
             // cripple
-        }
-        if (entity.IsCasting)
-        {
-            Sprite.Play("guitar");
-            return;
         }
 
         if (body.IsOnFloor())
@@ -93,19 +92,20 @@ public partial class AnimationHandler : Node
     public async void OnDamaged()
     {
         // flash red
-        Sprite.Modulate = new Color(1, 0, 0);
+
+        Shader.SetShaderParameter("modulate", new Color(1, 0, 0));
         await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-        Sprite.Modulate = Colors.White;
+        // Shader.SetShaderParameter("modulate", Colors.White);
 
         // flash white
-        Sprite.Modulate = new Color(1, 1, 1);
+        Shader.SetShaderParameter("modulate", new Color(1, 1, 1));
         await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-        Sprite.Modulate = Colors.White;
+        // Shader.SetShaderParameter("modulate", Colors.White);
 
         // flash red again
-        Sprite.Modulate = new Color(1, 0, 0);
+        Shader.SetShaderParameter("modulate", new Color(1, 0, 0));
         await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-        Sprite.Modulate = Colors.White;
+        Shader.SetShaderParameter("modulate", Colors.White);
     }
 
 }

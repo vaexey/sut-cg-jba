@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://15x7xjj815am"]
+[gd_scene load_steps=37 format=3 uid="uid://15x7xjj815am"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
+[ext_resource type="Shader" uid="uid://cqpyc441558oq" path="res://shader/recolor.gdshader" id="2_1rc4n"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_kobav"]
 [ext_resource type="PackedScene" uid="uid://dc4uv7x5xhjyl" path="res://script/ui/arena/EntityBar.tscn" id="3_nelh1"]
 [ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="4_afjq7"]
@@ -40,6 +41,16 @@ properties/1/path = NodePath(".:Id")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebik6"]
+resource_local_to_scene = true
+shader = ExtResource("2_1rc4n")
+shader_parameter/enable = false
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/hue_shift = 0.38
+shader_parameter/hue_min = 42.1
+shader_parameter/hue_max = 123.5
+shader_parameter/hue_overlap = 5.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 18.0
 height = 58.0
@@ -66,13 +77,14 @@ Entity = NodePath("Entity")
 replication_config = SubResource("SceneReplicationConfig_wm5x6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebik6")
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_kobav")
-animation = &"guitar"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.781273
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="EntityBar" parent="." node_paths=PackedStringArray("Entity") instance=ExtResource("3_nelh1")]
