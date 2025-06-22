@@ -12,6 +12,7 @@ properties/1/replication_mode = 1
 
 [node name="JodelversExplosion" type="CharacterBody2D" node_paths=PackedStringArray("FadedObject")]
 collision_layer = 0
+collision_mask = 9
 script = ExtResource("1_cqv02")
 FadedObject = NodePath("Polygon2D")
 ProjectileVelocity = 0.0
