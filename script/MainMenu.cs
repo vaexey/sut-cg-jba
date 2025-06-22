@@ -14,10 +14,10 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
-        this.abilityMenu = GetNode<Control>("SubmenuContainer/AbilitiesMenu");
-        this.attrMenu = GetNode<Control>("SubmenuContainer/AttrMenu");
-        this.abilityMenu.Hide();
-        this.attrMenu.Show();
+        abilityMenu = GetNode<Control>("SubmenuContainer/AbilitiesMenu");
+        attrMenu = GetNode<Control>("SubmenuContainer/AttrMenu");
+        // abilityMenu.Hide();
+        // attrMenu.Show();
     }
 
     public void OnStartClick()
@@ -35,13 +35,18 @@ public partial class MainMenu : Control
 
     public void OnAbilitiesClick()
     {
-        this.abilityMenu.Show();
-        this.attrMenu.Hide();
+        abilityMenu.Show();
+        attrMenu.Hide();
     }
 
     public void OnAttributesClick()
     {
-        this.abilityMenu.Hide();
-        this.attrMenu.Show();
+        abilityMenu.Hide();
+        attrMenu.Show();
+    }
+
+    public void OnQuitClick()
+    {
+        GetTree().Quit();
     }
 }

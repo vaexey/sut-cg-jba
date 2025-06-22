@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b3ly7woe8uiu2"]
+[gd_scene load_steps=18 format=4 uid="uid://b3ly7woe8uiu2"]
 
 [ext_resource type="Script" uid="uid://dsh1iskx3mp2" path="res://script/Arena.cs" id="1_d70xx"]
 [ext_resource type="Shader" uid="uid://bdvuldymtq3uw" path="res://shader/blur.gdshader" id="2_iw0c0"]
@@ -11,6 +11,9 @@
 [ext_resource type="Material" uid="uid://cir8jyqs4gq3p" path="res://art/material/blur.tres" id="9_38jan"]
 [ext_resource type="PackedScene" uid="uid://bgyqe8wqw53kb" path="res://script/ui/arena/ArenaUI.tscn" id="10_iw0c0"]
 [ext_resource type="Script" uid="uid://n84es0kxwrat" path="res://script/ArenaCamera2D.cs" id="10_k7ccj"]
+[ext_resource type="AudioStream" uid="uid://bhqfpnbroqqqg" path="res://sound/ui/victory.mp3" id="10_wqdsx"]
+[ext_resource type="AudioStream" uid="uid://ct5ss1ejgmbpw" path="res://sound/ui/defeat.mp3" id="11_4qn5d"]
+[ext_resource type="AudioStream" uid="uid://ml3sdhg8tu06" path="res://sound/ui/music_jodelexpress.mp3" id="12_4qn5d"]
 [ext_resource type="PackedScene" uid="uid://6p5puirwbkw4" path="res://script/ui/arena/PauseUI.tscn" id="13_wqdsx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n068f"]
@@ -18,6 +21,11 @@ shader = ExtResource("2_iw0c0")
 shader_parameter/radius = 1
 shader_parameter/minAlpha = 0.0
 shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k7ccj"]
+properties/0/path = NodePath(".:GameActive")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Arena" type="Node"]
 script = ExtResource("1_d70xx")
@@ -114,6 +122,9 @@ EntitiesContainer = NodePath("Entities")
 LeftSpawn = NodePath("LeftSpawn")
 RightSpawn = NodePath("RightSpawn")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="World"]
+replication_config = SubResource("SceneReplicationConfig_k7ccj")
+
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="World"]
 _spawnable_scenes = PackedStringArray("uid://dwi6tffqacc7", "uid://cm4gvftaf3uku", "uid://bslc3kpronha5", "uid://b1bqw5ci54bip", "uid://cd0ec86xs7mwk", "uid://cgjdimtgskft6")
 spawn_path = NodePath("..")
@@ -145,6 +156,20 @@ position = Vector2(-410, 621)
 [node name="RightSpawn" type="Node2D" parent="World"]
 position = Vector2(971, 618)
 
+[node name="GlobalSounds" type="Node" parent="World"]
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="World/GlobalSounds"]
+stream = ExtResource("10_wqdsx")
+
+[node name="DefeatSound" type="AudioStreamPlayer" parent="World/GlobalSounds"]
+stream = ExtResource("11_4qn5d")
+
+[node name="ArenaMusic" type="AudioStreamPlayer" parent="World/GlobalSounds"]
+process_mode = 3
+stream = ExtResource("12_4qn5d")
+volume_db = -24.0
+autoplay = true
+
 [node name="Foreground" type="Node" parent="."]
 
 [node name="ForegroundBlur" type="CanvasGroup" parent="Foreground"]
@@ -174,3 +199,6 @@ World = NodePath("../../World")
 [node name="EntitySpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://15x7xjj815am")
 spawn_path = NodePath("../World/Entities")
+
+[connection signal="OnDefeat" from="World" to="World/GlobalSounds/DefeatSound" method="play"]
+[connection signal="OnVictory" from="World" to="World/GlobalSounds/VictorySound" method="play"]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dj0hp6hmad8n3"]
+[gd_scene load_steps=11 format=3 uid="uid://dj0hp6hmad8n3"]
 
 [ext_resource type="Script" uid="uid://8dbmf5bvm0nc" path="res://script/MainMenu.cs" id="1_k85ta"]
 [ext_resource type="Texture2D" uid="uid://n3kp1lak83x" path="res://art/bg/mountain1/1.png" id="2_daanv"]
 [ext_resource type="Texture2D" uid="uid://drjxfb0iexy2p" path="res://art/bg/mountain1/2.png" id="3_w2vuu"]
 [ext_resource type="Texture2D" uid="uid://d1qavkqld7ddk" path="res://art/bg/mountain1/4.png" id="4_r31ta"]
+[ext_resource type="Texture2D" uid="uid://cdufpnpwm36ht" path="res://art/player/cast/franzl_autojodler_320001.png" id="5_ei551"]
 [ext_resource type="Texture2D" uid="uid://ge34hfm148s2" path="res://art/player/franzl_hat1.png" id="5_r31ta"]
 [ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="6_erklv"]
 [ext_resource type="PackedScene" uid="uid://b30elxkh63dq4" path="res://script/ui/menu/AttrMenu.tscn" id="7_2mitb"]
 [ext_resource type="PackedScene" uid="uid://d3dksuurggmrm" path="res://script/ui/menu/AbilitiesMenu.tscn" id="8_2mitb"]
+[ext_resource type="AudioStream" uid="uid://clohif7r6o1ag" path="res://sound/ui/music_konigsjodler.mp3" id="10_cy40j"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -53,6 +55,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_r31ta")
 
+[node name="Icon2" type="TextureRect" parent="Background"]
+offset_left = 624.0
+offset_top = 235.0
+offset_right = 865.0
+offset_bottom = 476.0
+texture = ExtResource("5_ei551")
+flip_h = true
+
 [node name="Icon" type="TextureRect" parent="Background"]
 layout_mode = 0
 offset_left = 51.0
@@ -91,6 +101,7 @@ theme_override_font_sizes/font_size = 42
 text = "Join arena"
 
 [node name="AbilitiesBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_erklv")
 theme_override_font_sizes/font_size = 42
@@ -98,6 +109,7 @@ text = "Abilities
 "
 
 [node name="AttributesBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_erklv")
 theme_override_font_sizes/font_size = 42
@@ -126,10 +138,17 @@ grow_vertical = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="AttrMenu" parent="SubmenuContainer" instance=ExtResource("7_2mitb")]
+visible = false
 layout_mode = 2
 
 [node name="AbilitiesMenu" parent="SubmenuContainer" instance=ExtResource("8_2mitb")]
+visible = false
 layout_mode = 2
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_cy40j")
+volume_db = -30.0
+autoplay = true
 
 [connection signal="gui_input" from="." to="." method="OnGuiInput"]
 [connection signal="ready" from="." to="." method="_Ready"]
@@ -137,3 +156,4 @@ layout_mode = 2
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinBtn" to="." method="OnJoinClick"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AbilitiesBtn" to="." method="OnAbilitiesClick"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AttributesBtn" to="." method="OnAttributesClick"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitBtn" to="." method="OnQuitClick"]
