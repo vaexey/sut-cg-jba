@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bvb0sie53xfv8"
-path="res://.godot/imported/auto_jodler_1.wav-420c0650e1ece9fca7e35b8bca79bb41.sample"
+path="res://.godot/imported/jump1.wav-1e8e221800853a82c1174bb31bff4bab.sample"
 
 [deps]
 
-source_file="res://sound/effects/auto_jodler_1.wav"
-dest_files=["res://.godot/imported/auto_jodler_1.wav-420c0650e1ece9fca7e35b8bca79bb41.sample"]
+source_file="res://sound/player/jump/jump1.wav"
+dest_files=["res://.godot/imported/jump1.wav-1e8e221800853a82c1174bb31bff4bab.sample"]
 
 [params]
 

@@ -117,5 +117,7 @@ public partial class World : Node2D
 
         foreach (var proj in Projectiles)
             proj.QueueFree();
+
+        GameActive = true;
     }
 }

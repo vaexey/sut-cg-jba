@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwuud6qdp0gwh"]
+[gd_scene load_steps=4 format=3 uid="uid://bwuud6qdp0gwh"]
 
 [ext_resource type="Script" uid="uid://bfrqc2eblo7bb" path="res://script/entity/ability/types/AutoJodlerAbility.cs" id="1_qxqwv"]
 [ext_resource type="Texture2D" uid="uid://cp4blq0nsfwyj" path="res://art/ui/icon/ability/auto_jodler.png" id="2_ry8u2"]
+[ext_resource type="AudioStream" uid="uid://gaawrdnps3fn" path="res://sound/ability/auto_jodler_cast.mp3" id="3_qtocq"]
 
 [node name="AutoJodlerAbility" type="Node2D"]
 script = ExtResource("1_qxqwv")
@@ -13,3 +14,11 @@ CastMode = 4
 CastTime = 0.5
 Cooldown = 5.0
 UseCostFlat = 15.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qtocq")
+volume_db = -18.0
+pitch_scale = 1.2
+
+[connection signal="OnStartCast" from="." to="AudioStreamPlayer2D" method="play"]
+[connection signal="OnStopCast" from="." to="AudioStreamPlayer2D" method="stop"]
