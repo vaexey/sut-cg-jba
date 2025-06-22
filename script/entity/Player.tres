@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://ca264ghultx34"]
+[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://ca264ghultx34"]
 
 [ext_resource type="Texture2D" uid="uid://5g7hy6s2vjmo" path="res://art/player/cast/franzl_autojodler_320000.png" id="1_0q2k7"]
 [ext_resource type="Texture2D" uid="uid://bhmy4df7eyk6m" path="res://art/player/midair/franzl_jump_320005.png" id="1_66o4e"]
@@ -16,13 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://b6hed1tp3lhxy" path="res://art/player/idle/franzl_idle320005.png" id="6_mtehr"]
 [ext_resource type="Texture2D" uid="uid://c88t4b47rejqj" path="res://art/player/walk/franzl_walk320001.png" id="7_0hxbt"]
 [ext_resource type="Texture2D" uid="uid://hmidytsx4jur" path="res://art/player/walk/franzl_walk320002.png" id="8_66o4e"]
+[ext_resource type="Texture2D" uid="uid://b5m5qp8qn0ncj" path="res://art/player/cast/franzl_guitar_cast_320000.png" id="9_jhih2"]
 [ext_resource type="Texture2D" uid="uid://d0lkn1lti55li" path="res://art/player/walk/franzl_walk320003.png" id="9_k58ca"]
 [ext_resource type="Texture2D" uid="uid://fsjcba3kicgx" path="res://art/player/walk/franzl_walk320004.png" id="10_3xwcu"]
+[ext_resource type="Texture2D" uid="uid://dy3aonscc42fd" path="res://art/player/cast/franzl_guitar_cast_320001.png" id="10_b5fo4"]
 [ext_resource type="Texture2D" uid="uid://bv1qa83rocbh7" path="res://art/player/midair/franzl_jump_320001.png" id="10_hgqsw"]
 [ext_resource type="Texture2D" uid="uid://cqpel82s0rb4g" path="res://art/player/midair/franzl_jump_320002.png" id="11_6bk32"]
+[ext_resource type="Texture2D" uid="uid://qma4swk7awyc" path="res://art/player/cast/franzl_guitar_cast_320002.png" id="11_cg7uv"]
 [ext_resource type="Texture2D" uid="uid://lvkhgde8614" path="res://art/player/walk/franzl_walk320005.png" id="11_hgqsw"]
 [ext_resource type="Texture2D" uid="uid://yciotdrnrt57" path="res://art/player/walk/franzl_walk320006.png" id="12_6bk32"]
+[ext_resource type="Texture2D" uid="uid://b012k4f880exp" path="res://art/player/cast/franzl_guitar_cast_320003.png" id="12_42t1y"]
 [ext_resource type="Texture2D" uid="uid://cpoqm4btgpxhl" path="res://art/player/midair/franzl_jump_320003.png" id="12_w35lc"]
+[ext_resource type="Texture2D" uid="uid://cod1lptsjeo3n" path="res://art/player/cast/franzl_guitar_cast_320004.png" id="13_740ns"]
 [ext_resource type="Texture2D" uid="uid://csoxer4wwpxhe" path="res://art/player/midair/franzl_jump_320004.png" id="13_qdsqc"]
 [ext_resource type="Texture2D" uid="uid://74umxu2xx2kx" path="res://art/player/walk/franzl_walk320007.png" id="13_w35lc"]
 [ext_resource type="Texture2D" uid="uid://ct30h1mb1oco6" path="res://art/player/walk/franzl_walk320000.png" id="14_qdsqc"]
@@ -75,6 +80,26 @@ animations = [{
 "loop": false,
 "name": &"fall",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_jhih2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b5fo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cg7uv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_42t1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_740ns")
+}],
+"loop": true,
+"name": &"guitar",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,

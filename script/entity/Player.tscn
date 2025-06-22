@@ -68,9 +68,9 @@ replication_config = SubResource("SceneReplicationConfig_wm5x6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_kobav")
-animation = &"sleep"
+animation = &"guitar"
 autoplay = "idle"
-frame_progress = 0.826882
+frame_progress = 0.781273
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4flbx")

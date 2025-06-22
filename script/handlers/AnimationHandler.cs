@@ -43,6 +43,11 @@ public partial class AnimationHandler : Node
         {
             // cripple
         }
+        if (entity.IsCasting)
+        {
+            Sprite.Play("guitar");
+            return;
+        }
 
         if (body.IsOnFloor())
         {
