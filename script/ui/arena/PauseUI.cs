@@ -3,37 +3,160 @@ using System;
 
 public partial class PauseUI : CanvasLayer
 {
-    // [Export] World World { get; set; }
+    [Export] World World { get; set; }
+    [Export] Control Container { get; set; }
+
+    [Export] Control WaitingControl { get; set; }
+    [Export] Control VictoryControl { get; set; }
+    [Export] Control DefeatControl { get; set; }
+
+    public double DelayTime { get; set; } = 5;
+
+    public double PauseTime = 0;
+    public double UnpauseTime = 0;
+
+    public ulong LastProcess;
+
+    public override void _Ready()
+    {
+        LastProcess = Time.GetTicksMsec();
+    }
+
+    protected double TimingFunction(double scale)
+    {
+        return Math.Pow(scale, 1 / 4.0);
+    }
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("game_pause"))
-        {
-            Pause();
-        }
+        // if (!Multiplayer.IsServer()) return;
 
+        // if (Input.IsActionJustPressed("game_pause"))
+        // {
+        //     Pause();
+        // }
+
+        var now = Time.GetTicksMsec();
+        double realDelta = (now - LastProcess) / 1000.0;
+        LastProcess = now;
+
+        if (ShouldBeWaiting())
+        {
+            UnpauseTime = DelayTime;
+            Visible = true;
+
+            if (!GetTree().Paused)
+            {
+                if (PauseTime <= 0)
+                {
+                    GetTree().Paused = true;
+                    PauseTime = DelayTime;
+                    Container.Modulate = Colors.White;
+                }
+                else
+                {
+                    PauseTime = Mathf.MoveToward(PauseTime, 0, realDelta);
+
+                    var scale = TimingFunction(1 - PauseTime / DelayTime);
+
+                    GD.Print($"Pausing: {scale * 100}%");
+                    Engine.TimeScale = Math.Max(0.01, 1 - scale);
+                    Container.Modulate = new Color(Colors.White, (float)scale);
+                }
+            }
+        }
+        else
+        {
+            PauseTime = DelayTime;
+            if (GetTree().Paused)
+            {
+                UnpauseTime = DelayTime;
+                GetTree().Paused = false;
+            }
+            else
+            {
+                if (UnpauseTime <= 0)
+                {
+                    Engine.TimeScale = 1;
+                    Visible = false;
+                }
+                else
+                {
+                    UnpauseTime = Mathf.MoveToward(UnpauseTime, 0, realDelta);
+
+                    var scale = TimingFunction(1 - UnpauseTime / DelayTime);
+                    
+                    GD.Print($"Unpausing: {scale * 100}%");
+                    Engine.TimeScale = Math.Max(0.01, scale);
+                    Container.Modulate = new Color(Colors.White, 1f - (float)scale);
+                }
+            }
+        }
     }
 
-    public void OnResumeButton()
+    protected bool ShouldBeWaiting()
     {
-        Unpause();
+        if (World == null || World.LocalPlayer == null || World.RemotePlayer == null)
+        {
+            WaitingControl.Visible = true;
+            VictoryControl.Visible = false;
+            DefeatControl.Visible = false;
+            return true;
+        }
+
+        if (!World.LocalPlayer.Entity.IsAlive)
+        {
+            WaitingControl.Visible = false;
+            VictoryControl.Visible = false;
+            DefeatControl.Visible = true;
+            return true;
+        }
+
+        if (!World.RemotePlayer.Entity.IsAlive)
+        {
+            WaitingControl.Visible = false;
+            VictoryControl.Visible = true;
+            DefeatControl.Visible = false;
+            return true;
+        }
+
+        WaitingControl.Visible = false;
+        VictoryControl.Visible = false;
+        DefeatControl.Visible = false;
+        return false;
     }
 
     public void OnQuitButton()
     {
-        Unpause();
+        // Unpause();
+        GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://script/MainMenu.tscn");
     }
 
-    private void Pause()
-    {
-        GetTree().Paused = true;
-        Visible = true;
-    }
+    // private void Pause()
+    // {
+    //     if (!GetTree().Paused)
+    //     {
+    //         if (Time <= 0)
+    //         {
+    //             GetTree().Paused = true;
+    //             Visible = true;
+    //             Time = DelayTime;
+    //         }
+    //     }
+    // }
 
-    private void Unpause()
-    {
-        GetTree().Paused = false;
-        Visible = false;
-    }
+    // private void Unpause()
+    // {
+    //     if (GetTree().Paused)
+    //     {
+    //         GetTree().Paused = false;
+    //         Visible = false;
+
+    //         if (Time <= 0)
+    //         {
+    //             Time = DelayTime;
+    //         }
+    //     }
+    // }
 }

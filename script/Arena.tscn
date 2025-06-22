@@ -160,8 +160,9 @@ collision_enabled = false
 [node name="ArenaUI" parent="UI" node_paths=PackedStringArray("World") instance=ExtResource("10_iw0c0")]
 World = NodePath("../../World")
 
-[node name="PauseUI" parent="UI" instance=ExtResource("13_wqdsx")]
+[node name="PauseUI" parent="UI" node_paths=PackedStringArray("World") instance=ExtResource("13_wqdsx")]
+World = NodePath("../../World")
 
 [node name="EntitySpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://15x7xjj815am", "res://script/entity/RemotePlayer.tscn")
+_spawnable_scenes = PackedStringArray("uid://15x7xjj815am")
 spawn_path = NodePath("../World/Entities")
