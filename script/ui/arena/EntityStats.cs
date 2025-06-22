@@ -15,6 +15,14 @@ public partial class EntityStats : Control
 
     public override void _Process(double delta)
     {
+        if (Entity == null)
+        {
+            Visible = false;
+            return;
+        }
+
+        Visible = true;
+
         // BeverageBar.Value = Entity.Beverage.Percentage * 100;
         // StaminaBar.Value = Entity.Stamina.Percentage * 100;
         // InspirationBar.Value = Entity.Inspiration.Percentage * 100;

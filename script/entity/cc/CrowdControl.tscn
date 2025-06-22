@@ -4,3 +4,7 @@
 
 [node name="CrowdControl" type="Node"]
 script = ExtResource("1_thfb6")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://31p3nsm3xfcw", "uid://bx7nhbihqylew", "uid://h1cwcuaovmue", "uid://dkq5vwloh6bm8", "uid://dl26pv3rmyip1", "uid://gr51bo6kosd1")
+spawn_path = NodePath("..")

@@ -1,8 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgjdimtgskft6"]
+[gd_scene load_steps=14 format=3 uid="uid://cgjdimtgskft6"]
 
 [ext_resource type="Script" uid="uid://cvjxeiaeipvmo" path="res://script/projectile/types/MedleyExplosion.cs" id="1_23ro0"]
 [ext_resource type="AudioStream" uid="uid://bcboqncbahx0s" path="res://sound/ability/medley_explosion.mp3" id="2_2cqi5"]
 [ext_resource type="Texture2D" uid="uid://cqnbr2mr0ppnp" path="res://art/projectile/smoke..png" id="2_dm2ye"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dm2ye"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:MPS_TimeLeft")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdmvu"]
 atlas = ExtResource("2_dm2ye")
@@ -84,6 +92,9 @@ DestroyAfterTime = 3.0
 DamageFlat = 1.0
 DamagePercentage = 0.005
 DamageFlags = 8
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_dm2ye")
 
 [node name="RightCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(32, 0, 250, 14, 350, 150, 475, 15, 380, 0, 475, -15, 350, -150, 250, -14)

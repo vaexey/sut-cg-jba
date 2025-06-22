@@ -76,12 +76,19 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="StartBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HostBtn" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_erklv")
 theme_override_font_sizes/font_size = 42
-text = "Play"
+text = "Start arena"
+
+[node name="JoinBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_erklv")
+theme_override_font_sizes/font_size = 42
+text = "Join arena"
 
 [node name="AbilitiesBtn" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -126,6 +133,7 @@ layout_mode = 2
 
 [connection signal="gui_input" from="." to="." method="OnGuiInput"]
 [connection signal="ready" from="." to="." method="_Ready"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartBtn" to="." method="OnStartClick"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HostBtn" to="." method="OnStartClick"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JoinBtn" to="." method="OnJoinClick"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AbilitiesBtn" to="." method="OnAbilitiesClick"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AttributesBtn" to="." method="OnAttributesClick"]

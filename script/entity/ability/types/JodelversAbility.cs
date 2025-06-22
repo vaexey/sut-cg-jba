@@ -9,7 +9,7 @@ public partial class JodelversAbility : Ability
 
         var node = owner.Parent2D;
 
-        proj.Shoot(node.Position, node.GetGlobalMousePosition());
+        proj.Shoot(node.Position, owner.PointingAt);
         proj.OwnerEntity = owner;
         proj.AddCollisionExceptionWith(node);
 

@@ -16,6 +16,13 @@ public partial class AbilityBar : Control
 
     public override void _Process(double delta)
     {
+        if (Entity == null)
+        {
+            Visible = false;
+            return;
+        }
+        Visible = true;
+
         // TODO: Probably not efficient
         Complex1.Entity = Entity;
         Complex2.Entity = Entity;

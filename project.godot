@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="jodler-base-arena"
-run/main_scene="uid://b3ly7woe8uiu2"
+run/main_scene="uid://dj0hp6hmad8n3"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MultiplayerManager="*res://script/multiplayer/MultiplayerManager.cs"
 
 [display]
 

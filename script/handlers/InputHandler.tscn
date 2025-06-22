@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dh7lhath23mpt" path="res://script/handlers/InputHandler.cs" id="1_eg2xx"]
 
-[node name="InputHandler" type="Node"]
+[node name="InputHandler" type="Node2D"]
 script = ExtResource("1_eg2xx")

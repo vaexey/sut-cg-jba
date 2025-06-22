@@ -23,6 +23,11 @@ public partial class ArenaUI : CanvasLayer
 
     public override void _Process(double delta)
     {
+        if (World.LeftPlayer == null)
+        {
+            return;
+        }
+
         // StatsLabel.Text = $"Beverage: {
         //         Player.Entity.Beverage.Percentage
         //     }\nStamina: {
@@ -30,10 +35,16 @@ public partial class ArenaUI : CanvasLayer
         //     }\nInspiration: {
         //         Player.Entity.Inspiration.Percentage
         //     }";
-        StatsLabel.Text = "CC: " + World.Player.Entity.CC.GetEffects().Select(cc => cc.DisplayName).ToArray().Join(", ");
+        StatsLabel.Text = "CC: " + World.LocalPlayer.Entity.CC.GetEffects().Select(cc => cc.DisplayName).ToArray().Join(", ");
+        AbilityBar.Entity = World.LocalPlayer.Entity;
 
-        AbilityBar.Entity = World.Player.Entity;
-        PlayerStats.Entity = World.Player.Entity;
-        EnemyStats.Entity = World.GetEnemy().Entity;
+        PlayerStats.Entity = World.LeftPlayer.Entity;
+
+        if (World.RightPlayer == null)
+        {
+            return;
+        }
+
+        EnemyStats.Entity = World.RightPlayer.Entity;
     }
 }

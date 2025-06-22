@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1bqw5ci54bip"]
+[gd_scene load_steps=10 format=3 uid="uid://b1bqw5ci54bip"]
 
 [ext_resource type="Script" uid="uid://thutoq5u1it1" path="res://script/projectile/types/KegThrowExplosion.cs" id="1_ajwkp"]
 [ext_resource type="Texture2D" uid="uid://br26yhmk70qfk" path="res://art/tiles/village_props.png" id="1_vyan1"]
 [ext_resource type="SpriteFrames" uid="uid://dsukimlfb7ned" path="res://art/projectile/explosions/gas1/gas1.tres" id="2_1y786"]
 [ext_resource type="Shader" uid="uid://8q3nh3iff8bh" path="res://shader/hue.gdshader" id="2_l1s58"]
 [ext_resource type="AudioStream" uid="uid://bwbeise87d6j3" path="res://sound/ability/keg_throw_explosion.mp3" id="4_5achx"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l1s58"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ib6w4"]
 shader = ExtResource("2_l1s58")
@@ -30,6 +35,9 @@ FadeTime = 1.0
 DestroyAfterTime = 1.0
 DamageFlat = 40.0
 DamageFlags = 4
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_l1s58")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ib6w4")

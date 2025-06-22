@@ -35,9 +35,8 @@ CastingBar = NodePath("VBoxContainer/CastingInfo/ProgressBar")
 layout_mode = 1
 anchors_preset = -1
 offset_left = -41.0
-offset_top = -90.0
+offset_top = -116.0
 offset_right = 41.0
-offset_bottom = -3.0
 grow_horizontal = 2
 alignment = 2
 

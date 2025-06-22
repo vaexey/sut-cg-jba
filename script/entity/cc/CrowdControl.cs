@@ -38,7 +38,7 @@ public partial class CrowdControl : Node
             }
         }
 
-        AddChild(effect);
+        AddChild(effect, true);
         effect.Start(ParentEntity);
     }
 
@@ -50,6 +50,8 @@ public partial class CrowdControl : Node
 
     public void Cleanse()
     {
+        if (!Multiplayer.IsServer()) return;
+
         var effects = GetEffects();
     
         foreach (var cc in effects)
@@ -76,10 +78,12 @@ public partial class CrowdControl : Node
 
             cc.Time -= delta;
 
-            if(cc.Time <= 0)
+            if (cc.Time <= 0)
             {
                 cc.End(ParentEntity);
-                cc.QueueFree();
+
+                if (Multiplayer.IsServer())
+                    cc.QueueFree();
             }
         }
     }

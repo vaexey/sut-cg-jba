@@ -24,6 +24,7 @@ public partial class Entity : Node
 	public AttributeSemaphore IsCrippledHorizontally { get; set; } = 0;
 	public AttributeSemaphore IsCrippledVertically { get; set; } = 0;
 	public AttributeSemaphore IsSilenced { get; set; } = 0;
+	public Vector2 PointingAt { get; set; } = Vector2.Zero;
 
 	public bool IsCasting => Abilities.All.Where(a => a.IsCasting).Any();
 
@@ -33,8 +34,17 @@ public partial class Entity : Node
 	[Signal]
 	public delegate void OnDamagedEventHandler();
 
-	[Export]
-	public WorldType World { get; set; }
+	// [Export]
+	// public WorldType World { get; set; }
+	public WorldType World => WorldType.FindFor(this);
+
+	[ExportSubgroup("Multiplayer sync")]
+	[Export] private double MPS_Beverage { get => Beverage.Percentage; set => Beverage.Percentage = value; } 
+	[Export] private double MPS_Stamina { get => Stamina.Percentage; set => Stamina.Percentage = value; } 
+	[Export] private double MPS_Inspiration { get => Inspiration.Percentage; set => Inspiration.Percentage = value; }
+	[Export] private int MPS_IsCrippledHorizontally { get => IsCrippledHorizontally; set => IsCrippledHorizontally = value; }
+	[Export] private int MPS_IsCrippledVertically { get => IsCrippledVertically; set => IsCrippledVertically = value; }
+	[Export] private int MPS_IsSilenced { get => IsSilenced; set => IsSilenced = value; }
 
 	public Entity()
 	{
@@ -53,10 +63,10 @@ public partial class Entity : Node
 		);
 	}
 
-	public override void _Ready()
-	{
-		World = WorldType.FindFor(this);
-	}
+	// public override void _Ready()
+	// {
+	// 	World = WorldType.FindFor(this);
+	// }
 
 	public override void _PhysicsProcess(double delta)
 	{

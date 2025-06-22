@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D, IEntityContainer
 {
 	[ExportSubgroup("Handlers")]
 	[Export] public GravityHandler GravityHandler { get; set; }
-	[Export] public InputHandler InputHandler { get; set; }
+	[Export] public RemoteInputHandler InputHandler { get; set; }
 	[Export] public MovementHandler MovementHandler { get; set; }
 	[Export] public JumpHandler JumpHandler { get; set; }
 	[Export] public AnimationHandler AnimationHandler { get; set; }
@@ -16,17 +16,25 @@ public partial class Player : CharacterBody2D, IEntityContainer
 	[Export]
 	public Entity Entity { get; set; }
 
+	[ExportSubgroup("Multiplayer")]
+	[Export] public long Id { get; set; }
+
     // public override string[] _GetConfigurationWarnings()
-    // {
-    //     return Assertions.Stack(base._GetConfigurationWarnings())
+	// {
+	//     return Assertions.Stack(base._GetConfigurationWarnings())
 	// 		.AssertNotNull(GravityHandler)
 	// 		.AssertNotNull(InputHandler)
 	// 		.AssertNotNull(JumpHandler);
-    // }
+	// }
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
+
+		if(Multiplayer.IsServer() && InputHandler.GetJumpPressed())
+			GD.Print(Id);
+
+		Entity.PointingAt = InputHandler.PointingAt;
 
 		GravityHandler.HandleGravity(this, delta);
 		MovementHandler.HandleHorizontal(this, Entity, delta, InputHandler.HorizontalInput);
@@ -35,14 +43,16 @@ public partial class Player : CharacterBody2D, IEntityContainer
 		// AnimationHandler.HandleWalk(this.Entity.PassiveAttributes.Speed);
 		AnimationHandler.HandleAnimations(this, this.Entity);
 
+		AbilityHandler.HandleAbilities(Entity, InputHandler, delta);
+
+		InputHandler.ResetInputSemaphores();
+
 		MoveAndSlide();
 	}
 
     public override void _Process(double delta)
     {
 		// TODO: propagate delta
-		AbilityHandler.HandleAbilities(Entity, InputHandler, delta);
-
 		// if(Input.IsActionJustPressed("ability_basic"))
 		// {
 		// 	var proj = ProjectileLibrary.AutoJodlerProjectile.Make();

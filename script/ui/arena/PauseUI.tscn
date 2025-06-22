@@ -2,12 +2,24 @@
 
 [ext_resource type="Script" uid="uid://brhxaa75ogoyh" path="res://script/ui/arena/PauseUI.cs" id="1_nq2lc"]
 
-[node name="PauseUI" type="CanvasLayer"]
+[node name="PauseUI" type="CanvasLayer" node_paths=PackedStringArray("Container", "WaitingControl", "VictoryControl", "DefeatControl")]
 process_mode = 3
-visible = false
 script = ExtResource("1_nq2lc")
+Container = NodePath("Container")
+WaitingControl = NodePath("Container/CenterContainer/WaitingControl")
+VictoryControl = NodePath("Container/CenterContainer/VictoryControl")
+DefeatControl = NodePath("Container/CenterContainer/DefeatControl")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Container"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,32 +27,76 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.521569)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.5
-offset_top = -59.5
-offset_right = 99.5
-offset_bottom = 59.5
+[node name="CenterContainer" type="CenterContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="WaitingControl" type="VBoxContainer" parent="Container/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/CenterContainer/WaitingControl"]
+layout_mode = 2
+text = "Waiting for other player to join...
+"
+horizontal_alignment = 1
+
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/WaitingControl"]
+layout_mode = 2
+text = "Quit"
+
+[node name="VictoryControl" type="VBoxContainer" parent="Container/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/CenterContainer/VictoryControl"]
+layout_mode = 2
+text = "Victory
+"
+horizontal_alignment = 1
+
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/VictoryControl"]
+layout_mode = 2
+text = "Quit"
+
+[node name="DefeatControl" type="VBoxContainer" parent="Container/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/CenterContainer/DefeatControl"]
+layout_mode = 2
+text = "Defeat
+"
+horizontal_alignment = 1
+
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/DefeatControl"]
+layout_mode = 2
+text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Paused
 "
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="Container/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Container/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="OnResumeButton"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/WaitingControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/VictoryControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/DefeatControl/QuitButton" to="." method="OnQuitButton"]
+[connection signal="pressed" from="Container/CenterContainer/VBoxContainer/ResumeButton" to="." method="OnResumeButton"]
+[connection signal="pressed" from="Container/CenterContainer/VBoxContainer/QuitButton" to="." method="OnQuitButton"]

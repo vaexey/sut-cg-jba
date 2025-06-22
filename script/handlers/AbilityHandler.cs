@@ -17,6 +17,8 @@ public partial class AbilityHandler : Node
 
     public void HandleAbilities(Entity ent, InputHandler input, double delta)
     {
+        if (!Multiplayer.IsServer()) return;
+
         var abilities = ent.Abilities;
 
         if (input.GetAbilityBasicNext())

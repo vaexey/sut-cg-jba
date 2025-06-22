@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://gwen8nmp2tx3"]
+[gd_scene load_steps=3 format=3 uid="uid://gwen8nmp2tx3"]
 
 [ext_resource type="Script" uid="uid://c8m6u81nw0ai7" path="res://script/entity/ability/Abilities.cs" id="1_5n4i1"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5n4i1"]
+properties/0/path = NodePath(".:BasicIndex")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Abilities" type="Node"]
 script = ExtResource("1_5n4i1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5n4i1")

@@ -49,6 +49,9 @@ public partial class SimpleProjectile : CharacterBody2D
     public bool JustCreated = true;
     public double TimeLeft = 0;
 
+    [ExportSubgroup("Multiplayer sync")]
+    [Export] private double MPS_TimeLeft { get => TimeLeft; set => TimeLeft = value; } 
+
     // [Export]
     // public bool IgnoreOwnerCollision { get; set; } = true;
 
@@ -84,12 +87,14 @@ public partial class SimpleProjectile : CharacterBody2D
 
         if (RotationSpeed > 0)
         {
-            Rotation += (float)((RotationSpeed * 2 * Math.PI) * delta);
+            Rotation += (float)(RotationSpeed * 2 * Math.PI * delta);
         }
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if(!Multiplayer.IsServer()) return;
+
         if (ProjectileGravity > 0 && !IsOnFloor())
             Velocity = Velocity + new Vector2(0, ProjectileGravity * (float)delta);
 

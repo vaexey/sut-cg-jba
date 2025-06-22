@@ -23,6 +23,14 @@ public partial class MainMenu : Control
     public void OnStartClick()
     {
         GetTree().ChangeSceneToFile("res://script/Arena.tscn");
+
+        MultiplayerManager.Instance.HostGame();
+    }
+
+    public void OnJoinClick()
+    {
+        GetTree().ChangeSceneToFile("res://script/Arena.tscn");
+        MultiplayerManager.Instance.JoinGame();
     }
 
     public void OnAbilitiesClick()
