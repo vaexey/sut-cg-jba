@@ -34,10 +34,28 @@ public partial class AnimationHandler : Node
             Sprite.Play("death");
             return;
         }
-        if (entity.IsSilenced && entity.IsCrippledHorizontally && entity.IsCrippledVertically) {
-            Sprite.Play("sleep", 2.0f);
+
+        if (entity.IsCasting)
+        {
+            var ability = entity.Casting;
+
+            if (ability.GetType().IsAssignableTo(typeof(AutoJodlerAbility)))
+            {
+                Sprite.Play("auto_jodler");
+            }
+            else
+            {
+                Sprite.Play("death");
+            }
+
             return;
         }
+        
+        if (entity.IsSilenced && entity.IsCrippledHorizontally && entity.IsCrippledVertically)
+            {
+                Sprite.Play("sleep", 2.0f);
+                return;
+            }
 
         if (entity.IsCrippledHorizontally || entity.IsCrippledVertically)
         {

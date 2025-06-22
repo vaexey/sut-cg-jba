@@ -12,6 +12,7 @@ PlayerStats = NodePath("PlayerStats")
 EnemyStats = NodePath("EnemyStats")
 
 [node name="StatsLabel" type="Label" parent="."]
+visible = false
 offset_left = 9.0
 offset_top = 79.0
 offset_right = 49.0

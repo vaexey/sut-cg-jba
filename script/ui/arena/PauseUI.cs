@@ -96,7 +96,7 @@ public partial class PauseUI : CanvasLayer
 
     protected bool ShouldBeWaiting()
     {
-        if (World == null || World.LocalPlayer == null || World.RemotePlayer == null)
+        if(!World.PlayersPresent)
         {
             WaitingControl.Visible = true;
             VictoryControl.Visible = false;
@@ -104,7 +104,7 @@ public partial class PauseUI : CanvasLayer
             return true;
         }
 
-        if (!World.LocalPlayer.Entity.IsAlive)
+        if (World.LocalDefeat)
         {
             WaitingControl.Visible = false;
             VictoryControl.Visible = false;
@@ -112,7 +112,7 @@ public partial class PauseUI : CanvasLayer
             return true;
         }
 
-        if (!World.RemotePlayer.Entity.IsAlive)
+        if (World.LocalVictory)
         {
             WaitingControl.Visible = false;
             VictoryControl.Visible = true;
@@ -130,7 +130,9 @@ public partial class PauseUI : CanvasLayer
     {
         // Unpause();
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://script/MainMenu.tscn");
+        // GetTree().ChangeSceneToFile("res://script/MainMenu.tscn");
+
+        MultiplayerManager.Instance.QuitGame();
     }
 
     // private void Pause()

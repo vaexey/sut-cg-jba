@@ -27,6 +27,7 @@ public partial class Entity : Node
 	public Vector2 PointingAt { get; set; } = Vector2.Zero;
 
 	public bool IsCasting => Abilities.All.Where(a => a.IsCasting).Any();
+	public Ability Casting => Abilities.All.Where(a => a.IsCasting).FirstOrDefault();
 
 	#endregion
 
