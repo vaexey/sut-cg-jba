@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class World : Node
+public partial class World : Node2D
 {
     [ExportSubgroup("Nodes")]
-    [Export] public Node EntitiesContainer { get; set; }
+    [Export] public Node2D EntitiesContainer { get; set; }
     [Export] public Node2D LeftSpawn { get; set; }
     [Export] public Node2D RightSpawn { get; set; }
 

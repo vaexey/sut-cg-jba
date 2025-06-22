@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bn3ew8avu5gsl" path="res://art/ui/icon/ability/hype_up.png" id="2_geju5"]
 [ext_resource type="AudioStream" uid="uid://br8gkd2m8pql7" path="res://sound/ability/hype_up.mp3" id="3_gkkr3"]
 
-[node name="HypeUpAbility" type="Node"]
+[node name="HypeUpAbility" type="Node2D"]
 script = ExtResource("1_wgkgv")
 DisplayName = "Hype up"
 ShortDescription = "Franzl hypes himself up, regaining 50% of missing stamina, at a cost of 50% remaining inspiration."

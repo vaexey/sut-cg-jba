@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://75h01m4hxmb5" path="res://script/entity/cc/CrowdControl.cs" id="1_thfb6"]
 
-[node name="CrowdControl" type="Node"]
+[node name="CrowdControl" type="Node2D"]
 script = ExtResource("1_thfb6")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]

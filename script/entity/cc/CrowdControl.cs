@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class CrowdControl : Node
+public partial class CrowdControl : Node2D
 {
 
     [ExportSubgroup("Nodes")]

@@ -10,7 +10,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_liwp7")
 
-[node name="JodelversAbility" type="Node"]
+[node name="JodelversAbility" type="Node2D"]
 script = ExtResource("1_us3h7")
 DisplayName = "Jodelvers"
 ShortDescription = "Franzl makes up a new verse of his song, damaging everything that stands in front of him in a cone."

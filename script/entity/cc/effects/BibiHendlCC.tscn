@@ -83,7 +83,7 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="BibiHendlCC" type="Node" node_paths=PackedStringArray("Bubble", "Chicken")]
+[node name="BibiHendlCC" type="Node2D" node_paths=PackedStringArray("Bubble", "Chicken")]
 script = ExtResource("1_ndyyf")
 Bubble = NodePath("FollowPlayer")
 Chicken = NodePath("FollowPlayer/ChickenHolder/ChickenSprite")

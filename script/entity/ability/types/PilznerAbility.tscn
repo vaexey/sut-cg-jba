@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://faxbdt1ak6ew" path="res://art/ui/icon/ability/pilzner.png" id="2_f8pmy"]
 [ext_resource type="AudioStream" uid="uid://bu1wa1nr7qydy" path="res://sound/ability/pilzner.mp3" id="3_lm8jq"]
 
-[node name="PilznerAbility" type="Node"]
+[node name="PilznerAbility" type="Node2D"]
 script = ExtResource("1_8iylg")
 DisplayName = "Pilzner"
 ShortDescription = "Franzl drinks a bottle of pilzner from Appenzell, gaining speed and jump height boost."

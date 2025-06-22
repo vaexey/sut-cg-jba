@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cty3e21g57b6b" path="res://art/ui/icon/ability/contemplate.png" id="2_ai2me"]
 [ext_resource type="AudioStream" uid="uid://di770hfhuq0ii" path="res://sound/ability/contemplate.mp3" id="2_j4wm5"]
 
-[node name="ContemplateAbility" type="Node"]
+[node name="ContemplateAbility" type="Node2D"]
 script = ExtResource("1_ak04m")
 DisplayName = "Contemplate"
 ShortDescription = "Franzl stops to contemplate, slowing himself and gaining flat value of 50% inspiration at a cost of 90% of remaining stamina."

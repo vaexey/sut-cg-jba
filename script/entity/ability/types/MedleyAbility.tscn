@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvybp66jb8k6v" path="res://art/ui/icon/ability/medley.png" id="2_yvmow"]
 [ext_resource type="AudioStream" uid="uid://d1wtavksqmf3v" path="res://sound/ability/medley_cast.mp3" id="3_yvmow"]
 
-[node name="MedleyAbility" type="Node"]
+[node name="MedleyAbility" type="Node2D"]
 script = ExtResource("1_1ukcu")
 DisplayName = "Medley"
 ShortDescription = "Franzl sings his well-known song, creating a terrifying sound wave around him that slows and damages enemies."

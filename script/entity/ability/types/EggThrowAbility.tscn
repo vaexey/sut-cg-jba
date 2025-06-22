@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bjf2y87ljr7fi" path="res://script/entity/ability/types/EggThrowAbility.cs" id="1_f5r5d"]
 [ext_resource type="Texture2D" uid="uid://c8gf8b3sfjwut" path="res://art/projectile/egg.png" id="2_lnrma"]
 
-[node name="EggThrowAbility" type="Node"]
+[node name="EggThrowAbility" type="Node2D"]
 script = ExtResource("1_f5r5d")
 DisplayName = "Egg throw"
 ShortDescription = "Franzl finds one egg in his pocket and throws it as far as he can in the direction he is poining."

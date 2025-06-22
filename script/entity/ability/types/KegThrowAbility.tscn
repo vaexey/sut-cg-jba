@@ -8,7 +8,7 @@
 atlas = ExtResource("2_rdol6")
 region = Rect2(192, 32, 32, 32)
 
-[node name="KegThrowAbility" type="Node"]
+[node name="KegThrowAbility" type="Node2D"]
 script = ExtResource("1_vspsg")
 DisplayName = "Keg throw"
 ShortDescription = "Franzl picks up his keg with a random amount of beer and throws it in the direction he is pointing at. The keg explodes with beer on contact with anything, dealing damage based on the amount of beer that was inside."

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using WorldType = World;
 
-public partial class Entity : Node
+public partial class Entity : Node2D
 {
 	#region Essential nodes
 	[Export] public PassiveAttributes PassiveAttributes { get; set; }

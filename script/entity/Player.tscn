@@ -93,7 +93,7 @@ offset_right = 0.0
 offset_bottom = -36.76
 Entity = NodePath("../Entity")
 
-[node name="Handlers" type="Node" parent="."]
+[node name="Handlers" type="Node2D" parent="."]
 
 [node name="GravityHandler" parent="Handlers" instance=ExtResource("4_afjq7")]
 
@@ -119,7 +119,7 @@ Abilities = NodePath("Abilities")
 
 [node name="Abilities" parent="Entity" instance=ExtResource("12_mb3r3")]
 
-[node name="Basic" type="Node" parent="Entity/Abilities"]
+[node name="Basic" type="Node2D" parent="Entity/Abilities"]
 
 [node name="EggThrowAbility" parent="Entity/Abilities/Basic" instance=ExtResource("13_tvy5j")]
 
@@ -133,21 +133,21 @@ Abilities = NodePath("Abilities")
 
 [node name="MussDasSeinAbility" parent="Entity/Abilities/Basic" instance=ExtResource("18_yjhpo")]
 
-[node name="Complex" type="Node" parent="Entity/Abilities"]
+[node name="Complex" type="Node2D" parent="Entity/Abilities"]
 
-[node name="Slot 1" type="Node" parent="Entity/Abilities/Complex"]
+[node name="Slot 1" type="Node2D" parent="Entity/Abilities/Complex"]
 
 [node name="KegThrowAbility" parent="Entity/Abilities/Complex/Slot 1" instance=ExtResource("19_r5glg")]
 
-[node name="Slot 2" type="Node" parent="Entity/Abilities/Complex"]
+[node name="Slot 2" type="Node2D" parent="Entity/Abilities/Complex"]
 
 [node name="JodelversAbility" parent="Entity/Abilities/Complex/Slot 2" instance=ExtResource("20_q43qs")]
 
-[node name="Slot 3" type="Node" parent="Entity/Abilities/Complex"]
+[node name="Slot 3" type="Node2D" parent="Entity/Abilities/Complex"]
 
 [node name="AutoJodlerAbility" parent="Entity/Abilities/Complex/Slot 3" instance=ExtResource("21_bgi3s")]
 
-[node name="Godlike" type="Node" parent="Entity/Abilities"]
+[node name="Godlike" type="Node2D" parent="Entity/Abilities"]
 
 [node name="MedleyAbility" parent="Entity/Abilities/Godlike" instance=ExtResource("22_x4q6h")]
 

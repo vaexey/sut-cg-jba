@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bfrqc2eblo7bb" path="res://script/entity/ability/types/AutoJodlerAbility.cs" id="1_qxqwv"]
 [ext_resource type="Texture2D" uid="uid://cp4blq0nsfwyj" path="res://art/ui/icon/ability/auto_jodler.png" id="2_ry8u2"]
 
-[node name="AutoJodlerAbility" type="Node"]
+[node name="AutoJodlerAbility" type="Node2D"]
 script = ExtResource("1_qxqwv")
 DisplayName = "Auto-jodler"
 ShortDescription = "Franzl honks twice using his old-fashioned horn and summons a BMW Dixi that comes from off-screen and rides through walls to the destination pointed by Franzl, damaging everything in its way."

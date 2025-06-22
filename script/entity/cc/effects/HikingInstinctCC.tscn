@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cumm8pg5nw38f" path="res://script/entity/cc/effects/HikingInstinctCC.cs" id="1_p1eec"]
 [ext_resource type="Texture2D" uid="uid://bnc8yn8gtq0s4" path="res://art/ui/icon/cc/hiking_instinct.png" id="2_b16qo"]
 
-[node name="HikingInstinctCC" type="Node"]
+[node name="HikingInstinctCC" type="Node2D"]
 script = ExtResource("1_p1eec")
 DisplayName = "Hiking Instinct"
 IconTexture = ExtResource("2_b16qo")

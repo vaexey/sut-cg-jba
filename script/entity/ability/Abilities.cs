@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class Abilities : Node
+public partial class Abilities : Node2D
 {
     [ExportSubgroup("Settings")]
     [Export] public int BasicIndex { get; set; } = 0;
