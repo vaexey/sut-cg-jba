@@ -26,15 +26,18 @@ public partial class AbilityIcon : Control
     [Export] public Texture2D HighlightAtlas { get; set; }
     [Export] public Texture2D RoundAtlas { get; set; }
     [Export] public Texture2D RoundHighlightAtlas { get; set; }
-    
+
     [Export(PropertyHint.ColorNoAlpha)]
     public Color CostColorPhysical { get; set; } = Color.Color8(128, 255, 128, 255);
-    
+
     [Export(PropertyHint.ColorNoAlpha)]
     public Color CostColorInspired { get; set; } = Color.Color8(128, 128, 255, 255);
 
+    public PackedScene TooltipScene;
+
     public override void _Ready()
     {
+        TooltipScene = ResourceLoader.Load<PackedScene>("res://script/ui/arena/AbilityTooltip.tscn");
     }
 
     public override void _Process(double delta)
@@ -80,7 +83,9 @@ public partial class AbilityIcon : Control
             Ability.CooldownLeft.ToString("N1") :
             "";
 
-        TooltipText = WordWrap(Ability.ShortDescription, 40).ToArray().Join("\n");
+        // TooltipText = WordWrap(Ability.ShortDescription, 40).ToArray().Join("\n");
+        // TooltipText = Ability.GetPath();
+        TooltipText = Ability.SceneFilePath;
 
         double cost = 0;
         string costString = "";
@@ -105,22 +110,16 @@ public partial class AbilityIcon : Control
         CostLabel.Text = cost > 0 ? costString : "";
         CostLabel.LabelSettings.FontColor = costColor;
     }
-    public static List<string> WordWrap( string text, int maxLineLength )
+
+    public override GodotObject _MakeCustomTooltip(string forText)
     {
-        var list = new List<string>();
+        if (forText == "")
+            return base._MakeCustomTooltip(forText);
 
-        int currentIndex;
-        var lastWrap = 0;
-        var whitespace = new[] { ' ', '\r', '\n', '\t' };
-        do
-        {
-            currentIndex = lastWrap + maxLineLength > text.Length ? text.Length : (text.LastIndexOfAny( new[] { ' ', ',', '.', '?', '!', ':', ';', '-', '\n', '\r', '\t' }, Math.Min( text.Length - 1, lastWrap + maxLineLength)  ) + 1);
-            if( currentIndex <= lastWrap )
-                currentIndex = Math.Min( lastWrap + maxLineLength, text.Length );
-            list.Add( text.Substring( lastWrap, currentIndex - lastWrap ).Trim( whitespace ) );
-            lastWrap = currentIndex;
-        } while( currentIndex < text.Length );
+        var tooltip = TooltipScene.Instantiate<AbilityTooltip>();
 
-        return list;
+        tooltip.MakeTooltip(forText);
+
+        return tooltip;
     }
 }
