@@ -55,7 +55,7 @@ shader_parameter/hue_overlap = 5.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 18.0
-height = 58.0
+height = 60.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l8xdv"]
 random_pitch = 1.05
@@ -86,7 +86,6 @@ animation = &"guitar"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_4flbx")
 
 [node name="EntityBar" parent="." node_paths=PackedStringArray("Entity") instance=ExtResource("3_nelh1")]
