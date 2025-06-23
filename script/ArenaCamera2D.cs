@@ -17,16 +17,29 @@ public partial class ArenaCamera2D : Camera2D
         if (World.RemotePlayer == null)
             return;
 
-        var midpoint = World.LocalPlayer.Position.Lerp(World.RemotePlayer.Position, 0.5f);
-        var distance = (World.LocalPlayer.Position - midpoint).Length();
+        var follow = !Input.IsActionPressed("camera_override");
 
-        if(distance > MaxRange)
+        var localPoint = World.LocalPlayer.Position;
+        var remotePoint = World.RemotePlayer.Position;
+
+        if (!follow)
         {
-            // midpoint = MainNode.Position.Lerp(DirectionNode.Position, MaxRange / distance);
-            midpoint = World.LocalPlayer.Position + (World.RemotePlayer.Position - World.LocalPlayer.Position).Normalized() * MaxRange;
+            var mouseOffset = GetGlobalMousePosition() - localPoint;
+            var mouseDirection = mouseOffset.Normalized();
+            // var mouseDistance = mouseOffset.Length();
+
+            remotePoint = localPoint + mouseDirection * 3 * MaxRange;
         }
 
-        Position = midpoint;
+        var midPoint = localPoint.Lerp(remotePoint, 0.5f);
+        var distance = (localPoint - midPoint).Length();
+
+        if (distance > MaxRange)
+        {
+            midPoint = localPoint + (remotePoint - localPoint).Normalized() * MaxRange;
+        }
+
+        Position = midPoint;
     }
 
 }
