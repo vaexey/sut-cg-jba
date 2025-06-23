@@ -31,7 +31,8 @@ grow_vertical = 1
 Round = true
 Highlight = true
 
-[node name="Basic" type="Node" parent="."]
+[node name="Basic" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="Basic1" parent="Basic" instance=ExtResource("1_k8n46")]
 offset_left = 13.0
@@ -113,9 +114,15 @@ offset_bottom = 44.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Complex" type="Node" parent="."]
+[node name="Complex" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 
 [node name="Complex1" parent="Complex" instance=ExtResource("1_k8n46")]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -128,6 +135,7 @@ grow_vertical = 1
 Highlight = true
 
 [node name="Complex2" parent="Complex" instance=ExtResource("1_k8n46")]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -140,6 +148,7 @@ grow_vertical = 1
 Highlight = true
 
 [node name="Complex3" parent="Complex" instance=ExtResource("1_k8n46")]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
