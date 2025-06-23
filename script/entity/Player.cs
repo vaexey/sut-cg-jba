@@ -5,7 +5,7 @@ using System.Linq;
 public partial class Player : CharacterBody2D, IEntityContainer
 {
 	[ExportSubgroup("Handlers")]
-	[Export] public GravityHandler GravityHandler { get; set; }
+	// [Export] public GravityHandler GravityHandler { get; set; }
 	[Export] public RemoteInputHandler InputHandler { get; set; }
 	[Export] public MovementHandler MovementHandler { get; set; }
 	[Export] public JumpHandler JumpHandler { get; set; }
@@ -36,8 +36,9 @@ public partial class Player : CharacterBody2D, IEntityContainer
 
 		Entity.PointingAt = InputHandler.PointingAt;
 
-		GravityHandler.HandleGravity(this, delta);
+		// GravityHandler.HandleGravity(this, delta);
 		MovementHandler.HandleHorizontal(this, Entity, delta, InputHandler.HorizontalInput);
+		MovementHandler.HandleVertical(this, Entity, delta, InputHandler.VerticalInput);
 		JumpHandler.HandleJump(this, InputHandler.GetJumpPressed(), InputHandler.GetJumpReleased());
 		AnimationHandler.HandleHorizontalFlip(InputHandler.HorizontalInput);
 		// AnimationHandler.HandleWalk(this.Entity.PassiveAttributes.Speed);

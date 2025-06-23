@@ -24,6 +24,7 @@ public partial class Entity : Node2D
 	public AttributeSemaphore IsCrippledHorizontally { get; set; } = 0;
 	public AttributeSemaphore IsCrippledVertically { get; set; } = 0;
 	public AttributeSemaphore IsSilenced { get; set; } = 0;
+	public AttributeSemaphore IsOnLadder { get; set; } = 0;
 	public Vector2 PointingAt { get; set; } = Vector2.Zero;
 
 	public bool IsCasting => Abilities.All.Where(a => a.IsCasting).Any();
@@ -42,6 +43,7 @@ public partial class Entity : Node2D
 	[Export] private int MPS_IsCrippledHorizontally { get => IsCrippledHorizontally; set => IsCrippledHorizontally = value; }
 	[Export] private int MPS_IsCrippledVertically { get => IsCrippledVertically; set => IsCrippledVertically = value; }
 	[Export] private int MPS_IsSilenced { get => IsSilenced; set => IsSilenced = value; }
+	[Export] private int MPS_IsOnLadder { get => IsOnLadder; set => IsOnLadder = value; }
 	[Export] private bool MPS_IsAlive { get => IsAlive; set => IsAlive = value; }
 
 	[Signal]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1161gnkhywvy"]
+
+[ext_resource type="Script" uid="uid://dodrek7y8hfrx" path="res://script/world/LadderNode.cs" id="1_d8rwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijhrx"]
+size = Vector2(32, 32)
+
+[node name="LadderNode" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_d8rwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ijhrx")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.533333, 1, 0, 0.176471)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

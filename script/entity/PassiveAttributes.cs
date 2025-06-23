@@ -30,10 +30,15 @@ public partial class PassiveAttributes : Node
 	[Export] public double StaminaMinJump = 0.15;
 	[Export] public float JumpVelocityBase = 375;
 	[Export] public float BaseSpeed { get; set; } = 200;
+	[Export] public float BaseClimbingSpeed { get; set; } = 150;
 	[Export] public float GroundAcceleration { get; set; } = 3000;
 	[Export] public float GroundDeceleration { get; set; } = 4000;
 	[Export] public float AirAcceleration { get; set; } = 5000;
 	[Export] public float AirDeceleration { get; set; } = 1500;
+	[Export] public float LadderAcceleration { get; set; } = 3000;
+	[Export] public float LadderDeceleration { get; set; } = 4000;
+
+	[Export] public float Gravity { get; set; } = 700;
 
 	[ExportSubgroup("Modifiers")]
 
@@ -57,6 +62,8 @@ public partial class PassiveAttributes : Node
 			return Math.Max(0, BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);
 		}
 	}
+
+	public float ClimbingSpeed => Math.Max(0, BaseClimbingSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);
 
 	public float JumpVelocity => Math.Max(0, JumpVelocityBase * JumpModifierMultiplicative + JumpModifierFlat);
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://15x7xjj815am"]
+[gd_scene load_steps=38 format=3 uid="uid://15x7xjj815am"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="Shader" uid="uid://cqpyc441558oq" path="res://shader/recolor.gdshader" id="2_1rc4n"]
 [ext_resource type="SpriteFrames" uid="uid://ca264ghultx34" path="res://script/entity/Player.tres" id="2_kobav"]
 [ext_resource type="PackedScene" uid="uid://dc4uv7x5xhjyl" path="res://script/ui/arena/EntityBar.tscn" id="3_nelh1"]
-[ext_resource type="PackedScene" uid="uid://ch235a5w1xcp" path="res://script/handlers/GravityHandler.tscn" id="4_afjq7"]
 [ext_resource type="PackedScene" uid="uid://dl54ijgcx4kvk" path="res://script/handlers/RemoteInputHandler.tscn" id="5_aiqmr"]
 [ext_resource type="PackedScene" uid="uid://cvkbj4v56tsmx" path="res://script/handlers/MovementHandler.tscn" id="6_g582k"]
 [ext_resource type="PackedScene" uid="uid://8q6hrijcabhl" path="res://script/handlers/JumpHandler.tscn" id="7_vlgaj"]
@@ -63,11 +62,10 @@ streams_count = 2
 stream_0/stream = ExtResource("24_2igpl")
 stream_1/stream = ExtResource("25_ywwdl")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("GravityHandler", "InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity")]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_onrkg")
-GravityHandler = NodePath("Handlers/GravityHandler")
 InputHandler = NodePath("Handlers/RemoteInputHandler")
 MovementHandler = NodePath("Handlers/MovementHandler")
 JumpHandler = NodePath("Handlers/JumpHandler")
@@ -95,8 +93,6 @@ offset_bottom = -36.76
 Entity = NodePath("../Entity")
 
 [node name="Handlers" type="Node2D" parent="."]
-
-[node name="GravityHandler" parent="Handlers" instance=ExtResource("4_afjq7")]
 
 [node name="RemoteInputHandler" parent="Handlers" instance=ExtResource("5_aiqmr")]
 

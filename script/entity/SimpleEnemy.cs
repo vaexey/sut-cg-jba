@@ -4,8 +4,8 @@ using System;
 public partial class SimpleEnemy : CharacterBody2D, IEntityContainer
 {
 	[ExportSubgroup("Handlers")]
-	[Export]
-	public GravityHandler GravityHandler { get; set; }
+	// [Export]
+	// public GravityHandler GravityHandler { get; set; }
 
 	[Export]
 	public MovementHandler MovementHandler { get; set; }
@@ -28,7 +28,7 @@ public partial class SimpleEnemy : CharacterBody2D, IEntityContainer
         bool jump = false;
         bool jumpR = false;
 
-		GravityHandler.HandleGravity(this, delta);
+		// GravityHandler.HandleGravity(this, delta);
 		MovementHandler.HandleHorizontal(this, Entity, delta, horizontal);
 		JumpHandler.HandleJump(this, jump, jumpR);
 		AnimationHandler.HandleHorizontalFlip(horizontal);

@@ -5,6 +5,8 @@ public partial class InputHandler : Node2D
 {
 	[Export]
 	public virtual float HorizontalInput { get; set; } = 0;
+	[Export]
+	public virtual float VerticalInput { get; set; } = 0;
 
 	[Export]
 	public virtual Vector2 PointingAt { get; set; } = Vector2.Zero;
@@ -12,6 +14,7 @@ public partial class InputHandler : Node2D
 	public override void _Process(double delta)
 	{
 		HorizontalInput = Input.GetAxis("move_left", "move_right");
+		VerticalInput = Input.GetAxis("move_up", "move_down");
 		PointingAt = GetGlobalMousePosition();
 	}
 
