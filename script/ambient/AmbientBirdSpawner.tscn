@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxfr3d3y6hjfi"]
+
+[ext_resource type="Script" uid="uid://ck8s8j86yvrkn" path="res://script/ambient/AmbientBirdSpawner.cs" id="1_qrhah"]
+
+[node name="AmbientBirdSpawner" type="Node2D"]
+script = ExtResource("1_qrhah")
