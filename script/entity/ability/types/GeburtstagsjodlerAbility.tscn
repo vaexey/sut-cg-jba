@@ -23,6 +23,7 @@ volume_db = -6.0
 [node name="EndSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p4s44")
 
+[connection signal="OnCast" from="." to="EndSound" method="play"]
 [connection signal="OnStartCast" from="." to="CastSound" method="play"]
 [connection signal="OnStopCast" from="." to="CastSound" method="stop"]
 [connection signal="OnStopCast" from="." to="EndSound" method="play"]
