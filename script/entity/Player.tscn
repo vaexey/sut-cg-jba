@@ -54,7 +54,7 @@ shader_parameter/hue_max = 123.5
 shader_parameter/hue_overlap = 5.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
-radius = 18.0
+radius = 15.0
 height = 60.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l8xdv"]
@@ -81,7 +81,7 @@ replication_config = SubResource("SceneReplicationConfig_wm5x6")
 material = SubResource("ShaderMaterial_ebik6")
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_kobav")
-animation = &"guitar"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
