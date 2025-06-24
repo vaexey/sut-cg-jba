@@ -13,8 +13,9 @@ Stationary = true
 DestroyOnCollision = false
 FadeTime = 1.0
 DestroyAfterTime = 1.0
-DamageFlat = 50.0
+DamageFlat = 37.5
 DamagePercentage = 0.01
+DamageVariance = 2.5
 DamageFlags = 8
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

@@ -75,14 +75,16 @@ script = ExtResource("1_23ro0")
 SmokeParent1 = NodePath("CanvasGroup/RightSmoke")
 SmokeParent2 = NodePath("CanvasGroup/LeftSmoke")
 FadedObject = NodePath("CanvasGroup")
+DisplayName = "Medley"
 ProjectileVelocity = 0.0
 ProjectileGravity = 0.0
 Stationary = true
 DestroyOnCollision = false
 FadeTime = 1.0
 DestroyAfterTime = 3.0
-DamageFlat = 1.0
+DamageFlat = 1.5
 DamagePercentage = 0.005
+DamageVariance = 0.25
 DamageFlags = 8
 
 [node name="RightCollision" type="CollisionPolygon2D" parent="."]

@@ -23,7 +23,8 @@ DisplayName = "Auto jodler Dixi"
 ProjectileVelocity = 600.0
 ProjectileGravity = 0.0
 DestroyOnCollision = false
-DamagePercentage = 0.1
+DamageFlat = 10.0
+DamagePercentage = 0.025
 DamageFlags = 8
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

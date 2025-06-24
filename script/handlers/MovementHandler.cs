@@ -48,7 +48,7 @@ public partial class MovementHandler : Node
 			);
 
 		body.Velocity = new(
-			Mathf.MoveToward(body.Velocity.X, direction * Entity.PassiveAttributes.Speed, accel * (float)delta),
+			Mathf.MoveToward(body.Velocity.X, direction * Entity.PassiveAttributes.Speed(ent.Stamina.Value), accel * (float)delta),
 			body.Velocity.Y
 		);
 	}
@@ -56,9 +56,6 @@ public partial class MovementHandler : Node
 	public void HandleVertical(CharacterBody2D body, Entity ent, double delta, float input)
 	{
 		IsFalling = body.Velocity.Y > 0 && !body.IsOnFloor();
-
-		bool wantsToFall = input > 0;
-		bool wantsToUp = input < 0;
 
 		float accel = 0;
 		float speed = 100000;

@@ -39,12 +39,10 @@ public partial class SimpleProjectile : CharacterBody2D
     public double DestroyAfterTime { get; set; } = 15.0;
 
     [ExportSubgroup("Damage settings")]
-    [Export]
-    public double DamageFlat { get; set; } = 0;
-    [Export]
-    public double DamagePercentage { get; set; } = 0;
-    [Export]
-    public DamageFlags DamageFlags { get; set; } = 0;
+    [Export] public double DamageFlat { get; set; } = 0;
+    [Export] public double DamagePercentage { get; set; } = 0;
+    [Export] public double DamageVariance { get; set; } = 0;
+    [Export] public DamageFlags DamageFlags { get; set; } = 0;
 
     public bool JustCreated = true;
     [Export]public double TimeLeft = 0;
@@ -200,8 +198,10 @@ public partial class SimpleProjectile : CharacterBody2D
 
     protected virtual void ApplyDamageFromProjectile(Entity target)
     {
+        var rng = new RandomNumberGenerator();
+
         var dmg = new Damage(OwnerEntity);
-        dmg.FlatValue = DamageFlat;
+        dmg.FlatValue = DamageFlat + rng.RandfRange(-(float)DamageVariance / 2.0f, +(float)DamageVariance / 2.0f);
         dmg.PercentageValue = DamagePercentage;
         dmg.Flags = DamageFlags;
 

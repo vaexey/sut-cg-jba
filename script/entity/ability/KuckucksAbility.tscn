@@ -13,8 +13,8 @@ CategoryType = 2
 IconTexture = ExtResource("2_q0k5s")
 CastTime = 1.5
 Cooldown = 25.0
-UseCostFlat = 15.0
-UseCostPercentage = 0.01
+UseCostFlat = 45.0
+UseCostPercentageMax = 0.05
 
 [node name="CastSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_7yuuw")

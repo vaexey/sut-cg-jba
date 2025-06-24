@@ -36,7 +36,16 @@ public partial class MedleyExplosion : SimpleProjectile
     {
         base._PhysicsProcess(delta);
 
-        var scale = (float)(1 - TimeLeft / DestroyAfterTime) * 0.9f + 0.1f;
+        // var scale = (float)(1 - TimeLeft / DestroyAfterTime) * 0.9f + 0.1f;
+        var time = 1 - TimeLeft / DestroyAfterTime;
+
+        // Scaling function
+        var p = 1.72015666006;
+        var n = 10;
+
+        time = p * Math.Pow(-Math.Pow(time, n) + 2, time) - p;
+
+        var scale = (float)time * 0.9f + 0.1f;
 
         Scale = new Vector2(scale, scale);
 

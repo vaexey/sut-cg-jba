@@ -4,6 +4,7 @@ using System;
 public partial class GeburtstagsjodlerAbility : Ability
 {
     [Export] public double HealPerSecondFlat { get; set; } = 10;
+    [Export] public double HealPerSecondPerOM { get; set; } = 2;
 
     public override void ProcessOwner(Entity owner, double delta)
     {
@@ -14,7 +15,7 @@ public partial class GeburtstagsjodlerAbility : Ability
             owner.Beverage.Value = Mathf.MoveToward(
                 owner.Beverage.Value,
                 owner.Beverage.Max,
-                delta * HealPerSecondFlat
+                delta * (HealPerSecondFlat + HealPerSecondPerOM * owner.PassiveAttributes.OpenMindedness)
             );
         }
     }

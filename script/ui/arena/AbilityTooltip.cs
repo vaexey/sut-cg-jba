@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class AbilityTooltip : Control
 {
@@ -39,7 +40,35 @@ public partial class AbilityTooltip : Control
     {
         DisplayName.Text = ability.DisplayName;
 
-        Cost.Text = $"{ability.UseCostFlat} + {Math.Round(ability.UseCostPercentage * 1000) / 10}%";
+        List<string> cost = new();
+        string unit = "";
+
+        if (ability.CategoryType == AbilityCategory.Physical)
+        {
+            if (ability.UseCostFlat > 0 | ability.UseCostPercentageMax > 0)
+                cost.Add($"{Math.Round((ability.UseCostFlat + ability.UseCostPercentageMax) * 1000) / 10}% max");
+            if (ability.UseCostPercentage > 0)
+                cost.Add($"{Math.Round(ability.UseCostPercentage * 1000) / 10}% of current");
+
+            unit = " stamina";
+        }
+        else
+        {
+            if (ability.UseCostFlat > 0)
+                cost.Add($"{Math.Round(ability.UseCostFlat * 10) / 10}");
+            if (ability.UseCostPercentageMax > 0)
+                cost.Add($"{Math.Round(ability.UseCostPercentageMax * 1000) / 10}% max");
+            if (ability.UseCostPercentage > 0)
+                cost.Add($"{Math.Round(ability.UseCostPercentage * 1000) / 10}% of current");
+
+            unit = " inspiration";
+        }
+
+        if (cost.Count() == 0)
+            unit = "Free";
+
+        Cost.Text = string.Join(" + ", cost) + unit;
+
         Cost.LabelSettings.FontColor =
             ability.CategoryType == AbilityCategory.Inspired
                 ? CostColorInspired

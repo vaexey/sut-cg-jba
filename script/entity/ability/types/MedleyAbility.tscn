@@ -11,10 +11,10 @@ ShortDescription = "Franzl sings his well-known song, creating a terrifying soun
 CategoryType = 2
 IconTexture = ExtResource("2_yvmow")
 CastMode = 12
-CastTime = 1.0
-Cooldown = 10.0
+CastTime = 1.1
+Cooldown = 30.0
 UseCostFlat = 10.0
-UseCostPercentage = 0.2
+UseCostPercentage = 0.35
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_yvmow")

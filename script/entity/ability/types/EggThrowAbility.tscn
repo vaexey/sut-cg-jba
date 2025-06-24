@@ -9,6 +9,6 @@ DisplayName = "Egg throw"
 ShortDescription = "Franzl finds one egg in his pocket and throws it as far as he can in the direction he is poining."
 IconTexture = ExtResource("2_lnrma")
 CastMode = 4
-Cooldown = 0.2
+Cooldown = 0.5
 UseCostFlat = 0.05
 UseCostPercentage = 0.02

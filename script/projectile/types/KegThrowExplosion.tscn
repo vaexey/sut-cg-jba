@@ -22,13 +22,15 @@ height = 88.0
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_ajwkp")
+DisplayName = "Keg throw explosion"
 ProjectileVelocity = 0.0
 ProjectileGravity = 0.0
 Stationary = true
 DestroyOnCollision = false
 FadeTime = 1.0
 DestroyAfterTime = 1.0
-DamageFlat = 40.0
+DamageFlat = 35.0
+DamageVariance = 7.5
 DamageFlags = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

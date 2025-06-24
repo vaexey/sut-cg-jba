@@ -12,9 +12,10 @@ ShortDescription = "Franzl sings a birthday song that heals him over time and sh
 CategoryType = 2
 IconTexture = ExtResource("2_aj8a2")
 CastMode = 12
-CastTime = 5.0
+CastTime = 7.0
 Cooldown = 15.0
-UseCostPercentage = 0.25
+UseCostFlat = 3.0
+UseCostPercentage = 0.3
 
 [node name="CastSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_abvbf")

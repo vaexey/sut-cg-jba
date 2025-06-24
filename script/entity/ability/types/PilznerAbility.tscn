@@ -10,7 +10,7 @@ DisplayName = "Pilzner"
 ShortDescription = "Franzl drinks a bottle of pilzner from Appenzell, gaining speed and jump height boost."
 CategoryType = 2
 IconTexture = ExtResource("2_f8pmy")
-Cooldown = 10.0
+Cooldown = 12.0
 UseCostFlat = 40.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -14,6 +14,7 @@ public partial class Ability : Node
     [Export] public double Cooldown { get; set; } = 1;
     [Export] public double UseCostFlat { get; set; } = 0;
     [Export] public double UseCostPercentage { get; set; } = 0;
+    [Export] public double UseCostPercentageMax { get; set; } = 0;
 
     public double CooldownLeft { get; set; } = 0;
     public double CastTimeLeft { get; set; } = 0;
@@ -87,14 +88,21 @@ public partial class Ability : Node
     public virtual double GetUseCostTotal(Entity ent)
     {
         double value = 0;
+        double max = 0;
 
         if (CategoryType == AbilityCategory.Physical)
+        {
             value = ent.Stamina.Value * ent.PassiveAttributes.StaminaUsageModifier;
+            max = ent.Stamina.Max * ent.PassiveAttributes.StaminaUsageModifier;
+        }
 
         if (CategoryType == AbilityCategory.Inspired)
+        {
             value = ent.Inspiration.Value;
+            max = ent.Beverage.Max;
+        }
 
-        return UseCostFlat + UseCostPercentage * value;
+        return UseCostFlat + UseCostPercentage * value + UseCostPercentageMax * max;
     }
 
     // This method is called when respective ability cost

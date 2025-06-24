@@ -11,7 +11,7 @@ ShortDescription = "Franzl whips out a hen from his pocket that shields him from
 CategoryType = 2
 IconTexture = ExtResource("2_kxj5i")
 Cooldown = 15.0
-UseCostFlat = 25.0
+UseCostFlat = 35.0
 UseCostPercentage = 0.01
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

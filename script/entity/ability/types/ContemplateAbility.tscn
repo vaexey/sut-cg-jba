@@ -11,7 +11,8 @@ ShortDescription = "Franzl stops to contemplate, slowing himself and gaining fla
 IconTexture = ExtResource("2_ai2me")
 CastMode = 12
 CastTime = 0.5
-Cooldown = 10.0
+Cooldown = 12.0
+UseCostPercentage = 0.9
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_j4wm5")

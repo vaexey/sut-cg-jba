@@ -28,6 +28,8 @@ public partial class PassiveAttributes : Node
 	[Export] public double StaminaRegen = 0.1;
 	[Export] public double StaminaUsageJump = 0.1;
 	[Export] public double StaminaMinJump = 0.15;
+	[Export] public double StaminaSpeedThreshold = 0.3;
+	[Export] public float StaminaSlowMultiplier = 0.65f;
 	[Export] public float JumpVelocityBase = 375;
 	[Export] public float BaseSpeed { get; set; } = 200;
 	[Export] public float BaseClimbingSpeed { get; set; } = 150;
@@ -55,12 +57,21 @@ public partial class PassiveAttributes : Node
 
 	#region Calculated
 
-	public float Speed
+	// public float Speed
+	// {
+	// 	get
+	// 	{
+	// 		return Math.Max(0, BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);
+	// 	}
+	// }
+	public float Speed(double stamina)
 	{
-		get
-		{
-			return Math.Max(0, BaseSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);
-		}
+		var speed = BaseSpeed * SpeedModifierMultiplicative;
+
+		if (stamina < StaminaSpeedThreshold)
+			speed *= StaminaSlowMultiplier;
+
+		return Math.Max(0, speed + SpeedModifierFlat);
 	}
 
 	public float ClimbingSpeed => Math.Max(0, BaseClimbingSpeed * SpeedModifierMultiplicative + SpeedModifierFlat);

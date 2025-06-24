@@ -28,7 +28,7 @@ public partial class EntityBar : Control
 
         Silenced.Visible = Entity.IsAlive && Entity.IsSilenced;
         Crippled.Visible = Entity.IsAlive && (Entity.IsCrippledHorizontally || Entity.IsCrippledVertically);
-        Slowed.Visible = Entity.IsAlive && (Entity.PassiveAttributes.Speed < Entity.PassiveAttributes.BaseSpeed);
+        Slowed.Visible = Entity.IsAlive && (Entity.PassiveAttributes.Speed(Entity.Stamina.Value) < Entity.PassiveAttributes.BaseSpeed);
 
         RIP.Visible = !Entity.IsAlive;
 

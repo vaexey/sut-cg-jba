@@ -24,7 +24,7 @@ public partial class AnimationHandler : Node
         var player = (Player)entity.Parent2D;
         Shader.SetShaderParameter("enable", player.Id != 1);
 
-        var animSpeed = entity.PassiveAttributes.Speed / 200;
+        var animSpeed = entity.PassiveAttributes.Speed(entity.Stamina.Value) / 200;
         var isGoingUp = body.Velocity.Normalized().Y < 0;
 
 

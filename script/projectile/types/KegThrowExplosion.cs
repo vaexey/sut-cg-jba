@@ -7,12 +7,6 @@ public partial class KegThrowExplosion : SimpleProjectile
     public override void _Ready()
     {
         base._Ready();
-
-        var rng = new RandomNumberGenerator();
-
-        DamageFlat *= rng.RandfRange(
-            0.9f, 1.1f
-        );
     }
 
     public override void OnCollision(Node[] nodes, Entity[] entities, Player[] players)
