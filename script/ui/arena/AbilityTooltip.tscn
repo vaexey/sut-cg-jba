@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pc6v16jx83ji"]
+[gd_scene load_steps=10 format=3 uid="uid://pc6v16jx83ji"]
 
 [ext_resource type="Script" uid="uid://bupv3nvyd5wat" path="res://script/ui/arena/AbilityTooltip.cs" id="1_8cgow"]
 [ext_resource type="FontFile" uid="uid://bpt1o3ea30go8" path="res://art/ui/monogram.ttf" id="1_rcrwp"]
@@ -8,6 +8,14 @@
 font = ExtResource("1_rcrwp")
 font_size = 32
 outline_size = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6g0h"]
+font = ExtResource("1_rcrwp")
+font_color = Color(0.650128, 0.650128, 0.650128, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_33ux4"]
+font = ExtResource("1_rcrwp")
+font_color = Color(0.448229, 0.685509, 0.815258, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8cgow"]
 font = ExtResource("1_rcrwp")
@@ -20,12 +28,14 @@ font = ExtResource("1_rcrwp")
 font = ExtResource("1_rcrwp")
 font_color = Color(1, 0, 0, 1)
 
-[node name="AbilityTooltip" type="PanelContainer" node_paths=PackedStringArray("DisplayName", "Cost", "Description", "ProjectileAppendix", "ProjectileIcon", "ProjectileDesc")]
+[node name="AbilityTooltip" type="PanelContainer" node_paths=PackedStringArray("DisplayName", "Cooldown", "CastTime", "Cost", "Description", "ProjectileAppendix", "ProjectileIcon", "ProjectileDesc")]
 offset_right = 174.0
 offset_bottom = 122.0
 script = ExtResource("1_8cgow")
 DisplayName = NodePath("MarginContainer/VBoxContainer/Name")
-Cost = NodePath("MarginContainer/VBoxContainer/Cost")
+Cooldown = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Cooldown")
+CastTime = NodePath("MarginContainer/VBoxContainer/HBoxContainer/CastTime")
+Cost = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Cost")
 Description = NodePath("MarginContainer/VBoxContainer/Description")
 ProjectileAppendix = NodePath("MarginContainer/VBoxContainer/ProjectileAppendix")
 ProjectileIcon = NodePath("MarginContainer/VBoxContainer/ProjectileAppendix/HBoxContainer/Icon")
@@ -46,7 +56,20 @@ layout_mode = 2
 text = "Ability name"
 label_settings = SubResource("LabelSettings_rcrwp")
 
-[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cooldown" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1 s"
+label_settings = SubResource("LabelSettings_v6g0h")
+
+[node name="CastTime" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1 s"
+label_settings = SubResource("LabelSettings_33ux4")
+
+[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "10.0 + 5% (15.0)"
 label_settings = SubResource("LabelSettings_8cgow")

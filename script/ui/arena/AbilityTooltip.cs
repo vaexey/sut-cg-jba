@@ -16,6 +16,8 @@ public partial class AbilityTooltip : Control
 
     [ExportSubgroup("Nodes")]
     [Export] Label DisplayName { get; set; }
+    [Export] Label Cooldown { get; set; }
+    [Export] Label CastTime { get; set; }
     [Export] Label Cost { get; set; }
     [Export] Label Description { get; set; }
 
@@ -40,8 +42,16 @@ public partial class AbilityTooltip : Control
     {
         DisplayName.Text = ability.DisplayName;
 
+        Cooldown.Text = ability.Cooldown > 0
+            ? $"{ability.Cooldown} s "
+            : "";
+
+        CastTime.Text = ability.CastTime > 0
+            ? $"{ability.CastTime} s "
+            : "";
+
         List<string> cost = new();
-        string unit = "";
+        string unit;
 
         if (ability.CategoryType == AbilityCategory.Physical)
         {
