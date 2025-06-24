@@ -72,6 +72,13 @@ public partial class Ability : Node
             if (owner.Inspiration.Value < cost)
                 return AbilityUsageTrialResult.NoInspiration;
 
+        if (CastMode.HasFlag(AbilityCastMode.CastTimeCancellable) &&
+            CastTime > 0 && (
+            ((Player)owner.Parent2D).Velocity.Length() > 0 ||
+            !((Player)owner.Parent2D).IsOnFloor()
+        ))
+            return AbilityUsageTrialResult.IsNotStationary;
+
         if (IsCasting)
             return AbilityUsageTrialResult.IsAlreadyCasting;
 

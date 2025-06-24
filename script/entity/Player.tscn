@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://15x7xjj815am"]
+[gd_scene load_steps=39 format=3 uid="uid://15x7xjj815am"]
 
 [ext_resource type="Script" uid="uid://rh7kgh6hjvp3" path="res://script/entity/Player.cs" id="1_onrkg"]
 [ext_resource type="Shader" uid="uid://cqpyc441558oq" path="res://shader/recolor.gdshader" id="2_1rc4n"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://bca7cgirqdqyc" path="res://sound/effects/grass/Grass.tres" id="26_xgpxp"]
 [ext_resource type="Script" uid="uid://bn7c3w881fx25" path="res://script/handlers/LoopingSoundHandler.cs" id="27_4s4nj"]
 [ext_resource type="AudioStream" uid="uid://ccu1xb5oojjli" path="res://sound/ui/no_mana.mp3" id="28_0ribd"]
+[ext_resource type="AudioStream" uid="uid://bqsih38jjvkl1" path="res://sound/ui/general_deny.mp3" id="29_883t5"]
 [ext_resource type="AudioStream" uid="uid://bhgpm85mu27cq" path="res://sound/ui/cooldown.mp3" id="29_r42yg"]
 [ext_resource type="AudioStream" uid="uid://7wf3vhj82cji" path="res://sound/ui/silenced.mp3" id="30_kmylj"]
 [ext_resource type="AudioStream" uid="uid://6glvu344yxqh" path="res://sound/player/damaged/damaged.tres" id="31_t1sv8"]
@@ -169,6 +170,10 @@ volume_db = -12.0
 stream = ExtResource("30_kmylj")
 volume_db = -12.0
 
+[node name="GeneralDenySound" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("29_883t5")
+volume_db = -12.0
+
 [node name="LocalSounds" type="Node2D" parent="."]
 
 [node name="DamagedSound" type="AudioStreamPlayer2D" parent="LocalSounds"]
@@ -188,6 +193,7 @@ script = ExtResource("27_4s4nj")
 [connection signal="JumpStarted" from="Handlers/JumpHandler" to="LocalSounds/JumpSoundEffect" method="play"]
 [connection signal="CooldownTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/CooldownSound" method="play"]
 [connection signal="NoManaTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/NoManaSound" method="play"]
+[connection signal="NotStationaryTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/GeneralDenySound" method="play"]
 [connection signal="SilencedTrigger" from="Handlers/AbilityHandler" to="GlobalSounds/SilencedSound" method="play"]
 [connection signal="OnDamaged" from="Entity" to="Handlers/AnimationHandler" method="OnDamaged"]
 [connection signal="OnDamaged" from="Entity" to="LocalSounds/DamagedSound" method="play"]

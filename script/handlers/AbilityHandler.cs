@@ -8,16 +8,15 @@ public partial class AbilityHandler : Node
     // [ExportSubgroup("Nodes")]
 
 
-	[Signal]
-	public delegate void NoManaTriggerEventHandler();
-	[Signal]
-	public delegate void CooldownTriggerEventHandler();
-	[Signal]
-	public delegate void SilencedTriggerEventHandler();
+	[Signal] public delegate void NoManaTriggerEventHandler();
+	[Signal] public delegate void CooldownTriggerEventHandler();
+	[Signal] public delegate void SilencedTriggerEventHandler();
+	[Signal] public delegate void NotStationaryTriggerEventHandler();
 
     [Rpc(CallLocal = false)] private void RpcNoManaTrigger() => EmitSignal(SignalName.NoManaTrigger);
     [Rpc(CallLocal = false)] private void RpcCooldownTrigger() => EmitSignal(SignalName.CooldownTrigger);
     [Rpc(CallLocal = false)] private void RpcSilencedTrigger() => EmitSignal(SignalName.SilencedTrigger);
+    [Rpc(CallLocal = false)] private void RpcNotStationaryTrigger() => EmitSignal(SignalName.NotStationaryTrigger);
 
     public override void _Ready()
     {
@@ -26,6 +25,7 @@ public partial class AbilityHandler : Node
             NoManaTrigger += () => Rpc(MethodName.RpcNoManaTrigger);
             CooldownTrigger += () => Rpc(MethodName.RpcCooldownTrigger);
             SilencedTrigger += () => Rpc(MethodName.RpcSilencedTrigger);
+            NotStationaryTrigger += () => Rpc(MethodName.RpcNotStationaryTrigger);
         }
     }
 
@@ -113,6 +113,10 @@ public partial class AbilityHandler : Node
 
                 case AbilityUsageTrialResult.IsSilenced:
                     EmitSignal(SignalName.SilencedTrigger);
+                    break;
+
+                case AbilityUsageTrialResult.IsNotStationary:
+                    EmitSignal(SignalName.NotStationaryTrigger);
                     break;
             }
         }
