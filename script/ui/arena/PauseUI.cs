@@ -11,7 +11,8 @@ public partial class PauseUI : CanvasLayer
     [Export] Control DefeatControl { get; set; }
     [Export] Control ResetControl { get; set; }
 
-    public double DelayTime { get; set; } = 5;
+    public double PauseDelayTime { get; set; } = 5;
+    public double UnpauseDelayTime { get; set; } = 0.75;
 
     public double PauseTime = 0;
     public double UnpauseTime = 0;
@@ -48,7 +49,7 @@ public partial class PauseUI : CanvasLayer
 
         if (shouldBeWaiting)
         {
-            UnpauseTime = DelayTime;
+            UnpauseTime = UnpauseDelayTime;
             Visible = true;
 
             if (!GetTree().Paused)
@@ -56,14 +57,14 @@ public partial class PauseUI : CanvasLayer
                 if (PauseTime <= 0)
                 {
                     GetTree().Paused = true;
-                    PauseTime = DelayTime;
+                    PauseTime = PauseDelayTime;
                     Container.Modulate = Colors.White;
                 }
                 else
                 {
                     PauseTime = Mathf.MoveToward(PauseTime, 0, realDelta);
 
-                    var scale = TimingFunction(1 - PauseTime / DelayTime);
+                    var scale = TimingFunction(1 - PauseTime / PauseDelayTime);
 
                     GD.Print($"Pausing: {scale * 100}%");
                     Engine.TimeScale = Math.Max(0.01, 1 - scale);
@@ -73,10 +74,10 @@ public partial class PauseUI : CanvasLayer
         }
         else
         {
-            PauseTime = DelayTime;
+            PauseTime = PauseDelayTime;
             if (GetTree().Paused)
             {
-                UnpauseTime = DelayTime;
+                UnpauseTime = UnpauseDelayTime;
                 GetTree().Paused = false;
             }
             else
@@ -90,7 +91,7 @@ public partial class PauseUI : CanvasLayer
                 {
                     UnpauseTime = Mathf.MoveToward(UnpauseTime, 0, realDelta);
 
-                    var scale = TimingFunction(1 - UnpauseTime / DelayTime);
+                    var scale = TimingFunction(1 - UnpauseTime / UnpauseDelayTime);
 
                     GD.Print($"Unpausing: {scale * 100}%");
                     Engine.TimeScale = Math.Max(0.01, scale);

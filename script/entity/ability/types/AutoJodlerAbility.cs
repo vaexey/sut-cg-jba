@@ -4,6 +4,14 @@ using System.Linq;
 
 public partial class AutoJodlerAbility : Ability
 {
+    protected Vector2 PointingAtCastStart;
+
+    public override void StartCast(Entity owner)
+    {
+        base.StartCast(owner);
+
+        PointingAtCastStart = owner.PointingAt;
+    }
 
     public override void Cast(Entity entity)
     {
@@ -13,7 +21,7 @@ public partial class AutoJodlerAbility : Ability
         var node = entity.Parent2D;
         var src = node.GlobalPosition;
 
-        var to = entity.PointingAt;
+        var to = PointingAtCastStart;
         var vw = node.GetViewport().GetVisibleRect().Size;
         var diff = (src - to).Normalized()
             * (Math.Max(vw.X, vw.Y) / 2f + 20f);
