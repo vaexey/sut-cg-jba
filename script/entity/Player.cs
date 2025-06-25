@@ -16,6 +16,9 @@ public partial class Player : CharacterBody2D, IEntityContainer
 	[Export]
 	public Entity Entity { get; set; }
 
+	[Export]
+	public Node GlobalSounds { get; set; }
+
 	[ExportSubgroup("Multiplayer")]
 	[Export] public long Id { get; set; }
 
@@ -42,4 +45,19 @@ public partial class Player : CharacterBody2D, IEntityContainer
 
 		MoveAndSlide();
 	}
+
+	public override void _Process(double delta)
+	{
+		// TODO: make a better solution
+
+		var globalSounds = GlobalSounds.GetChildren(true)
+			.Where(node => node.GetType().IsAssignableTo(typeof(AudioStreamPlayer)))
+			.Select(node => (AudioStreamPlayer)node);
+		
+		var local = Id == Multiplayer.GetUniqueId();
+
+		if (!local)
+			foreach (var snd in globalSounds)
+				snd.Playing = false;
+    }
 }

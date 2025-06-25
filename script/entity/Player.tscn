@@ -64,7 +64,7 @@ streams_count = 2
 stream_0/stream = ExtResource("24_2igpl")
 stream_1/stream = ExtResource("25_ywwdl")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InputHandler", "MovementHandler", "JumpHandler", "AnimationHandler", "AbilityHandler", "Entity", "GlobalSounds")]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_onrkg")
@@ -74,6 +74,7 @@ JumpHandler = NodePath("Handlers/JumpHandler")
 AnimationHandler = NodePath("Handlers/AnimationHandler")
 AbilityHandler = NodePath("Handlers/AbilityHandler")
 Entity = NodePath("Entity")
+GlobalSounds = NodePath("GlobalSounds")
 
 [node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_wm5x6")
