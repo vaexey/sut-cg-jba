@@ -7,6 +7,8 @@
 
 [node name="GeburtstagsjodlerAbility" type="Node2D"]
 script = ExtResource("1_50frh")
+HealPerSecondFlat = 5.0
+HealPerSecondPerOM = 1.0
 DisplayName = "Geburtstagsjodler"
 ShortDescription = "Franzl sings a birthday song that heals him over time and shields from a fraction of the incoming damage for the duration of channeling this ability."
 CategoryType = 2
