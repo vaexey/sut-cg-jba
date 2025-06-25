@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://tqj2ytrya448"]
+
+[ext_resource type="Script" uid="uid://cc3s7au7wvv6x" path="res://script/projectile/types/BisonTrapProjectile.cs" id="1_1i3n0"]
+[ext_resource type="Texture2D" uid="uid://5u7wnqpwtbpg" path="res://art/projectile/trap.png" id="2_2e7tv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8n2"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqrit"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j82w5"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4ty2"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyuko"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kispu"]
+atlas = ExtResource("2_2e7tv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfhvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8n2")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqrit")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j82w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4ty2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyuko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kispu")
+}],
+"loop": false,
+"name": &"triggered",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2e7tv"]
+radius = 7.0
+height = 22.0
+
+[node name="BisonTrapProjectile" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_1i3n0")
+Sprite = NodePath("AnimatedSprite2D")
+DestroyOnCollision = false
+FadeTime = 1.5
+DestroyAfterTime = 20.0
+DamageFlat = 20.0
+DamageVariance = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bfhvt")
+animation = &"closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_2e7tv")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl7jxjv50la33"]
+
+[ext_resource type="Script" uid="uid://c2utgowxb8bk5" path="res://script/entity/ability/types/BisonTrapAbility.cs" id="1_w1cmd"]
+[ext_resource type="Texture2D" uid="uid://5u7wnqpwtbpg" path="res://art/projectile/trap.png" id="2_f7i4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwfbs"]
+atlas = ExtResource("2_f7i4s")
+region = Rect2(0, 0, 32, 32)
+
+[node name="BisonTrapAbility" type="Node2D"]
+script = ExtResource("1_w1cmd")
+DisplayName = "Bison trap"
+ShortDescription = "Franzl takes out a bison trap from his pocket and throws it in the direction he is pointing."
+CategoryType = 2
+IconTexture = SubResource("AtlasTexture_rwfbs")
+UseCostFlat = 20.0

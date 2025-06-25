@@ -109,7 +109,7 @@ root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_k7ccj")
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="World/TechnicalNodes"]
-_spawnable_scenes = PackedStringArray("uid://dwi6tffqacc7", "uid://cm4gvftaf3uku", "uid://bslc3kpronha5", "uid://b1bqw5ci54bip", "uid://cd0ec86xs7mwk", "uid://cgjdimtgskft6")
+_spawnable_scenes = PackedStringArray("uid://dwi6tffqacc7", "uid://cm4gvftaf3uku", "uid://bslc3kpronha5", "uid://b1bqw5ci54bip", "uid://cd0ec86xs7mwk", "uid://cgjdimtgskft6", "uid://tqj2ytrya448")
 spawn_path = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="World/TechnicalNodes" node_paths=PackedStringArray("World")]
